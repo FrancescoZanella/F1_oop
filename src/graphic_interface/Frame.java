@@ -18,7 +18,7 @@ public class Frame {
                     ex.printStackTrace();
                 }
 
-                Panel background = new Panel();
+                Panel background = new Panel("banner.jpg");
 
                 JFrame frame = new JFrame("Testing");
                 frame.setContentPane(background);

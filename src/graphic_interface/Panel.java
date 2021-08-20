@@ -12,10 +12,10 @@ public class Panel extends JPanel {
 
     BufferedImage image;
 
-    public Panel() {
+    public Panel(String filename) {
         setLayout(new BorderLayout());
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResource("banner.JPG")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResource(filename)));
         } catch (IOException e) {
             e.printStackTrace();
         }
