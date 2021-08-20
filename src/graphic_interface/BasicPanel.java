@@ -3,7 +3,7 @@ package graphic_interface;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel extends JPanel {
+public class BasicPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
