@@ -1,33 +1,24 @@
 package graphics;
 
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static java.awt.Color.white;
 
 public class MyButton extends JButton {
+    public MyButton(String text, Icon icon) {
+        super(text, icon);
+        this.setPreferredSize(new Dimension(200,40));
+        this.setForeground(white);
+        this.setBackground(new Color(19,19,31,255));
+        this.setBorderPainted(false);
+        this.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        this.setHorizontalAlignment(SwingConstants.LEFT);
 
-    public MyButton(String text) {
-        super(text);
     }
 
-    protected void paintComponent(Graphics g) {
-        if (getModel().isArmed()) {
-            g.setColor(Color.RED);
-        } else {
-            g.setColor(getBackground());
-        }
-        g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-        super.paintComponent(g);
-    }
-    protected void paintBorder(Graphics g) {
-        g.setColor(getForeground());
-        g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-    }
-    Shape shape;
-    public boolean contains(int x, int y) {
-        if (shape == null || !shape.getBounds().equals(getBounds())) {
-            shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-        }
-        return shape.contains(x, y);
-    }
+
 }

@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage extends JFrame/* implements ActionListener*/ {
 
-    private JLabel username, password, login_error;
+    /*private JLabel username, password, login_error;
     private MyTextField user_field;
     private MyPasswordField password_field;
     private MyButton enter_button, register_button;
@@ -134,5 +134,5 @@ public class LoginPage extends JFrame implements ActionListener {
 
     public static void main(String[] args){
         LoginPage lp = new LoginPage();
-    }
+    }*/
 }

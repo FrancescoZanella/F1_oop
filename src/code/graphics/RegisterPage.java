@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegisterPage extends JFrame implements ActionListener {
-    private MyButton finish_button, login_button;
+public class RegisterPage extends JFrame /*implements ActionListener*/ {
+    /*private MyButton finish_button, login_button;
     private MyTextField namefield, surnamefield, mailfield, usernamefield;
     private MyPasswordField passwordfield;
     private JLabel name, surname, mail, username, password, password_error, incorrect_field, password_constraints;
@@ -210,5 +210,5 @@ public class RegisterPage extends JFrame implements ActionListener {
 
     public static void main(String[] args){
         RegisterPage rp = new RegisterPage();
-    }
+    }*/
 }
