@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,15 @@ public class InitialFrame extends JFrame implements ActionListener {
         private JButton rulesButton;
         private JButton settingsButton;
         private JButton logoutButton;
+        JPanel centerHome;
+        JPanel centerTeam;
+        JPanel centerLeaderboards;
+        JPanel centerProfile;
+        JPanel centerRules;
+        JPanel centerSettings;
+        JPanel centerLogout;
+        JPanel centerPanel;
+        CardLayout cl=new CardLayout();
 
 
         public InitialFrame(String title) {
@@ -61,6 +71,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 homeButton.setBorderPainted(false);
                 homeButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 homeButton.setHorizontalAlignment(SwingConstants.LEFT);
+                homeButton.addActionListener(this);
                 leftpanel.add(homeButton);
 
                 //TeamButton
@@ -71,6 +82,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 teamButton.setBorderPainted(false);
                 teamButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 teamButton.setHorizontalAlignment(SwingConstants.LEFT);
+                teamButton.addActionListener(this);
                 leftpanel.add(teamButton);
 
                 //leaderboards botton
@@ -81,6 +93,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 leaderboardButton.setBorderPainted(false);
                 leaderboardButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 leaderboardButton.setHorizontalAlignment(SwingConstants.LEFT);
+                leaderboardButton.addActionListener(this);
                 leftpanel.add(leaderboardButton);
                 
                 //profile botton
@@ -91,6 +104,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 profileButton.setBorderPainted(false);
                 profileButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 profileButton.setHorizontalAlignment(SwingConstants.LEFT);
+                profileButton.addActionListener(this);
                 leftpanel.add(profileButton);
 
                 //rules botton
@@ -101,6 +115,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 rulesButton.setBorderPainted(false);
                 rulesButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 rulesButton.setHorizontalAlignment(SwingConstants.LEFT);
+                rulesButton.addActionListener(this);
                 leftpanel.add(rulesButton);
 
 
@@ -126,6 +141,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 settingsButton.setBorderPainted(false);
                 settingsButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 settingsButton.setHorizontalAlignment(SwingConstants.LEFT);
+                settingsButton.addActionListener(this);
                 leftpanel.add(settingsButton);
 
                 //logout button
@@ -136,15 +152,65 @@ public class InitialFrame extends JFrame implements ActionListener {
                 logoutButton.setBorderPainted(false);
                 logoutButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
                 logoutButton.setHorizontalAlignment(SwingConstants.LEFT);
+                logoutButton.addActionListener(this);
                 leftpanel.add(logoutButton);
 
 
                 //downpanel
                 JPanel downPanel=new JPanel();
                 downPanel.setBackground(white);
-                downPanel.setBounds(250,500,width-250,200);
+                downPanel.setBounds(250,600,width-250,100);
                 this.add(downPanel);
 
+                //centerpanel
+                centerPanel=new JPanel();
+                centerPanel.setBounds(250,100,width-250,height-200);
+                centerPanel.setLayout(cl);
+
+                //centerhome
+                centerHome=new JPanel();
+                centerHome.setBackground(BLACK);
+                centerHome.setBounds(250,100,width-250,height-200);
+
+                //centerteam
+                centerTeam=new JPanel();
+                centerTeam.setBackground(BLUE);
+                centerTeam.setBounds(250,100,width-250,height-200);
+                
+                //centerleaderboards
+                centerLeaderboards=new JPanel();
+                centerLeaderboards.setBackground(WHITE);
+                centerLeaderboards.setBounds(250,100,width-250,height-200);
+                
+                //centerprofile
+                centerProfile=new JPanel();
+                centerProfile.setBackground(GRAY);
+                centerProfile.setBounds(250,100,width-250,height-200);
+                
+                //centerrules
+                centerRules=new JPanel();
+                centerRules.setBackground(ORANGE);
+                centerRules.setBounds(250,100,width-250,height-200);
+                
+                //centersettings
+                centerSettings=new JPanel();
+                centerSettings.setBackground(BLACK);
+                centerSettings.setBounds(250,100,width-250,height-200);
+                
+                //centerlogout
+                centerLogout=new JPanel();
+                centerLogout.setBackground(RED);
+                centerLogout.setBounds(250,100,width-250,height-200);
+
+                centerPanel.add(centerHome,"home");
+                centerPanel.add(centerTeam,"team");
+                centerPanel.add(centerLeaderboards,"leaderboards");
+                centerPanel.add(centerProfile,"profile");
+                centerPanel.add(centerRules,"rules");
+                centerPanel.add(centerSettings,"settings");
+                centerPanel.add(centerLogout,"logout");
+
+                this.add(centerPanel);
                 
 
                 List <Image> listImage=new ArrayList<>();
@@ -161,6 +227,7 @@ public class InitialFrame extends JFrame implements ActionListener {
                 //frame
                 this.add(upPanel,BorderLayout.NORTH);
                 this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.setIconImages(listImage);
                 this.setResizable(false);
                 this.setVisible(true);
@@ -169,13 +236,31 @@ public class InitialFrame extends JFrame implements ActionListener {
 
         }
 
-        public static void main(String[] args) {
-                new InitialFrame("Prova");
-        }
 
 
         @Override
         public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==homeButton){
+                       cl.show(centerPanel,"home");
+                }
+                if(e.getSource()==teamButton){
+                        cl.show(centerPanel,"team");
+                }
+                if(e.getSource()==leaderboardButton){
+                        cl.show(centerPanel,"leaderboards");
+                }
+                if(e.getSource()==profileButton){
+                        cl.show(centerPanel,"profile");
+                }
+                if(e.getSource()==rulesButton){
+                        cl.show(centerPanel,"rules");
+                }
+                if(e.getSource()==settingsButton){
+                        cl.show(centerPanel,"settings");
+                }
+                if(e.getSource()==logoutButton){
+                        cl.show(centerPanel,"logout");
+                }
 
         }
 }
