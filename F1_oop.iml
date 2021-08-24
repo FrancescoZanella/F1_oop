@@ -8,7 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mssql-jdbc-9.4.0.jre8" level="project" />
-    <orderEntry type="library" name="darcula" level="project" />
+    <orderEntry type="library" exported="" name="mssql-jdbc-9.4.0.jre8" level="project" />
+    <orderEntry type="library" exported="" name="darcula" level="project" />
+    <orderEntry type="library" exported="" name="sqlite-jdbc-3.36.0.1" level="project" />
   </component>
 </module>
