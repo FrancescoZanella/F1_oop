@@ -1,5 +1,8 @@
 package graphics;
 
+import database.Data;
+import domain_classes.User;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,7 @@ public class RegisterPage extends JFrame implements ActionListener {
     static Font answer = new Font("bold", Font.BOLD, 12);
 
     public RegisterPage(){
-        BackroundPanel upPanel = new BackroundPanel("src/resources/background/banner.JPG");
+        BackroundPanel upPanel = new BackroundPanel("src/resources/background/bannerslim.JPG");
         JPanel downPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 20));
         JPanel entirePanel = new JPanel(new GridBagLayout());
@@ -201,14 +205,22 @@ public class RegisterPage extends JFrame implements ActionListener {
             } else {
                 if(passwordfield.getPassword().length < 8)
                     password_error.setVisible(true);
-                else
+                else {
+
+                    try {
+                        Data.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), passwordfield.getPassword()));
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
                     EventQueue.invokeLater(LoginPage::new);
+                }
+
             }
         }
 
     }
 
     public static void main(String[] args){
-        RegisterPage rp = new RegisterPage();
+       RegisterPage rp = new RegisterPage();
     }
 }

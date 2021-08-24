@@ -18,7 +18,7 @@ public class LoginPage extends JFrame implements ActionListener {
     private MyButton enter_button, register_button;
 
     public LoginPage(){
-        BackroundPanel upPanel = new BackroundPanel("src/resources/background/banner.JPG");
+        BackroundPanel upPanel = new BackroundPanel("src/resources/background/bannerslim.JPG");
         JPanel downPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 20));
         JPanel entirePanel = new JPanel(new GridBagLayout());
