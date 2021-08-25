@@ -3,12 +3,13 @@ package graphics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import static java.awt.Color.white;
 
 public class MyButton extends JButton {
+
+
     public MyButton(String text, Icon icon) {
         super(text, icon);
         this.setPreferredSize(new Dimension(200,40));
