@@ -33,7 +33,7 @@ public class Frame extends JFrame implements ActionListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
+       BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
         p.setBounds(0, 0,width, 100);
         p.setLayout(null);
         String[] strings={"Lega 1","Lega 2","Lega 3"};

@@ -49,27 +49,28 @@ public class InitialPanel extends JPanel implements ActionListener{
                 leftpanel.add(leftuppanel);
 
                 //HomeButton
-                homeButton = new MyButton("Home", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_home_20px_7.png"))));
+                homeButton = new MyButton("Home", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/home.png"))));
                 homeButton.addActionListener(this);
+
                 leftpanel.add(homeButton);
 
                 //TeamButton
-                teamButton = new MyButton("Team", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_crowd_20px.png"))));
+                teamButton = new MyButton("Team", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/team.png"))));
                 teamButton.addActionListener(this);
                 leftpanel.add(teamButton);
 
                 //leaderboards botton
-                leaderboardButton = new MyButton("Leaderboards", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_leaderboard_20px.png"))));
+                leaderboardButton = new MyButton("Leaderboards", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/leaderboard.png"))));
                 leaderboardButton.addActionListener(this);
                 leftpanel.add(leaderboardButton);
 
                 //profile botton
-                profileButton = new MyButton("Profile", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_customer_20px.png"))));
+                profileButton = new MyButton("Profile", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/profile.png"))));
                 profileButton.addActionListener(this);
                 leftpanel.add(profileButton);
 
                 //rules botton
-                rulesButton = new MyButton("Rules", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/regole.png"))));
+                rulesButton = new MyButton("Rules", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/regoles.png"))));
                 rulesButton.addActionListener(this);
                 leftpanel.add(rulesButton);
 
@@ -87,12 +88,12 @@ public class InitialPanel extends JPanel implements ActionListener{
                 leftdownpanel.add(sep);
 
                 //settings button
-                settingsButton = new MyButton("Settings", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/settings.png"))));
+                settingsButton = new MyButton("Settings", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/settingss.png"))));
                 settingsButton.addActionListener(this);
                 leftpanel.add(settingsButton);
 
                 //logout button
-                logoutButton = new MyButton("Logout", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/logout.png"))));
+                logoutButton = new MyButton("Logout", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/logouts.png"))));
                 logoutButton.addActionListener(this);
                 leftpanel.add(logoutButton);
 
