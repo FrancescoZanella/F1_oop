@@ -29,12 +29,11 @@ public class InitialPanel extends JPanel implements ActionListener{
         MyPanel centerLogout;
         MyPanel centerPanel;
         MyPanel leftpanel;
-        BackroundPanel upPanel;
         MyPanel leftdownpanel;
         MyPanel leftuppanel;
         CardLayout cl = new CardLayout();
-        CardLayout cl1 = new CardLayout();
-        JComboBox <String> cbox;
+
+
 
 
 
@@ -45,17 +44,8 @@ public class InitialPanel extends JPanel implements ActionListener{
 
                 this.setLayout(null);
 
-                upPanel = new BackroundPanel("src/resources/background/bannerslim.JPG");
-                upPanel.setBounds(0, 0,width, 100);
-
                 leftpanel = new MyPanel(0,100,250,height-100,new Color(19, 19, 31, 255),new FlowLayout());
                 leftuppanel = new MyPanel(250,120,new Color(19, 19, 31, 255));
-                leftuppanel.setLayout(null);
-                String[] strings={"Lega 1","Lega 2","Lega 3"};
-                cbox= new JComboBox<>(strings);
-                cbox.setBackground(new Color(19, 19, 31, 255));
-                cbox.setBounds(50,50,150,30);
-                leftuppanel.add(cbox);
                 leftpanel.add(leftuppanel);
 
                 //HomeButton
@@ -128,7 +118,6 @@ public class InitialPanel extends JPanel implements ActionListener{
 
                 this.add(centerPanel);
                 this.add(downPanel);
-                this.add(upPanel);
                 this.add(leftpanel);
 
 
@@ -162,14 +151,7 @@ public class InitialPanel extends JPanel implements ActionListener{
                 }
 
 
-                        String msg=(String)cbox.getSelectedItem();
-                        if(e.getSource()==cbox) {
-                                switch (Objects.requireNonNull(msg)) {
-                                        case "Lega 1" -> cl1.show(this, "lega1");
-                                        case "Lega 2" -> cl1.show(this, "lega2");
-                                        default -> cl1.show(this, "lega3");
-                                }
-                        }
+
 
 
 

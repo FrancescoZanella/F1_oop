@@ -10,12 +10,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.awt.Color.WHITE;
 
-public class Frame extends JFrame {
+public class Frame extends JFrame implements ActionListener{
+    JComboBox<String> cbox;
+    CardLayout cl1=new CardLayout();
+    JPanel panel;
 
     public Frame(String title) throws HeadlessException {
         super(title);
+        JPanel main=new JPanel();
+        setContentPane(main);
+        main.setLayout(null);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width=screenSize.width;
+        int height=screenSize.height;
         List <Image> listImage=new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
@@ -25,8 +33,31 @@ public class Frame extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        InitialPanel p=new InitialPanel();
-        this.add(p);
+        BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
+        p.setBounds(0, 0,width, 100);
+        p.setLayout(null);
+        String[] strings={"Lega 1","Lega 2","Lega 3"};
+        cbox= new JComboBox<>(strings);
+        cbox.setBackground(new Color(19, 19, 31, 255));
+        cbox.setBounds(width-200,30,150,30);
+        cbox.addActionListener(this);
+        p.add(cbox);
+        main.add(p);
+
+
+        InitialPanel e=new InitialPanel();
+        InitialPanel e1=new InitialPanel();
+        InitialPanel e2=new InitialPanel();
+        panel=new JPanel();
+        panel.setBounds(0,0,width,height);
+        panel.setLayout(cl1);
+        panel.add(e,"panel1");
+        panel.add(e1,"panel2");
+        panel.add(e2,"panel3");
+        main.add(panel);
+
+
+
 
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -38,6 +69,26 @@ public class Frame extends JFrame {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==cbox){
+
+            String msg=(String)cbox.getSelectedItem();
+            if(e.getSource()==cbox) {
+                if(msg.equals("Lega 1")){
+                    cl1.show(panel,"panel1");
+                }
+                if(msg.equals("Lega 2")){
+                    cl1.show(panel,"panel2");
+                }
+                else{
+                    cl1.show(panel,"panel3");
+
+                }
+            }
+
+        }
 
     }
+}
 
