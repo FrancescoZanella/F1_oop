@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
 
-public class LoginPage extends JFrame implements MouseListener {
+public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
     JPanel jPanel1;
     JPanel jPanel2;
@@ -69,18 +69,18 @@ public class LoginPage extends JFrame implements MouseListener {
         jLabel1.setText("Sign in");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setForeground(new java.awt.Color(204,204,204));
         jLabel2.setText("Username");
 
         jTextField1.setBackground(new java.awt.Color(69, 73, 74));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setBorder(null);
 
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setForeground(new java.awt.Color(204,204,204));
         jLabel4.setText("Password");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -106,10 +106,11 @@ public class LoginPage extends JFrame implements MouseListener {
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
         );
-
         jPasswordField1.setBackground(new java.awt.Color(69, 74, 74));
         jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField1.setFont(new Font("Dialog",1,15));
+        jPasswordField1.setBorder(null);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/car.png"))); // NOI18N
@@ -195,6 +196,7 @@ public class LoginPage extends JFrame implements MouseListener {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("X");
         jLabel5.addMouseListener(this);
+        jLabel9.addMouseListener(this);
 
 
         jPanel4.setBackground(new java.awt.Color(255, 0, 0));
@@ -245,20 +247,7 @@ public class LoginPage extends JFrame implements MouseListener {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        jLabel6.addKeyListener(this);
         this.setBounds(400,50,550,580);
         this.setUndecorated(true);
         this.setVisible(true);
@@ -278,7 +267,6 @@ public class LoginPage extends JFrame implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if(e.getSource()==jLabel6){
             if(jTextField1.getText().length()==0 || jPasswordField1.getPassword().length<8 || !d.correctLogin(jTextField1.getText(),new String(jPasswordField1.getPassword()))){
-
                 jLabel10.setVisible(true);
             }
             else{
@@ -289,6 +277,9 @@ public class LoginPage extends JFrame implements MouseListener {
         }
         if(e.getSource()==jLabel5){
             System.exit(0);
+        }
+        if(e.getSource()==jLabel9){
+            new RegisterPage();
         }
 
 
@@ -311,6 +302,31 @@ public class LoginPage extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            if(jTextField1.getText().length()==0 || jPasswordField1.getPassword().length<8 || !d.correctLogin(jTextField1.getText(),new String(jPasswordField1.getPassword()))){
+
+                jLabel10.setVisible(true);
+            }
+            else{
+                new Frame("Formula 1 fanta");
+
+            }
+
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
