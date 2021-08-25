@@ -1,24 +1,43 @@
 package database;
 import domain_classes.User;
+import org.sqlite.core.DB;
 
 import java.sql.*;
-import java.util.Arrays;
 
 
 public class Data extends Thread{
-    //ResultSet rs;
+    ResultSet rs;
+    Statement statement = null;
+    Connection c = null;
 
-    public static void InsertNewUser(User u) throws SQLException {
-        Statement statement = null;
-        Connection c = null;
-        try{
+    public void startConnection() {
+        try {
             Class.forName(Utils.JDBC_Driver_SQLite);
             c = DriverManager.getConnection(Utils.JDBC_URL_SQLite);
+            Statement statement = c.createStatement();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-            statement = c.createStatement();
-            statement.executeUpdate("INSERT INTO user VALUES('" + u.getName() + "','" + u.getSurname() + "','" + u.getMail() + "','" +  u.getUsername() + "','" + Arrays.toString(u.getPassword()) + "')");
+    public void closeConnection() {
+        if (statement != null) {
+            try {
+                statement.close();
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-        } catch(ClassNotFoundException | SQLException e) {
+    public void InsertNewUser(User u) throws SQLException {
+
+        try{
+            startConnection();
+            statement.executeUpdate("INSERT INTO user VALUES('" + u.getName() + "','" + u.getSurname() + "','" + u.getMail() + "','" +  u.getUsername() + "','" + u.getPassword() + "')");
+
+        } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             if(statement != null) {
@@ -34,13 +53,42 @@ public class Data extends Thread{
     }
 
 
-   /*public User getSelectedUser() {
+    public boolean sameUser(String new_username) {
+        try {
+                startConnection();
+            try {
+                rs = statement.executeQuery("Select * from user");
+                while (rs.next()) {
+                    if (new_username.equals(rs.getString("username")))
+                        return true;
+                }
+                return false;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+                closeConnection();
+            }
+        return false;
+    }
+
+    public boolean correctLogin(String new_username, String new_password){
         try{
-           return new User(rs.getString("name"), rs.getString("surname"), rs.getString("username"), rs.getString("mail"), rs.getString("password"));
-        } catch (SQLException e){
-            e.printStackTrace();
+            startConnection();
+            try{
+                rs = statement.executeQuery("Select * from user" +
+                        "where username = '" + new_username +
+                        "' and password = '" + new_password + "'");
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        } finally {
+            closeConnection();
         }
-        return null;
-    }*/
+        return false;
+    }
+
+
+
 
 }

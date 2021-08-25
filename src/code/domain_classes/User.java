@@ -5,13 +5,26 @@ import java.util.LinkedHashSet;
 public class User {
     String name, surname, mail;
     String username;
-    char[] password;
+    String password;
     LinkedHashSet<Team> all_teams;
 
-    public User(String name, String surname, String mail, String username, char[] password) {
+    public User(String name, String surname, String mail, String username, String password) {
         this.name = name;
         this.surname = surname;
         this.mail = mail;
+        this.username = username;
+        this.password = password;
+    }
+
+
+    public User(String name, String surname, String mail, String username) {
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.username = username;
+    }
+
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -32,9 +45,9 @@ public class User {
 
     public void setUsername(String username) { this.username = username; }
 
-    public void setPassword(char[] password) { this.password = password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public char[] getPassword() { return password; }
+    public String getPassword() { return password; }
 
     public LinkedHashSet<Team> getAll_teams() { return all_teams; }
 

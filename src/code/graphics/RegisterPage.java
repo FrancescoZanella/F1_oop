@@ -12,15 +12,17 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RegisterPage extends JFrame implements ActionListener {
     private MyButton finish_button, login_button;
     private MyTextField namefield, surnamefield, mailfield, usernamefield;
     private MyPasswordField passwordfield;
-    private JLabel name, surname, mail, username, password, password_error, incorrect_field, password_constraints;
+    private JLabel name, surname, mail, username, password, password_error, incorrect_field, password_constraints, already_exist;
     static Font f = new Font("bold", Font.BOLD, 16);
     static Font answer = new Font("bold", Font.BOLD, 12);
+    Data d;
 
     public RegisterPage(){
         BackroundPanel upPanel = new BackroundPanel("src/resources/background/bannerslim.JPG");
@@ -150,6 +152,14 @@ public class RegisterPage extends JFrame implements ActionListener {
         incorrect_field.setForeground(Color.RED);
         downPanel.add(this.incorrect_field, gbc);
 
+        this.already_exist = new JLabel("this username is already used, try something else!");
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        already_exist.setVisible(false);
+        gbc.anchor = GridBagConstraints.LINE_START;
+        already_exist.setForeground(Color.RED);
+        downPanel.add(this.already_exist, gbc);
+
         this.finish_button = new MyButton("Done");
         finish_button.setBounds(new Rectangle(100, 20));
         finish_button.setForeground(Color.WHITE);
@@ -190,6 +200,12 @@ public class RegisterPage extends JFrame implements ActionListener {
         this.setSize((int)width,(int)height);
         this.setResizable(false);
         this.setVisible(true);
+
+        try{
+            d = new Data();
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -201,20 +217,29 @@ public class RegisterPage extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("Done")) {
             if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
                     || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+                password_error.setVisible(false);
+                already_exist.setVisible(false);
                 incorrect_field.setVisible(true);
             } else {
-                if(passwordfield.getPassword().length < 8)
+                if(passwordfield.getPassword().length < 8) {
+                    incorrect_field.setVisible(false);
+                    already_exist.setVisible(false);
                     password_error.setVisible(true);
-                else {
+                } else {
+                    if (d.sameUser(usernamefield.getText())) {
+                        incorrect_field.setVisible(false);
+                        password_error.setVisible(false);
+                        already_exist.setVisible(true);
+                    } else {
 
-                    try {
-                        Data.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), passwordfield.getPassword()));
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
+                        try {
+                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), Arrays.toString(passwordfield.getPassword())));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        EventQueue.invokeLater(LoginPage::new);
                     }
-                    EventQueue.invokeLater(LoginPage::new);
                 }
-
             }
         }
 
