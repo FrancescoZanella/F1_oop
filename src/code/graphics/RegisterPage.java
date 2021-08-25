@@ -1,10 +1,14 @@
 package graphics;
 
 
+import database.Data;
+import domain_classes.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 
 public class RegisterPage extends JFrame implements MouseListener {
@@ -29,6 +33,7 @@ public class RegisterPage extends JFrame implements MouseListener {
     private javax.swing.JTextField mailfield;
     private javax.swing.JTextField surnamefield;
     private javax.swing.JTextField usernamefield;
+    Data d;
 
     
     public RegisterPage(){
@@ -281,6 +286,12 @@ public class RegisterPage extends JFrame implements MouseListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
+
+        try{
+            d = new Data();
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -298,15 +309,26 @@ public class RegisterPage extends JFrame implements MouseListener {
             passworderror.setVisible(false);
             if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
                     || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+                incorrectfield.setText("All fields are required!");
                 incorrectfield.setVisible(true);
-            }
-        }
-        else{
-                if(passwordfield.getPassword().length < 8)
+            } else {
+                if (passwordfield.getPassword().length < 8) {
+                    incorrectfield.setVisible(false);
                     passworderror.setVisible(true);
-                else {
-                    //quello da fare in caso di registrazione corretta
+                } else {
+                    if (d.sameUser(usernamefield.getText())) {
+                        incorrectfield.setText("This username already exist, more fantasy please!");
+                        incorrectfield.setVisible(true);
+                        passworderror.setVisible(false);
+                    } else {
+                        try {
+                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
+            }
         }
 
 
