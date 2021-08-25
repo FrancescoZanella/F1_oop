@@ -1,5 +1,7 @@
 package graphics;
 
+import database.Data;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -16,6 +20,9 @@ public class LoginPage extends JFrame implements ActionListener {
     private MyTextField user_field;
     private MyPasswordField password_field;
     private MyButton enter_button, register_button;
+    static Font f = new Font("bold", Font.BOLD, 16);
+    static Font answer = new Font("bold", Font.BOLD, 12);
+    Data d;
 
     public LoginPage(){
         BackroundPanel upPanel = new BackroundPanel("src/resources/background/bannerslim.JPG");
@@ -41,13 +48,14 @@ public class LoginPage extends JFrame implements ActionListener {
         this.username = new JLabel("Username:");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        this.username.setFont(new Font("bold", Font.BOLD, 16));
+        this.username.setFont(f);
         gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         downPanel.add(this.username, gbc);
 
         this.user_field = new MyTextField("", 20);
         this.user_field.setEditable(true);
+        this.user_field.setFont(answer);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.LINE_START;
@@ -57,12 +65,13 @@ public class LoginPage extends JFrame implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(5, 0, 0, 10);
-        this.password.setFont(new Font("bold", Font.BOLD, 16));
+        this.password.setFont(f);
         gbc.anchor = GridBagConstraints.LINE_END;
         downPanel.add(this.password, gbc);
 
         this.password_field = new MyPasswordField("", 20);
         this.password_field.setEditable(true);
+        this.password_field.setFont(answer);
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
@@ -116,6 +125,12 @@ public class LoginPage extends JFrame implements ActionListener {
         this.setSize((int)width,(int)height);
         this.setResizable(false);
         this.setVisible(true);
+
+        try{
+            d = new Data();
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -125,7 +140,7 @@ public class LoginPage extends JFrame implements ActionListener {
             EventQueue.invokeLater(RegisterPage::new);
 
         if(e.getActionCommand().equals("Enter")){
-            if(password_field.getPassword().length < 8 || user_field.getText().length() == 0)
+            if(password_field.getPassword().length < 8 || user_field.getText().length() == 0 || !(d.correctLogin(user_field.getText(), new String(password_field.getPassword()))))
                 login_error.setVisible(true);
             else
                 EventQueue.invokeLater(RegisterPage::new);

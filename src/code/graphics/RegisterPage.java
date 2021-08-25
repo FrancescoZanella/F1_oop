@@ -233,7 +233,7 @@ public class RegisterPage extends JFrame implements ActionListener {
                     } else {
 
                         try {
-                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), Arrays.toString(passwordfield.getPassword())));
+                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), new String(passwordfield.getPassword())));
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }

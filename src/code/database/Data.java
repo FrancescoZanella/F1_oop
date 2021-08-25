@@ -14,7 +14,7 @@ public class Data extends Thread{
         try {
             Class.forName(Utils.JDBC_Driver_SQLite);
             c = DriverManager.getConnection(Utils.JDBC_URL_SQLite);
-            Statement statement = c.createStatement();
+            statement = c.createStatement();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -76,9 +76,11 @@ public class Data extends Thread{
         try{
             startConnection();
             try{
-                rs = statement.executeQuery("Select * from user" +
+                rs = statement.executeQuery("Select * from user " +
                         "where username = '" + new_username +
                         "' and password = '" + new_password + "'");
+
+                return new_username.equals(rs.getString("username")) && new_password.equals(rs.getString("password"));
             } catch(SQLException e){
                 e.printStackTrace();
             }
