@@ -2,17 +2,18 @@ package graphics;
 
 
 import database.Data;
-import database.DataUser;
 import domain_classes.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 
 
-public class RegisterPage extends JFrame implements MouseListener {
+public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel incorrectfield;
     private javax.swing.JLabel passworderror;
@@ -34,10 +35,10 @@ public class RegisterPage extends JFrame implements MouseListener {
     private javax.swing.JTextField mailfield;
     private javax.swing.JTextField surnamefield;
     private javax.swing.JTextField usernamefield;
-    DataUser d;
+    Data d;
 
-
-    public RegisterPage() {
+    
+    public RegisterPage(){
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,7 +71,7 @@ public class RegisterPage extends JFrame implements MouseListener {
         jLabel1.setBackground(new java.awt.Color(60, 63, 65));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Register Now");
+        jLabel1.setText("Sign Up");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -92,7 +93,7 @@ public class RegisterPage extends JFrame implements MouseListener {
 
         finishbutton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         finishbutton.setForeground(new java.awt.Color(255, 255, 255));
-        finishbutton.setText("             Register");
+        finishbutton.setText("             Sign Up");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -283,16 +284,21 @@ public class RegisterPage extends JFrame implements MouseListener {
         );
         incorrectfield.setVisible(false);
         passworderror.setVisible(false);
-        this.setBounds(400, 50, 550, 580);
+        this.setBounds(400,50,550,580);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
 
-        try {
-            d = new DataUser();
-        } catch (NullPointerException e) {
+        try{
+            d = new Data();
+        } catch(NullPointerException e){
             e.printStackTrace();
         }
+        namefield.addKeyListener(this);
+        surnamefield.addKeyListener(this);
+        mailfield.addKeyListener(this);
+        usernamefield.addKeyListener(this);
+        passwordfield.addKeyListener(this);
     }
 
     @Override
@@ -302,14 +308,16 @@ public class RegisterPage extends JFrame implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getSource() == jLabel9) {
-            System.exit(0);
+        if(e.getSource()==jLabel9){
+            this.setVisible(false);
+            dispose();
+            //System.exit(0);
         }
-        if (e.getSource() == finishbutton) {
+        if(e.getSource()==finishbutton){
             incorrectfield.setVisible(false);
             passworderror.setVisible(false);
-            if (namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
-                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0) {
+            if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
+                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
                 incorrectfield.setText("All fields are required!");
                 incorrectfield.setVisible(true);
             } else {
@@ -323,18 +331,22 @@ public class RegisterPage extends JFrame implements MouseListener {
                         passworderror.setVisible(false);
                     } else {
                         try {
+                            incorrectfield.setText("Sign up correctly!");
+                            incorrectfield.setVisible(true);
+                            passworderror.setVisible(false);
                             d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
-                        EventQueue.invokeLater(() -> new Frame("Fanta F1"));
                     }
                 }
             }
         }
 
 
-    }
+
+        }
+
 
 
     @Override
@@ -349,6 +361,56 @@ public class RegisterPage extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            incorrectfield.setVisible(false);
+            passworderror.setVisible(false);
+            if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
+                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+                incorrectfield.setText("All fields are required!");
+                incorrectfield.setVisible(true);
+            } else {
+                if (passwordfield.getPassword().length < 8) {
+                    incorrectfield.setVisible(false);
+                    passworderror.setVisible(true);
+                } else {
+                    if (d.sameUser(usernamefield.getText())) {
+                        incorrectfield.setText("This username already exist, more fantasy please!");
+                        incorrectfield.setVisible(true);
+                        passworderror.setVisible(false);
+                    } else {
+                        try {
+                            incorrectfield.setText("Sign up correctly!");
+                            incorrectfield.setVisible(true);
+                            passworderror.setVisible(false);
+                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+        }
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+            this.setVisible(false);
+           dispose();
+
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
