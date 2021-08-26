@@ -247,7 +247,8 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jLabel6.addKeyListener(this);
+       jTextField1.addKeyListener(this);
+        jPasswordField1.addKeyListener(this);
         this.setBounds(400,50,550,580);
         this.setUndecorated(true);
         this.setVisible(true);
@@ -271,7 +272,6 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
             }
             else{
                 new Frame("Formula 1 fanta");
-
             }
 
         }
@@ -315,12 +315,15 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
             if(jTextField1.getText().length()==0 || jPasswordField1.getPassword().length<8 || !d.correctLogin(jTextField1.getText(),new String(jPasswordField1.getPassword()))){
 
-                jLabel10.setVisible(true);
+               jLabel10.setVisible(true);
             }
             else{
                 new Frame("Formula 1 fanta");
-
             }
+
+        }
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+            System.exit(0);
 
         }
     }
