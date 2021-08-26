@@ -114,7 +114,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
         jPasswordField1.setBorder(null);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/car.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/cars.png")))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
@@ -320,9 +320,10 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                jLabel10.setVisible(true);
             }
             else{
-                this.setVisible(false);
-                dispose();
                 new Frame("Formula 1 fanta");
+                this.setVisible(false);
+                //dispose();
+
             }
 
         }
