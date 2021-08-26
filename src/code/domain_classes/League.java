@@ -2,7 +2,7 @@ package domain_classes;
 
 public class League {
     String LeagueName;
-    String InviteCode;
+    String InviteCode;//univoco
     private static final int MaxUserPerLeague=8;
     //Private only member with an invite can join--->false
     //Public all the world can join the league--->true

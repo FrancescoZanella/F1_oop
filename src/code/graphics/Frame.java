@@ -32,7 +32,7 @@ public class Frame extends JFrame implements ActionListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-       BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
+        BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
         String[] strings={"Lega 1","Lega 2","Lega 3"};
@@ -67,9 +67,7 @@ public class Frame extends JFrame implements ActionListener{
 
     }
 
-    public static void main(String[] args) {
-        new Frame("prova");
-    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==cbox){
