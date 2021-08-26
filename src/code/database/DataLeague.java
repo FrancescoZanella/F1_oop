@@ -9,7 +9,7 @@ public class DataLeague extends Data {
     public void insertNewLeague(League l) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO league VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
+            statement.executeUpdate("INSERT INTO league(name, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,4 +36,5 @@ public class DataLeague extends Data {
         }
         return false;
     }
+
 }
