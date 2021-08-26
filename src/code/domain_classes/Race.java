@@ -1,5 +1,6 @@
 package domain_classes;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Race {
@@ -16,11 +17,12 @@ public class Race {
         this.km = km;
     }
 
-    public Race(String name, String nation, Date race_day, float km) {
+    public Race(String name, String nation, Date race_day, float km, Date qualification_day) {
         this.name = name;
         this.nation = nation;
         this.race_day = race_day;
         this.km = km;
+        this.qualification_day = qualification_day;
     }
 
     public String getName() {
@@ -47,7 +49,15 @@ public class Race {
         this.km = km;
     }
 
-    //DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
+    public Date getRace_day() { return race_day; }
+
+    public void setRace_day(Date race_day) { this.race_day = race_day; }
+
+    public Date getQualification_day() { return qualification_day; }
+
+    public void setQualification_day(Date qualification_day) { this.qualification_day = qualification_day; }
+
+    DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
 
     public String toString() {
         return "Race{" +

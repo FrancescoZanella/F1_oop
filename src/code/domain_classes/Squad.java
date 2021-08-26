@@ -7,10 +7,11 @@ public class Squad extends Abstract_f1_item{
     Driver d1, d2;
     Random r;
 
-    public Squad(String name, Integer number, Driver d1, Driver d2) {
+    public Squad(String name, Driver d1, Driver d2) {
         super(name);
         this.d1 = d1;
         this.d2 = d2;
+        setNumber();
     }
 
     public void setNumber(){
