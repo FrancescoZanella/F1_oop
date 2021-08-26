@@ -91,7 +91,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("             Log In");
+        jLabel6.setText("             Sign In");
         jLabel6.addMouseListener(this);
         jLabel10.setVisible(false);
 
@@ -260,9 +260,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
 
 
-    public static void main(String[] args){
-        LoginPage lp = new LoginPage();
-    }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -271,12 +269,15 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                 jLabel10.setVisible(true);
             }
             else{
+                this.setVisible(false);
+                dispose();
                 new Frame("Formula 1 fanta");
             }
 
         }
         if(e.getSource()==jLabel5){
-            System.exit(0);
+            this.setVisible(false);
+            dispose();
         }
         if(e.getSource()==jLabel9){
             new RegisterPage();
@@ -318,12 +319,16 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                jLabel10.setVisible(true);
             }
             else{
+                this.setVisible(false);
+                dispose();
                 new Frame("Formula 1 fanta");
             }
 
         }
         if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
-            System.exit(0);
+            //System.exit(0);
+            this.setVisible(false);
+            dispose();
 
         }
     }

@@ -1,5 +1,7 @@
 package graphics;
 
+import database.Utils;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,9 +23,6 @@ public class Frame extends JFrame implements ActionListener{
         JPanel main=new JPanel();
         setContentPane(main);
         main.setLayout(null);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width=screenSize.width;
-        int height=screenSize.height;
         List <Image> listImage=new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
@@ -34,12 +33,12 @@ public class Frame extends JFrame implements ActionListener{
             e.printStackTrace();
         }
        BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
-        p.setBounds(0, 0,width, 100);
+        p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
         String[] strings={"Lega 1","Lega 2","Lega 3"};
         cbox= new JComboBox<>(strings);
         cbox.setBackground(new Color(19, 19, 31, 255));
-        cbox.setBounds(width-200,30,150,30);
+        cbox.setBounds(Utils.width-200,30,150,30);
         cbox.addActionListener(this);
         p.add(cbox);
         main.add(p);
@@ -49,7 +48,7 @@ public class Frame extends JFrame implements ActionListener{
         InitialPanel e1=new InitialPanel();
         InitialPanel e2=new InitialPanel();
         panel=new JPanel();
-        panel.setBounds(0,0,width,height);
+        panel.setBounds(0,0,Utils.width,Utils.height);
         panel.setLayout(cl1);
         panel.add(e,"panel1");
         panel.add(e1,"panel2");
@@ -59,7 +58,7 @@ public class Frame extends JFrame implements ActionListener{
 
 
 
-
+       // this.setUndecorated(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setIconImages(listImage);
@@ -68,7 +67,9 @@ public class Frame extends JFrame implements ActionListener{
 
     }
 
-
+    public static void main(String[] args) {
+        new Frame("prova");
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==cbox){

@@ -309,7 +309,9 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getSource()==jLabel9){
-            System.exit(0);
+            this.setVisible(false);
+            dispose();
+            //System.exit(0);
         }
         if(e.getSource()==finishbutton){
             incorrectfield.setVisible(false);
@@ -400,7 +402,8 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
 
         }
         if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
-            System.exit(0);
+            this.setVisible(false);
+           dispose();
 
         }
 
