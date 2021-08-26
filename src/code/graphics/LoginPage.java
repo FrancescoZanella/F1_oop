@@ -1,6 +1,7 @@
 package graphics;
 
 import database.Data;
+import database.DataUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,13 +26,13 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
     JLabel jLabel11;
     JPasswordField jPasswordField1;
     JTextField jTextField1;
-    Data d;
+    DataUser d;
     private javax.swing.JLabel jLabel10;
 
 
     public LoginPage(){
         try{
-            d=new Data();
+            d=new DataUser();
         }
         catch (NullPointerException e){
             e.printStackTrace();

@@ -2,6 +2,7 @@ package graphics;
 
 
 import database.Data;
+import database.DataUser;
 import domain_classes.User;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private javax.swing.JTextField mailfield;
     private javax.swing.JTextField surnamefield;
     private javax.swing.JTextField usernamefield;
-    Data d;
+    DataUser d;
 
     
     public RegisterPage(){
@@ -290,7 +291,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         this.setResizable(false);
 
         try{
-            d = new Data();
+            d = new DataUser();
         } catch(NullPointerException e){
             e.printStackTrace();
         }
