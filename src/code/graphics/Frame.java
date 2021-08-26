@@ -41,6 +41,8 @@ public class Frame extends JFrame implements ActionListener{
         cbox.setBounds(Utils.width-200,30,150,30);
         cbox.addActionListener(this);
         p.add(cbox);
+
+
         main.add(p);
 
 
