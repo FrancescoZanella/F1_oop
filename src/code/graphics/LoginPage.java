@@ -1,13 +1,12 @@
 package graphics;
 
-import database.Data;
+import database.DataUser;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Objects;
 
-public class LoginPage extends JFrame implements MouseListener,KeyListener {
+public class LoginPage extends JFrame implements MouseListener, KeyListener {
 
     JPanel jPanel1;
     JPanel jPanel2;
@@ -25,15 +24,14 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
     JLabel jLabel11;
     JPasswordField jPasswordField1;
     JTextField jTextField1;
-    Data d;
+    DataUser d;
     private javax.swing.JLabel jLabel10;
 
 
-    public LoginPage(){
-        try{
-            d=new Data();
-        }
-        catch (NullPointerException e){
+    public LoginPage() {
+        try {
+            d = new DataUser();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         jLabel10 = new javax.swing.JLabel();
@@ -69,7 +67,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
         jLabel1.setText("Sign in");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204,204,204));
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Username");
 
         jTextField1.setBackground(new java.awt.Color(69, 73, 74));
@@ -80,7 +78,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204,204,204));
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Password");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -109,7 +107,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
         jPasswordField1.setBackground(new java.awt.Color(69, 74, 74));
         jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setFont(new Font("Dialog",1,15));
+        jPasswordField1.setFont(new Font("Dialog", 1, 15));
         jPasswordField1.setBorder(null);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -248,41 +246,28 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLabel6.addKeyListener(this);
-        this.setBounds(400,50,550,580);
+        this.setBounds(400, 50, 550, 580);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
 
 
-
-    }
-
-
-
-    public static void main(String[] args){
-        LoginPage lp = new LoginPage();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()==jLabel6){
-            if(jTextField1.getText().length()==0 || jPasswordField1.getPassword().length<8 || !d.correctLogin(jTextField1.getText(),new String(jPasswordField1.getPassword()))){
+        if (e.getSource() == jLabel6) {
+            if (jTextField1.getText().length() == 0 || jPasswordField1.getPassword().length < 8 || !d.correctLogin(jTextField1.getText(), new String(jPasswordField1.getPassword())))
                 jLabel10.setVisible(true);
-            }
-            else{
-                new Frame("Formula 1 fanta");
-
-            }
-
+            else
+                EventQueue.invokeLater(() -> new Frame("Fanta F1"));
         }
-        if(e.getSource()==jLabel5){
+        if (e.getSource() == jLabel5) {
             System.exit(0);
         }
-        if(e.getSource()==jLabel9){
+        if (e.getSource() == jLabel9) {
             new RegisterPage();
         }
-
-
     }
 
     @Override
@@ -312,13 +297,12 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
-            if(jTextField1.getText().length()==0 || jPasswordField1.getPassword().length<8 || !d.correctLogin(jTextField1.getText(),new String(jPasswordField1.getPassword()))){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (jTextField1.getText().length() == 0 || jPasswordField1.getPassword().length < 8 || d.correctLogin(jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
 
                 jLabel10.setVisible(true);
-            }
-            else{
-                new Frame("Formula 1 fanta");
+            } else {
+                EventQueue.invokeLater(() -> new Frame("Fanta  F1"));
 
             }
 
@@ -329,4 +313,5 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
 }

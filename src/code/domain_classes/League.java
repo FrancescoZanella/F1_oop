@@ -3,11 +3,11 @@ package domain_classes;
 public class League {
     String LeagueName;
     String InviteCode;
-    private static final int MaxUserPerLeague=8;
+    private static final int MaxUserPerLeague = 8;
     //Private only member with an invite can join--->false
     //Public all the world can join the league--->true
     Boolean LeagueType;
-    private static final int MaxTeamsPerUser=1;
+    private static final int MaxTeamsPerUser = 1;
     //1-25 race's number
     Integer LeagueLenght;
 
@@ -58,8 +58,6 @@ public class League {
     public void setLeagueLenght(Integer leagueLenght) {
         LeagueLenght = leagueLenght;
     }
-
-
 
 
 }

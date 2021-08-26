@@ -2,6 +2,7 @@ package graphics;
 
 
 import database.Data;
+import database.DataUser;
 import domain_classes.User;
 
 import javax.swing.*;
@@ -33,10 +34,10 @@ public class RegisterPage extends JFrame implements MouseListener {
     private javax.swing.JTextField mailfield;
     private javax.swing.JTextField surnamefield;
     private javax.swing.JTextField usernamefield;
-    Data d;
+    DataUser d;
 
-    
-    public RegisterPage(){
+
+    public RegisterPage() {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -282,14 +283,14 @@ public class RegisterPage extends JFrame implements MouseListener {
         );
         incorrectfield.setVisible(false);
         passworderror.setVisible(false);
-        this.setBounds(400,50,550,580);
+        this.setBounds(400, 50, 550, 580);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
 
-        try{
-            d = new Data();
-        } catch(NullPointerException e){
+        try {
+            d = new DataUser();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -301,14 +302,14 @@ public class RegisterPage extends JFrame implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(e.getSource()==jLabel9){
+        if (e.getSource() == jLabel9) {
             System.exit(0);
         }
-        if(e.getSource()==finishbutton){
+        if (e.getSource() == finishbutton) {
             incorrectfield.setVisible(false);
             passworderror.setVisible(false);
-            if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
-                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+            if (namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
+                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0) {
                 incorrectfield.setText("All fields are required!");
                 incorrectfield.setVisible(true);
             } else {
@@ -326,15 +327,14 @@ public class RegisterPage extends JFrame implements MouseListener {
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
+                        EventQueue.invokeLater(() -> new Frame("Fanta F1"));
                     }
                 }
             }
         }
 
 
-
-        }
-
+    }
 
 
     @Override

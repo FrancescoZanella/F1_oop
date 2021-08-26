@@ -18,10 +18,6 @@ public class Driver extends Abstract_f1_item{
         this.age = age;
     }
 
-    public Integer getNumber() { return number; }
-
-    public void setNumber(int number) { this.number = number; }
-
     public boolean SameDriver(Driver d){
         return (number == d.number || name.equals(d.name));
     }

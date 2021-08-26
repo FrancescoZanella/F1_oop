@@ -1,9 +1,10 @@
 package graphics;
 
+import java.awt.*;
+
 public class TestAPp {
     public static void main(String[] args) {
-        new RegisterPage();
-       // new Frame("Prova");
+        EventQueue.invokeLater(LoginPage::new);
     }
 
 }

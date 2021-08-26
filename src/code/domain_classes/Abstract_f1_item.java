@@ -8,7 +8,12 @@ public abstract class Abstract_f1_item implements F1_Item{
     int fantavalue;
 
     public Abstract_f1_item(String name, Integer number) {
+            this.name = name;
+            this.number = number;
+    }
 
+    public Abstract_f1_item(String name) {
+        this.name = name;
     }
 
     public String getName() {

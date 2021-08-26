@@ -15,7 +15,7 @@ public class BackroundPanel extends JPanel {
     public BackroundPanel(String path) {
         this.path = path;
         try {
-            image=ImageIO.read(new File(path));
+            image = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,13 +1,21 @@
 package domain_classes;
 
+import java.util.Random;
+
 public class Squad extends Abstract_f1_item{
 
     Driver d1, d2;
+    Random r;
 
     public Squad(String name, Integer number, Driver d1, Driver d2) {
-        super(name, number);
+        super(name);
         this.d1 = d1;
         this.d2 = d2;
+    }
+
+    public void setNumber(){
+        r = new Random();
+        this.number = r.nextInt(100) + 100;
     }
 
     public Driver getD1() { return d1; }
