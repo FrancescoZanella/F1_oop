@@ -1,62 +1,62 @@
 package domain_classes;
 
+import java.util.Random;
+
 public class League {
-    String LeagueName;
-    String InviteCode;
+    String leagueName;
+    int inviteCode;
     private static final int MaxUserPerLeague = 8;
     //Private only member with an invite can join--->false
     //Public all the world can join the league--->true
-    Boolean LeagueType;
+    boolean leagueType;
     private static final int MaxTeamsPerUser = 1;
     //1-25 race's number
-    Integer LeagueLenght;
+    int leagueLenght;
+    Random r;
 
-    public League(String leagueName, String inviteCode, Boolean leagueType, Integer leagueLenght) {
-        LeagueName = leagueName;
-        InviteCode = inviteCode;
-        LeagueType = leagueType;
-        LeagueLenght = leagueLenght;
+    public League(String leagueName, boolean leagueType, int leagueLenght) {
+        this.leagueName = leagueName;
+        this.leagueType = leagueType;
+        this.leagueLenght = leagueLenght;
+        r = new Random();
+        this.inviteCode = r.nextInt(10000) + 10000;
     }
 
-    public String getLeagueName() {
-
-        return LeagueName;
-    }
+    public String getLeagueName() { return leagueName; }
 
     public void setLeagueName(String leagueName) {
-        LeagueName = leagueName;
+        this.leagueName = leagueName;
     }
 
-    public String getInviteCode() {
-        return InviteCode;
+    public void setInviteCode() {
+        r = new Random();
+        this.inviteCode = r.nextInt(10000) + 10000;
     }
 
-    public void setInviteCode(String inviteCode) {
-        InviteCode = inviteCode;
-    }
+    public int getInviteCode() { return inviteCode; }
 
     public static int getMaxUserPerLeague() {
         return MaxUserPerLeague;
     }
 
-    public Boolean getLeagueType() {
-        return LeagueType;
+    public boolean getLeagueType() {
+        return leagueType;
     }
 
-    public void setLeagueType(Boolean leagueType) {
-        LeagueType = leagueType;
+    public void setLeagueType(boolean leagueType) {
+        this.leagueType = leagueType;
     }
 
     public static int getMaxTeamsPerUser() {
         return MaxTeamsPerUser;
     }
 
-    public Integer getLeagueLenght() {
-        return LeagueLenght;
+    public int getLeagueLenght() {
+        return leagueLenght;
     }
 
-    public void setLeagueLenght(Integer leagueLenght) {
-        LeagueLenght = leagueLenght;
+    public void setLeagueLenght(int leagueLenght) {
+        this.leagueLenght = leagueLenght;
     }
 
 
