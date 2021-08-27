@@ -16,11 +16,11 @@ public class League {
     int leagueLenght;
 
     //da usare la prima volta che si crea una lega, così ti genera il codice di invito
-    public League(String leagueName, boolean leagueType, int leagueLenght) {
+    public League(String leagueName, String inviteCode, boolean leagueType, int leagueLenght) {
         this.leagueName = leagueName;
         this.leagueType = leagueType;
         this.leagueLenght = leagueLenght;
-        //this.inviteCode = inviteCode;
+        this.inviteCode = inviteCode;
         this.userteam = new HashMap<>();
     }
 

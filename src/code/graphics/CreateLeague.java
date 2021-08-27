@@ -36,7 +36,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
     private JTextField jTextField2;
     DataLeague d;
 
-    public CreateLeague(){
+    public CreateLeague() {
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -110,7 +110,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         );
 
         jLabel7.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel7.setIcon(new ImageIcon(getClass().getResource("/icons/car.png"))); // NOI18N
+        jLabel7.setIcon(new ImageIcon(getClass().getResource("/icons/cars.png"))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
@@ -329,14 +329,14 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         jLabel9.addKeyListener(this);
 
         jLabel10.setVisible(false);
-        this.setBounds(400,30,578,666);
+        this.setBounds(400, 30, 578, 666);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
 
-        try{
+        try {
             d = new DataLeague();
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -354,14 +354,13 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             //nel caso di invio: controllo che tutti i campi siano completi e che league e invitation non esistano gia
             jLabel10.setVisible(false);
-            if(jTextField1.getText().length()==0 || !jCheckBox1.isSelected() || !jCheckBox5.isSelected() || jSlider1.getValue()==0 || jTextField2.getText().length()==0){
+            if (jTextField1.getText().length() == 0 || !jCheckBox1.isSelected() || !jCheckBox5.isSelected() || jSlider1.getValue() == 0 || jTextField2.getText().length() == 0) {
                 jLabel10.setText("All fields are required");
                 jLabel10.setVisible(true);
-            }
-            else{
+            } else {
                 if (jTextField2.getText().length() < 8) {
                     jLabel10.setText("Invitation code must be long at least 8 characters!");
                     jLabel10.setVisible(true);
@@ -372,12 +371,12 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                     } else {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
-                        d.insertNewLeague(new League(jTextField1.getText(),false,jSlider1.getValue()));
+                        d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
                     }
                 }
             }
         }
-        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             //System.exit(0);
             this.setVisible(false);
             dispose();
@@ -398,13 +397,12 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(e.getSource()==jLabel4){
+        if (e.getSource() == jLabel4) {
             jLabel10.setVisible(false);
-            if(jTextField1.getText().length()==0 || !jCheckBox1.isSelected() || !jCheckBox5.isSelected() || jSlider1.getValue()==0 || jTextField2.getText().length()==0){
+            if (jTextField1.getText().length() == 0 || !jCheckBox1.isSelected() || !jCheckBox5.isSelected() || jSlider1.getValue() == 0 || jTextField2.getText().length() == 0) {
                 jLabel10.setText("All fields are required");
                 jLabel10.setVisible(true);
-            }
-            else{
+            } else {
                 if (jTextField2.getText().length() < 8) {
                     jLabel10.setText("Invitation code must be long at least 8 characters!");
                     jLabel10.setVisible(true);
@@ -415,13 +413,13 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                     } else {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
-                        d.insertNewLeague(new League(jTextField1.getText(),false,jSlider1.getValue()));
+                        d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
                     }
                 }
             }
 
         }
-        if(e.getSource()==jLabel9){
+        if (e.getSource() == jLabel9) {
             this.setVisible(false);
             dispose();
 
