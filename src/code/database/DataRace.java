@@ -3,6 +3,7 @@ package database;
 import domain_classes.Driver;
 import domain_classes.Race;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class DataRace extends Data {
@@ -56,5 +57,21 @@ public class DataRace extends Data {
         } finally {
             closeConnection();
         }
+    }
+
+    public Race getRace(String new_name, String new_nation, Date new_date){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM driver WHERE name = '" + new_name + "' and nation = '" + new_nation + "' and race_day = '" + new_date + "')");
+            if(!rs.wasNull() && rs.isLast())
+                return new Race(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day"), rs.getFloat("km"), rs.getDate("qualification_day"));
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 }

@@ -89,4 +89,27 @@ public class DataTeam extends Data {
         }
         return false;
     }
+
+    public Team getTeam(String new_username, String new_team){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM user WHERE username = '" + new_username + "' and teamname = '" + new_team + "')");
+            if(!rs.wasNull() && rs.isLast()){
+                DataDriver dd = new DataDriver();
+                DataConstructor dc = new DataConstructor();
+                HashMap<Integer, Abstract_f1_item> dr = new HashMap<>();
+                for(int i = 0; i < 5; i++)
+                    dr.put(rs.getInt("number_driver" + i), dd.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
+                dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("name"), rs.getInt("number")));
+                return new Team(rs.getString("teamname"), dr);
+            }
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
 }

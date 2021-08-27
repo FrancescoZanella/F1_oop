@@ -1,7 +1,7 @@
 package domain_classes;
 
 import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class Race {
 

@@ -14,6 +14,12 @@ public class Squad extends Abstract_f1_item{
         setNumber();
     }
 
+    public Squad(String name, Integer number, Driver d1, Driver d2){
+        super(name, number);
+        this.d1 = d1;
+        this.d2 = d2;
+    }
+
     public void setNumber(){
         r = new Random();
         this.number = r.nextInt(100) + 100;

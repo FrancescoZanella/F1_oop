@@ -58,4 +58,20 @@ public class DataDriver extends Data{
             closeConnection();
         }
     }
+
+    public Driver getDriver(String new_name, int new_number){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM driver WHERE number = " + new_number + " and name = '" + new_name + "')");
+            if(!rs.wasNull() && rs.isLast())
+                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"));
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
 }

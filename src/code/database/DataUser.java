@@ -54,4 +54,20 @@ public class DataUser extends Data{
         }
         return false;
     }
+
+    public User getUser(String new_username){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM user WHERE username = '" + new_username + "')");
+            if(!rs.wasNull() && rs.isLast())
+                return new User(rs.getString("name"), rs.getString("surname"), rs.getString("mail"), rs.getString("username"));
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
 }
