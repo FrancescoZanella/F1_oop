@@ -41,7 +41,7 @@ public class DataConstructor extends Data{
     public void deleteConstructor(Squad s){
         try {
             startConnection();
-            statement.executeUpdate("DELETE FROM constructor WHERE(name = '" + s.getName() + "' and number = " + s.getNumber() + ")");
+            statement.executeUpdate("DELETE FROM constructor WHERE name = '" + s.getName() + "' and number = " + s.getNumber());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -63,8 +63,8 @@ public class DataConstructor extends Data{
     public Squad getConstructor(String new_name, int new_number){
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM constructor WHERE number = " + new_number + " and name = '" + new_name + "')");
-            if(!rs.wasNull() && rs.isLast()){
+            rs = statement.executeQuery("SELECT * FROM constructor WHERE number = " + new_number + " and name = '" + new_name + "'");
+            if(rs.next()){
                 DataDriver d = new DataDriver();
                 return new Squad(rs.getString("name"), rs.getInt("number"), d.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), d.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")));
             }

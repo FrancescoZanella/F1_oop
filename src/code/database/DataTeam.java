@@ -93,14 +93,14 @@ public class DataTeam extends Data {
     public Team getTeam(String new_username, String new_team){
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM team WHERE name_user = '" + new_username + "' and teamname = '" + new_team + "')");
-            if(!rs.wasNull() && rs.isLast()){
+            rs = statement.executeQuery("SELECT * FROM team WHERE name_user = '" + new_username + "' and teamname = '" + new_team + "'");
+            if(rs.next()){
                 DataDriver dd = new DataDriver();
                 DataConstructor dc = new DataConstructor();
                 HashMap<Integer, Abstract_f1_item> dr = new HashMap<>();
-                for(int i = 0; i < 5; i++)
+                for(int i = 1; i < 6; i++)
                     dr.put(rs.getInt("number_driver" + i), dd.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
-                dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("name"), rs.getInt("number")));
+                dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("constructor_name"), rs.getInt("number_constructor")));
                 return new Team(rs.getString("teamname"), dr);
             }
             else

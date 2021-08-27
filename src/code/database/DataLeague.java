@@ -75,9 +75,9 @@ public class DataLeague extends Data {
                         HashMap<User, Team> ut = new HashMap<>();
                         DataUser du = new DataUser();
                         DataTeam dt = new DataTeam();
-                        for(int j = 0; j < League.getMaxUserPerLeague(); j++){
+                        for(int j = 1; j < League.getMaxUserPerLeague() + 1; j++){
                             if(rs.getString("username" + j) != null && rs.getString("team_name" + j) != null)
-                                ut.put(du.getUser(rs.getString("username" + j)), dt.getTeam(rs.getString("username" + j), rs.getString("name_team" + j)));
+                                ut.put(du.getUser(rs.getString("username" + j)), dt.getTeam(rs.getString("username" + j), rs.getString("team_name" + j)));
                         }
                         l.add(new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), ut));
                     }
@@ -90,6 +90,25 @@ public class DataLeague extends Data {
             closeConnection();
         }
         return null;
+    }
+
+    public boolean InsertNewUser(String new_username, String new_team, String invitationcode){
+        /*try {
+            startConnection();
+            statement.executeUpdate("INSERT INTO league (leaguename, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;*/
+        return false;
+    }
+
+    public static void main(String[] args){
+        DataLeague dl = new DataLeague();
+        System.out.println(dl.LeaguesPerUser("vali").get(0));
     }
 
 }

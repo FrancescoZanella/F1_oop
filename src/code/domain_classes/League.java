@@ -92,5 +92,14 @@ public class League {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        return "League{" +
+                "leagueName='" + leagueName + '\'' +
+                ", inviteCode='" + inviteCode + '\'' +
+                ", leagueType=" + leagueType +
+                ", userteam=" + userteam +
+                ", leagueLenght=" + leagueLenght +
+                '}';
+    }
 }
