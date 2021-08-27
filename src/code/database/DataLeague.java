@@ -93,22 +93,26 @@ public class DataLeague extends Data {
     }
 
     public boolean InsertNewUser(String new_username, String new_team, String invitationcode){
-        /*try {
+        try {
             startConnection();
-            statement.executeUpdate("INSERT INTO league (leaguename, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
-
+            rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
+            if(rs.next()){
+                for(int i = 1; i < League.getMaxUserPerLeague() + 1; i++){
+                    if(rs.getString("username" + i) != null && rs.getString("team_name" + i) != null){
+                        statement.executeUpdate("UPDATE league SET username" + i + "= '" + new_username + "', team_name" + i + "= '" + new_team + "'" +
+                                " WHERE invitationcode = '" + invitationcode + "'");
+                        return true;
+                    }
+                }
+            } else
+                return false;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConnection();
         }
-        return false;*/
         return false;
     }
 
-    public static void main(String[] args){
-        DataLeague dl = new DataLeague();
-        System.out.println(dl.LeaguesPerUser("vali").get(0));
-    }
 
 }
