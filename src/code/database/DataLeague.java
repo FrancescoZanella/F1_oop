@@ -92,7 +92,7 @@ public class DataLeague extends Data {
         return null;
     }
 
-    public boolean InsertNewUser(String new_username, String new_team, String invitationcode){
+    public boolean insertNewUser(String new_username, String new_team, String invitationcode){
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
@@ -113,6 +113,4 @@ public class DataLeague extends Data {
         }
         return false;
     }
-
-
 }
