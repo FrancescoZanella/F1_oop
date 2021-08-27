@@ -48,12 +48,10 @@ public class DataLeague extends Data {
             startConnection();
             try {
                 for (int i = 1; i < 9; i++) {
-                    rs = statement.executeQuery("Select * from league" +
-                            "where name_user" + i + " = '" + new_username + "'");
-                    while (!rs.wasNull()) {
+                    rs = statement.executeQuery("Select * from league " +
+                            "where username" + i + " = '" + new_username + "'");
+                    while (rs.next())
                         c++;
-                        rs.next();
-                    }
                 }
                 return c;
             } catch (SQLException e) {
@@ -71,9 +69,9 @@ public class DataLeague extends Data {
             startConnection();
             try {
                 for (int i = 1; i < League.getMaxTeamsPerUser() + 1; i++) {
-                    rs = statement.executeQuery("Select * from league" +
-                            "where name_user" + i + " = '" + new_username + "'");
-                    while(!rs.wasNull()) {
+                    rs = statement.executeQuery("Select * from league " +
+                            "where username" + i + " = '" + new_username + "'");
+                    while(rs.next()) {
                         HashMap<User, Team> ut = new HashMap<>();
                         DataUser du = new DataUser();
                         DataTeam dt = new DataTeam();
@@ -82,7 +80,6 @@ public class DataLeague extends Data {
                                 ut.put(du.getUser(rs.getString("username" + j)), dt.getTeam(rs.getString("username" + j), rs.getString("name_team" + j)));
                         }
                         l.add(new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), ut));
-                        rs.next();
                     }
                 }
                 return l;
