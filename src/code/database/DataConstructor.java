@@ -63,7 +63,7 @@ public class DataConstructor extends Data{
     public Squad getConstructor(String new_name, int new_number){
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM driver WHERE number = " + new_number + " and name = '" + new_name + "')");
+            rs = statement.executeQuery("SELECT * FROM constructor WHERE number = " + new_number + " and name = '" + new_name + "')");
             if(!rs.wasNull() && rs.isLast()){
                 DataDriver d = new DataDriver();
                 return new Squad(rs.getString("name"), rs.getInt("number"), d.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), d.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")));

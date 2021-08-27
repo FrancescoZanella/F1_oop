@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class League {
     String leagueName;
-    int inviteCode;
+    String inviteCode;
     private static final int MaxUserPerLeague = 8;
     //Private only member with an invite can join--->false
     //Public all the world can join the league--->true
@@ -14,21 +14,19 @@ public class League {
     HashMap<User, Team> userteam;
     //1-25 race's number
     int leagueLenght;
-    Random r;
 
     //da usare la prima volta che si crea una lega, così ti genera il codice di invito
-    public League(String leagueName, boolean leagueType, int leagueLenght) {
+    public League(String leagueName, boolean leagueType, int leagueLenght, String inviteCode) {
         this.leagueName = leagueName;
         this.leagueType = leagueType;
         this.leagueLenght = leagueLenght;
-        r = new Random();
-        this.inviteCode = r.nextInt(10000) + 10000;
+        this.inviteCode = inviteCode;
         this.userteam = new HashMap<>();
     }
 
 
     //da usare quando la lega è già creata e se ne vuole una copia
-    public League(String leaguename, int inviteCode, boolean leagueType, int leagueLenght, HashMap<User, Team> userteam) {
+    public League(String leaguename, String inviteCode, boolean leagueType, int leagueLenght, HashMap<User, Team> userteam) {
         this.leagueName = leaguename;
         this.inviteCode = inviteCode;
         this.leagueType = leagueType;
@@ -44,12 +42,9 @@ public class League {
         this.leagueName = leagueName;
     }
 
-    public void setInviteCode() {
-        r = new Random();
-        this.inviteCode = r.nextInt(10000) + 10000;
-    }
+    public void setInviteCode(String inviteCode) { this.inviteCode = inviteCode; }
 
-    public int getInviteCode() {
+    public String getInviteCode() {
         return inviteCode;
     }
 

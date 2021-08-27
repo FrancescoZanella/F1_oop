@@ -93,7 +93,7 @@ public class DataTeam extends Data {
     public Team getTeam(String new_username, String new_team){
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM user WHERE username = '" + new_username + "' and teamname = '" + new_team + "')");
+            rs = statement.executeQuery("SELECT * FROM team WHERE name_user = '" + new_username + "' and teamname = '" + new_team + "')");
             if(!rs.wasNull() && rs.isLast()){
                 DataDriver dd = new DataDriver();
                 DataConstructor dc = new DataConstructor();

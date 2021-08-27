@@ -62,7 +62,7 @@ public class DataRace extends Data {
     public Race getRace(String new_name, String new_nation, Date new_date){
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM driver WHERE name = '" + new_name + "' and nation = '" + new_nation + "' and race_day = '" + new_date + "')");
+            rs = statement.executeQuery("SELECT * FROM race WHERE name = '" + new_name + "' and nation = '" + new_nation + "' and race_day = '" + new_date + "')");
             if(!rs.wasNull() && rs.isLast())
                 return new Race(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day"), rs.getFloat("km"), rs.getDate("qualification_day"));
             else

@@ -1,9 +1,11 @@
 package database;
 
 import domain_classes.League;
+import domain_classes.Team;
 import domain_classes.User;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class DataLeague extends Data {
     public void insertNewLeague(League l) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO league(name, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
+            statement.executeUpdate("INSERT INTO league(name, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "'" +
+                    "'," + l.getLeagueName() + "','\" + l.getInviteCode() + \"','\" + l.getLeagueType() + \"','\" + l.getLeagueLenght() + \"')");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -21,13 +24,13 @@ public class DataLeague extends Data {
         }
     }
 
-    public boolean sameLeague(League l) {
+    public boolean sameLeague(String invitation_code) {
         try {
             startConnection();
             try {
                 rs = statement.executeQuery("Select * from league");
                 while (rs.next()) {
-                    if (l.getInviteCode() == rs.getInt("invitationcode"))
+                    if (invitation_code.equals(rs.getString("invitation_code")))
                         return true;
                 }
                 return false;
@@ -40,14 +43,14 @@ public class DataLeague extends Data {
         return false;
     }
 
-    public int numberOfLeaguePerUser(User u) {
+    public int numberOfLeaguePerUser(String new_username) {
         int c = 0;
         try {
             startConnection();
             try {
                 for (int i = 1; i < 9; i++) {
                     rs = statement.executeQuery("Select * from league" +
-                            "where name_user" + i + " = '" + u.getUsername() + "'");
+                            "where name_user" + i + " = '" + new_username + "'");
                     while (!rs.wasNull()) {
                         c++;
                         rs.next();
@@ -63,17 +66,23 @@ public class DataLeague extends Data {
         return c;
     }
 
-    public List<League> LeaguesPerUser(User u){
+    public List<League> LeaguesPerUser(String new_username){
         List<League> l = new LinkedList<>();
         try {
             startConnection();
             try {
                 for (int i = 1; i < League.getMaxTeamsPerUser() + 1; i++) {
                     rs = statement.executeQuery("Select * from league" +
-                            "where name_user" + i + " = '" + u.getUsername() + "'");
-                    while (!rs.wasNull()) {
-                        /*League tmp = new League(rs.getString("leaguename"), rs.getInt("invitationcode"), rs.getBoolean("leaguetype"),
-                                rs.getInt("leaguelength"));*/
+                            "where name_user" + i + " = '" + new_username + "'");
+                    while(!rs.wasNull()) {
+                        HashMap<User, Team> ut = new HashMap<>();
+                        DataUser du = new DataUser();
+                        DataTeam dt = new DataTeam();
+                        for(int j = 0; j < League.getMaxUserPerLeague(); j++){
+                            if(rs.getString("username" + j) != null && rs.getString("team_name" + j) != null)
+                                ut.put(du.getUser(rs.getString("username" + j)), dt.getTeam(rs.getString("username" + j), rs.getString("name_team" + j)));
+                        }
+                        l.add(new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), ut));
                         rs.next();
                     }
                 }
