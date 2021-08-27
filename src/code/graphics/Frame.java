@@ -45,7 +45,7 @@ public class Frame extends JFrame implements ActionListener{
 
         main.add(p);
 
-
+    InitialPanel e5=new InitialPanel();
         InitialPanel e=new InitialPanel();
         InitialPanel e1=new InitialPanel();
         InitialPanel e2=new InitialPanel();
@@ -90,6 +90,11 @@ public class Frame extends JFrame implements ActionListener{
 
         }
 
+    }
+
+    public static void main(String[] args) {
+
+        new Frame("prova");
     }
 }
 
