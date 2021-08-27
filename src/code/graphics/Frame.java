@@ -1,6 +1,8 @@
 package graphics;
 
+import database.DataLeague;
 import database.Utils;
+import domain_classes.League;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,13 +24,18 @@ public class Frame extends JFrame implements ActionListener{
     JPanel panel;
     MyButton join;
     MyButton create;
+    String current_user;
+    List<League> l;
+    DataLeague d;
 
-    public Frame(String title) throws HeadlessException {
+    public Frame(String title,String current_user) throws HeadlessException {
         super(title);
+        this.current_user=current_user;
         JPanel main=new JPanel();
         setContentPane(main);
         main.setLayout(null);
         List <Image> listImage=new ArrayList<>();
+        d=new DataLeague();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
@@ -41,8 +48,13 @@ public class Frame extends JFrame implements ActionListener{
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
 
-        String[] strings={"Lega 1","Lega 2","Lega 3"};
-        cbox= new JComboBox<>(strings);
+        cbox= new JComboBox<>();
+        l=d.LeaguesPerUser(current_user);
+        for(League g : l){
+            cbox.addItem(g.getLeagueName());
+        }
+
+
         cbox.setBackground(new Color(19, 19, 31, 255));
         cbox.setBounds(Utils.width-200,30,150,30);
         cbox.addActionListener(this);
@@ -87,6 +99,7 @@ public class Frame extends JFrame implements ActionListener{
     }
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==cbox){
@@ -117,9 +130,6 @@ public class Frame extends JFrame implements ActionListener{
 
     }
 
-    public static void main(String[] args) {
 
-        new Frame("prova");
-    }
 }
 
