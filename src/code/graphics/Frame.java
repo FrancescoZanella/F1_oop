@@ -11,12 +11,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static java.awt.Color.white;
 
 
 public class Frame extends JFrame implements ActionListener{
     JComboBox<String> cbox;
     CardLayout cl1=new CardLayout();
     JPanel panel;
+    MyButton join;
+    MyButton create;
 
     public Frame(String title) throws HeadlessException {
         super(title);
@@ -35,13 +40,25 @@ public class Frame extends JFrame implements ActionListener{
         BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
+
         String[] strings={"Lega 1","Lega 2","Lega 3"};
         cbox= new JComboBox<>(strings);
         cbox.setBackground(new Color(19, 19, 31, 255));
         cbox.setBounds(Utils.width-200,30,150,30);
         cbox.addActionListener(this);
-        p.add(cbox);
 
+        join=new MyButton("Join with  code",new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/new_league.png"))));
+        join.setBounds(880,30,180,30);
+
+        create=new MyButton("Create League",new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/create_league.png"))));
+        create.setBounds(700,30,170,30);
+
+        join.addActionListener(this);
+        create.addActionListener(this);
+
+        p.add(cbox);
+        p.add(create);
+        p.add(join);
 
         main.add(p);
 
@@ -73,7 +90,6 @@ public class Frame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==cbox){
-
             String msg=(String)cbox.getSelectedItem();
             if(e.getSource()==cbox) {
                 if(msg.equals("Lega 1")){
@@ -87,6 +103,15 @@ public class Frame extends JFrame implements ActionListener{
 
                 }
             }
+
+        }
+        if(e.getSource()==create){
+            this.setVisible(false);
+            dispose();
+            new CreateLeague();
+
+        }
+        if(e.getSource()==join){
 
         }
 
