@@ -46,7 +46,6 @@ public class Driver extends Abstract_f1_item{
         dd.setFantaF1Points(name, number, fantaF1points);
     }
 
-
     @Override
     public void setF1points(int f1points) {
         super.setF1points(f1points);
