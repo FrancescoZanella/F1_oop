@@ -2,11 +2,15 @@ package domain_classes;
 
 public class Driver extends Abstract_f1_item{
 
-    int number;
     int age;
 
-    public Driver(String name, int age, Integer number){
+    public Driver(String name, int age, int number){
         super(name, number);
+        this.age = age;
+    }
+
+    public Driver(String name, int age, int number, int f1points, int fantaF1points, float fantavalue) {
+        super(name, number, f1points, fantaF1points, fantavalue);
         this.age = age;
     }
 

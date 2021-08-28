@@ -1,17 +1,24 @@
 package domain_classes;
 
 import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.ListIterator;
 
 public class Team {
     private static final int numDriver = 6;
     String teamName;
-    int budget = 250;
+    float budget;
+    int fantaf1points;
     public HashMap<Integer, Abstract_f1_item> teamDrivers;
 
     public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers) {
         this.teamName = teamName;
+        this.teamDrivers = teamDrivers;
+        this.budget = 250;
+    }
+
+    public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers, float budget, int fantaf1points) {
+        this.teamName = teamName;
+        this.budget = budget;
+        this.fantaf1points = fantaf1points;
         this.teamDrivers = teamDrivers;
     }
 
@@ -35,29 +42,45 @@ public class Team {
         this.teamDrivers = teamDrivers;
     }
 
+    public int getFantaf1points() {
+        return fantaf1points;
+    }
+
+    public void setFantaf1points(int fantaf1points) {
+        this.fantaf1points = fantaf1points;
+    }
+
+    public float getBudget() {
+        return budget;
+    }
+
+    public void setBudget(float budget) {
+        this.budget = budget;
+    }
+
     //add an Item to the team
-    public void addItem(Abstract_f1_item item){
+    public void addItem(Abstract_f1_item item) {
         //se non c'è gia nel team lo posso aggiungere
-        if(teamDrivers.size() < numDriver){
+        if (teamDrivers.size() < numDriver) {
             boolean b = true;
-            for(Abstract_f1_item i : teamDrivers.values()){
-                if(item.getNumber().equals(i.getNumber()))
+            for (Abstract_f1_item i : teamDrivers.values()) {
+                if (item.getNumber() == i.getNumber())
                     b = false;
             }
-            if(b){
-                teamDrivers.put(item.getNumber(),item);
-                budget-=item.fantavalue;
+            if (b) {
+                teamDrivers.put(item.getNumber(), item);
+                budget -= item.fantavalue;
             }
         }
     }
 
-    public void removeAll(){
-        for(Abstract_f1_item i : teamDrivers.values()) budget += i.fantavalue;
+    public void removeAll() {
+        for (Abstract_f1_item i : teamDrivers.values()) budget += i.fantavalue;
         teamDrivers.clear();
 
     }
 
-    public void removeItem(Abstract_f1_item item){
+    public void removeItem(Abstract_f1_item item) {
         teamDrivers.remove(item.number);
         budget += item.fantavalue;
     }

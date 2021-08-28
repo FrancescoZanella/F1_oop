@@ -1,9 +1,11 @@
 package database;
 
 import domain_classes.Abstract_f1_item;
+import domain_classes.League;
 import domain_classes.Team;
 import domain_classes.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -28,12 +30,12 @@ public class DataTeam extends Data {
                     sbc.append(i.getName());
                     sbc.append("','");
                     sbc.append(i.getNumber());
-                    sbc.append("')");
+                    sbc.append("'");
                 }
             }
             statement.executeUpdate("INSERT INTO team(teamname, name_user, driver_name1, number_driver1, " +
                     "driver_name2, number_driver2, driver_name3, number_driver3, driver_name4, number_driver4, driver_name5, number_driver5," +
-                    "constructor_name, number_constructor) VALUES('" + t.getTeamName() + "','" + u.getUsername() + sb + sbc);
+                    "constructor_name, number_constructor, budget, fantaf1points) VALUES('" + t.getTeamName() + "','" + u.getUsername() + sb + sbc + ", 250, 0");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,8 +54,6 @@ public class DataTeam extends Data {
     public void deleteTeam(Team t, User u){
         try {
             startConnection();
-            StringBuffer sb = new StringBuffer();
-            StringBuffer sbc = new StringBuffer();
             statement.executeUpdate("DELETE FROM team WHERE(teamname = '" + t.getTeamName() + "' and name_user = '" + u.getUsername() + "')");
 
         } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class DataTeam extends Data {
                 for(int i = 1; i < 6; i++)
                     dr.put(rs.getInt("number_driver" + i), dd.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
                 dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("constructor_name"), rs.getInt("number_constructor")));
-                return new Team(rs.getString("teamname"), dr);
+                return new Team(rs.getString("teamname"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
             }
             else
                 return null;
@@ -112,4 +112,45 @@ public class DataTeam extends Data {
         }
         return null;
     }
+
+    public void setFantaPointsTeam(String new_name, int number){
+        try {
+            startConnection();
+            try {
+                DataDriver dd = new DataDriver();
+                DataConstructor dc = new DataConstructor();
+                for (int i = 1; i < Team.getNumDriver(); i++) {
+                    rs = statement.executeQuery("UPDATE team SET fantaf1points = fantaf1points + " + dd.getDriver(new_name, number).getFantaF1points() +
+                            " where driver_name" + i + " = '" + new_name + "' and number_driver" + i + " = " + number);
+                }
+                rs = statement.executeQuery("UPDATE team SET fantaf1points = fantaf1points + " + dc.getConstructor(new_name, number).getFantaF1points() +
+                        " where constructor_name = '" + new_name + "' and number_constructor = " + number);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void setBudget(String new_name, int number){
+        try {
+            startConnection();
+            try {
+                DataDriver dd = new DataDriver();
+                DataConstructor dc = new DataConstructor();
+                for (int i = 1; i < Team.getNumDriver(); i++) {
+                    rs = statement.executeQuery("UPDATE team SET budget = budget - " + dd.getDriver(new_name, number).getFantavalue() +
+                            " where driver_name" + i + " = '" + new_name + "' and number_driver" + i + " = " + number);
+                }
+                rs = statement.executeQuery("UPDATE team SET budget = budget - " + dc.getConstructor(new_name, number).getFantavalue() +
+                        " where constructor_name = '" + new_name + "' and number_constructor = " + number);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            closeConnection();
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ public class DataDriver extends Data{
     public void InsertNewDriver(Driver d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO driver VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "')");
+            statement.executeUpdate("INSERT INTO driver(name, number, age) VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -64,7 +64,7 @@ public class DataDriver extends Data{
             startConnection();
             rs = statement.executeQuery("SELECT * FROM driver WHERE number = " + new_number + " and name = '" + new_name + "'");
             if(rs.next())
-                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"));
+                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"));
             else
                 return null;
         } catch (SQLException e) {
@@ -74,4 +74,56 @@ public class DataDriver extends Data{
         }
         return null;
     }
+
+    public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, float fantavalue){
+        try {
+            startConnection();
+            rs = statement.executeQuery("UPDATE driver SET fantaf1points = " + fantaf1points + ", f1points = " + f1points + ", fantavalue = " + fantavalue +
+                    " where name = '" + new_name + "' and number = " + new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void setFantaValue(String new_name, int new_number, float fantavalue){
+        try {
+            startConnection();
+            rs = statement.executeQuery("UPDATE driver SET fantavalue = " + fantavalue +
+                    " where name = '" + new_name + "' and number = " + new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void setF1Points(String new_name, int new_number, int f1points){
+        try {
+            startConnection();
+            rs = statement.executeQuery("UPDATE driver SET f1points = " + f1points +
+                    " where name = '" + new_name + "' and number = " + new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void setFantaF1Points(String new_name, int new_number, int fantaf1points){
+        try {
+            startConnection();
+            rs = statement.executeQuery("UPDATE driver SET fantaf1points = fantaf1points + " + fantaf1points +
+                    " where name = '" + new_name + "' and number = " + new_number);
+            DataTeam dt = new DataTeam();
+            dt.setFantaPointsTeam(new_name, new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+
 }

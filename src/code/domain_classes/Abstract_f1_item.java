@@ -1,19 +1,27 @@
 package domain_classes;
 
-public abstract class Abstract_f1_item implements F1_Item{
+public abstract class Abstract_f1_item implements F1_Item {
     String name;
-    Integer number;
+    int number;
     int f1points;
     int fantaF1points;
-    int fantavalue;
+    float fantavalue;
 
-    public Abstract_f1_item(String name, Integer number) {
-            this.name = name;
-            this.number = number;
+    public Abstract_f1_item(String name, int number) {
+        this.name = name;
+        this.number = number;
     }
 
     public Abstract_f1_item(String name) {
         this.name = name;
+    }
+
+    public Abstract_f1_item(String name, int number, int f1points, int fantaF1points, float fantavalue) {
+        this.name = name;
+        this.number = number;
+        this.f1points = f1points;
+        this.fantaF1points = fantaF1points;
+        this.fantavalue = fantavalue;
     }
 
     public String getName() {
@@ -24,11 +32,11 @@ public abstract class Abstract_f1_item implements F1_Item{
         this.name = name;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -48,11 +56,11 @@ public abstract class Abstract_f1_item implements F1_Item{
         this.fantaF1points = fantaF1points;
     }
 
-    public int getFantavalue() {
+    public float getFantavalue() {
         return fantavalue;
     }
 
-    public void setFantavalue(int fantavalue) {
+    public void setFantavalue(float fantavalue) {
         this.fantavalue = fantavalue;
     }
 }
