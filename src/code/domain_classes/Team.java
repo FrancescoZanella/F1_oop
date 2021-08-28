@@ -11,6 +11,7 @@ public class Team {
 
     public Team(String teamName){
         this.teamName = teamName;
+        this.teamDrivers = new HashMap<>();
     }
 
     public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers) {

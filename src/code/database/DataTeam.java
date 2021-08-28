@@ -138,11 +138,11 @@ public class DataTeam extends Data {
                 DataConstructor dc = new DataConstructor();
                 if (number < 100) {
                     for (int i = 1; i < Team.getNumDriver(); i++) {
-                        rs = statement.executeQuery("UPDATE team SET fantaf1points = fantaf1points + " + dd.getDriver(new_name, number).getFantaF1points() +
+                        statement.executeUpdate("UPDATE team SET fantaf1points = fantaf1points + " + dd.getDriver(new_name, number).getFantaF1points() +
                                 " where driver_name" + i + " = '" + new_name + "' and number_driver" + i + " = " + number);
                     }
                 } else {
-                    rs = statement.executeQuery("UPDATE team SET fantaf1points = fantaf1points + " + dc.getConstructor(new_name, number).getFantaF1points() +
+                    statement.executeUpdate("UPDATE team SET fantaf1points = fantaf1points + " + dc.getConstructor(new_name, number).getFantaF1points() +
                             " where constructor_name = '" + new_name + "' and number_constructor = " + number);
                 }
             } catch (SQLException e) {
@@ -161,11 +161,11 @@ public class DataTeam extends Data {
                 DataConstructor dc = new DataConstructor();
                 if (number < 100) {
                     for (int i = 1; i < Team.getNumDriver(); i++) {
-                        rs = statement.executeQuery("UPDATE team SET budget = budget - " + dd.getDriver(new_name, number).getFantavalue() +
+                        statement.executeUpdate("UPDATE team SET budget = budget - " + dd.getDriver(new_name, number).getFantavalue() +
                                 " where driver_name" + i + " = '" + new_name + "' and number_driver" + i + " = " + number);
                     }
                 } else {
-                    rs = statement.executeQuery("UPDATE team SET budget = budget - " + dc.getConstructor(new_name, number).getFantavalue() +
+                    statement.executeUpdate("UPDATE team SET budget = budget - " + dc.getConstructor(new_name, number).getFantavalue() +
                             " where constructor_name = '" + new_name + "' and number_constructor = " + number);
                 }
             } catch (SQLException e) {
@@ -182,16 +182,18 @@ public class DataTeam extends Data {
             rs = statement.executeQuery("SELECT * FROM team WHERE teamname = '" + new_teamname + "' and name_user = '" + new_username + "'");
             if (rs.next()) {
                 if (number_driver < 100) {
+                    DataDriver dd = new DataDriver();
                     for (int i = 1; i < Team.getNumDriver(); i++) {
                         if (rs.getString("driver_name" + i) == null && rs.getInt("number_driver" + i) == 0) {
-                            statement.executeUpdate("UPDATE team SET driver_name" + i + "= '" + name_item + "', number_driver" + i + "= " + number_driver +
+                            statement.executeUpdate("UPDATE team SET driver_name" + i + "= '" + name_item + "', number_driver" + i + "= " + number_driver + ", budget = budget - " + dd.getDriver(name_item, number_driver).getFantavalue() +
                                     " WHERE teamname = '" + new_teamname + "' and name_user = '" + new_username + "'");
                             return true;
                         }
                     }
                 } else {
+                    DataConstructor dc = new DataConstructor();
                     if (rs.getString("constructor_name") == null && rs.getInt("number_constructor") == 0) {
-                        statement.executeUpdate("UPDATE team SET constructor_name = '" + name_item + "', number_constructor = " + number_driver +
+                        statement.executeUpdate("UPDATE team SET constructor_name = '" + name_item + "', number_constructor = " + number_driver + ", budget = budget - " + dc.getConstructor(name_item, number_driver).getFantavalue() +
                                 " WHERE teamname = '" + new_teamname + "' and name_user = '" + new_username + "'");
                         return true;
                     }
@@ -210,13 +212,16 @@ public class DataTeam extends Data {
         try {
             startConnection();
             int c = 1;
-            if (alldrivers.size() == 6) {
+            if (alldrivers.size() == Team.getNumDriver()) {
                 for (Abstract_f1_item i : alldrivers.values()) {
                     if (i.getNumber() < 100) {
-                        statement.executeUpdate("UPDATE team SET driver_name" + i + "= '" + i.getName() + "', number_driver" + i + "= " + i.getNumber() +
+                        DataDriver dd = new DataDriver();
+                        statement.executeUpdate("UPDATE team SET driver_name" + c + "= '" + i.getName() + "', number_driver" + c + "= " + i.getNumber() + ", budget = budget - " + dd.getDriver(i.getName(), i.getNumber()).getFantavalue() +
                                 " WHERE teamname = '" + new_teamname + "' and name_user = '" + new_username + "'");
+                        c++;
                     } else {
-                        statement.executeUpdate("UPDATE team SET constructor_name" + i + "= '" + i.getName() + "', number_constructor" + i + "= " + i.getNumber() +
+                        DataConstructor dc = new DataConstructor();
+                        statement.executeUpdate("UPDATE team SET constructor_name = '" + i.getName() + "', number_constructor = " + i.getNumber() + ", budget = budget - " + dc.getConstructor(i.getName(), i.getNumber()).getFantavalue() +
                                 " WHERE teamname = '" + new_teamname + "' and name_user = '" + new_username + "'");
                     }
                 }
