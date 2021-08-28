@@ -10,7 +10,7 @@ public class DataDriver extends Data{
     public void InsertNewDriver(Driver d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO driver(name, number, age) VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "')");
+            statement.executeUpdate("INSERT INTO driver VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "', 0, 0, 0)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -92,6 +92,7 @@ public class DataDriver extends Data{
             startConnection();
             rs = statement.executeQuery("UPDATE driver SET fantavalue = " + fantavalue +
                     " where name = '" + new_name + "' and number = " + new_number);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

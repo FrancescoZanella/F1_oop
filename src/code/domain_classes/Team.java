@@ -5,9 +5,13 @@ import java.util.HashMap;
 public class Team {
     private static final int numDriver = 6;
     String teamName;
-    float budget;
+    double budget;
     int fantaf1points;
     public HashMap<Integer, Abstract_f1_item> teamDrivers;
+
+    public Team(String teamName){
+        this.teamName = teamName;
+    }
 
     public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers) {
         this.teamName = teamName;
@@ -15,7 +19,7 @@ public class Team {
         this.budget = 250;
     }
 
-    public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers, float budget, int fantaf1points) {
+    public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers, double budget, int fantaf1points) {
         this.teamName = teamName;
         this.budget = budget;
         this.fantaf1points = fantaf1points;
@@ -50,11 +54,11 @@ public class Team {
         this.fantaf1points = fantaf1points;
     }
 
-    public float getBudget() {
+    public double getBudget() {
         return budget;
     }
 
-    public void setBudget(float budget) {
+    public void setBudget(double budget) {
         this.budget = budget;
     }
 

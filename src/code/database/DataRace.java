@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 public class DataRace extends Data {
-    public void InsertNewDriver(Race d) {
+    public void InsertNewRace(Race d) {
         try {
             startConnection();
             statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "')");
@@ -64,7 +64,7 @@ public class DataRace extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM race WHERE name = '" + new_name + "' and nation = '" + new_nation + "' and race_day = '" + new_date + "'");
             if(!rs.wasNull() && rs.isLast())
-                return new Race(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day"), rs.getFloat("km"), rs.getDate("qualification_day"));
+                return new Race(rs.getString("name"), rs.getString("nation"), rs.getDouble("km"), rs.getDate("race_day"), rs.getDate("qualification_day"));
             else
                 return null;
         } catch (SQLException e) {

@@ -9,7 +9,7 @@ public class Driver extends Abstract_f1_item{
         this.age = age;
     }
 
-    public Driver(String name, int age, int number, int f1points, int fantaF1points, float fantavalue) {
+    public Driver(String name, int age, int number, int f1points, int fantaF1points, double fantavalue) {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.age = age;
     }

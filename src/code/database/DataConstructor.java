@@ -11,7 +11,7 @@ public class DataConstructor extends Data{
     public void InsertNewConstructor(Squad s) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO constructor VALUES('" + s.getName() + "'," + s.getNumber() + ",'" + s.getD1().getName() + "','" + s.getD2().getName() + "','" + s.getD1().getNumber() + "','" + s.getD2().getNumber() + "')");
+            statement.executeUpdate("INSERT INTO constructor VALUES('" + s.getName() + "'," + s.getNumber() + ",'" + s.getD1().getName() + "','" + s.getD2().getName() + "','" + s.getD1().getNumber() + "','" + s.getD2().getNumber() + "', 0, 0, 0)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

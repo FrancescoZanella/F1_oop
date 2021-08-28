@@ -98,7 +98,7 @@ public class DataLeague extends Data {
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
             if(rs.next()){
                 for(int i = 1; i < League.getMaxUserPerLeague() + 1; i++){
-                    if(rs.getString("username" + i) != null && rs.getString("team_name" + i) != null){
+                    if(rs.getString("username" + i) == null && rs.getString("team_name" + i) == null){
                         statement.executeUpdate("UPDATE league SET username" + i + "= '" + new_username + "', team_name" + i + "= '" + new_team + "'" +
                                 " WHERE invitationcode = '" + invitationcode + "'");
                         return true;
@@ -112,5 +112,16 @@ public class DataLeague extends Data {
             closeConnection();
         }
         return false;
+    }
+
+    public void deleteAllLeagues(){
+        try {
+            startConnection();
+            statement.executeUpdate("DELETE FROM league");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
     }
 }

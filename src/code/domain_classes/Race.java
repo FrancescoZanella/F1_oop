@@ -9,15 +9,15 @@ public class Race {
     final int NUMCONSTRUCTOR = 10;
     String name, nation;
     Date race_day, qualification_day;
-    float km;
+    double km;
 
-    public Race(String name, String nation, float km) {
+    public Race(String name, String nation, double km) {
         this.name = name;
         this.nation = nation;
         this.km = km;
     }
 
-    public Race(String name, String nation, Date race_day, float km, Date qualification_day) {
+    public Race(String name, String nation, double km, Date race_day, Date qualification_day) {
         this.name = name;
         this.nation = nation;
         this.race_day = race_day;
@@ -41,11 +41,11 @@ public class Race {
         this.nation = nation;
     }
 
-    public float getKm() {
+    public double getKm() {
         return km;
     }
 
-    public void setKm(float km) {
+    public void setKm(double km) {
         this.km = km;
     }
 

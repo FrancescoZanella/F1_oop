@@ -9,9 +9,9 @@ public interface F1_Item {
 
     void setFantaF1points(int FantaF1points);
 
-    float getFantavalue();
+    double getFantavalue();
 
-    void setFantavalue(float Fantavalue);
+    void setFantavalue(double Fantavalue);
 
     void setName(String name);
 

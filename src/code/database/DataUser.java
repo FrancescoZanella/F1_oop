@@ -70,4 +70,15 @@ public class DataUser extends Data{
         }
         return null;
     }
+
+    public void deleteAllUsers(){
+        try {
+            startConnection();
+            statement.executeUpdate("DELETE FROM user");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
 }

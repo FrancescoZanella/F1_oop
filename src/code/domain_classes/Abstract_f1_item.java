@@ -5,7 +5,7 @@ public abstract class Abstract_f1_item implements F1_Item {
     int number;
     int f1points;
     int fantaF1points;
-    float fantavalue;
+    double fantavalue;
 
     public Abstract_f1_item(String name, int number) {
         this.name = name;
@@ -16,7 +16,7 @@ public abstract class Abstract_f1_item implements F1_Item {
         this.name = name;
     }
 
-    public Abstract_f1_item(String name, int number, int f1points, int fantaF1points, float fantavalue) {
+    public Abstract_f1_item(String name, int number, int f1points, int fantaF1points, double fantavalue) {
         this.name = name;
         this.number = number;
         this.f1points = f1points;
@@ -56,11 +56,11 @@ public abstract class Abstract_f1_item implements F1_Item {
         this.fantaF1points = fantaF1points;
     }
 
-    public float getFantavalue() {
+    public double getFantavalue() {
         return fantavalue;
     }
 
-    public void setFantavalue(float fantavalue) {
+    public void setFantavalue(double fantavalue) {
         this.fantavalue = fantavalue;
     }
 }
