@@ -58,8 +58,9 @@ public class Squad extends Abstract_f1_item{
         dc.setFantaF1Points(name, number, fantaF1points);
     }
 
-    public void setF1points() {
-        this.f1points = d1.getF1points() + d2.getF1points();
+    @Override
+    public void setF1points(int f1points) {
+        super.setF1points(f1points);
         DataConstructor dc = new DataConstructor();
         dc.setF1Points(name, number, f1points);
     }

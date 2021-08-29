@@ -44,6 +44,8 @@ public class Driver extends Abstract_f1_item{
         super.setFantaF1points(fantaF1points);
         DataDriver dd = new DataDriver();
         dd.setFantaF1Points(name, number, fantaF1points);
+        DataConstructor dc = new DataConstructor();
+        dc.getConstructorbyDriver(name, number).setFantaF1points(fantaF1points);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Driver extends Abstract_f1_item{
         DataDriver dd = new DataDriver();
         dd.setF1Points(name, number, f1points);
         DataConstructor dc = new DataConstructor();
-        dc.getConstructorbyDriver(name, number).setF1points();
+        dc.getConstructorbyDriver(name, number).setF1points(f1points);
     }
 
     public String F1informations() {
