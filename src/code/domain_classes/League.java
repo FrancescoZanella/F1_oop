@@ -1,5 +1,7 @@
 package domain_classes;
 
+import database.DataLeague;
+
 import java.util.HashMap;
 import java.util.Random;
 
@@ -14,6 +16,7 @@ public class League {
     HashMap<User, Team> userteam;
     //1-25 race's number
     int leagueLenght;
+    DataLeague dl;
 
     //da usare la prima volta che si crea una lega, così ti genera il codice di invito
     public League(String leagueName, String inviteCode, boolean leagueType, int leagueLenght) {
@@ -22,6 +25,7 @@ public class League {
         this.leagueLenght = leagueLenght;
         this.inviteCode = inviteCode;
         this.userteam = new HashMap<>();
+        this.dl = new DataLeague();
     }
 
 
@@ -32,6 +36,7 @@ public class League {
         this.leagueType = leagueType;
         this.leagueLenght = leagueLenght;
         this.userteam = userteam;
+        this.dl = new DataLeague();
     }
 
     public String getLeagueName() {
@@ -85,6 +90,7 @@ public class League {
             if (userteam.get(u) != null)
                 return false;
             else {
+                dl.insertNewUser(u.getUsername(), t.getTeamName(), inviteCode);
                 userteam.put(u, t);
                 return true;
             }

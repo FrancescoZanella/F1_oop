@@ -23,7 +23,7 @@ public class DataLeague extends Data {
         }
     }
 
-    public boolean sameLeague(String invitation_code){
+    public boolean sameLeague(String invitation_code) {
         try {
             startConnection();
             try {
@@ -63,7 +63,7 @@ public class DataLeague extends Data {
         return c;
     }
 
-    public List<League> LeaguesPerUser(String new_username){
+    public List<League> LeaguesPerUser(String new_username) {
         List<League> l = new LinkedList<>();
         try {
             startConnection();
@@ -71,12 +71,12 @@ public class DataLeague extends Data {
                 for (int i = 1; i < League.getMaxTeamsPerUser() + 1; i++) {
                     rs = statement.executeQuery("Select * from league " +
                             "where username" + i + " = '" + new_username + "'");
-                    while(rs.next()) {
+                    while (rs.next()) {
                         HashMap<User, Team> ut = new HashMap<>();
                         DataUser du = new DataUser();
                         DataTeam dt = new DataTeam();
-                        for(int j = 1; j < League.getMaxUserPerLeague() + 1; j++){
-                            if(rs.getString("username" + j) != null && rs.getString("team_name" + j) != null)
+                        for (int j = 1; j < League.getMaxUserPerLeague() + 1; j++) {
+                            if (rs.getString("username" + j) != null && rs.getString("team_name" + j) != null)
                                 ut.put(du.getUser(rs.getString("username" + j)), dt.getTeam(rs.getString("username" + j), rs.getString("team_name" + j)));
                         }
                         l.add(new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), ut));
@@ -92,13 +92,13 @@ public class DataLeague extends Data {
         return null;
     }
 
-    public boolean insertNewUser(String new_username, String new_team, String invitationcode){
+    public boolean insertNewUser(String new_username, String new_team, String invitationcode) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
-            if(rs.next()){
-                for(int i = 1; i < League.getMaxUserPerLeague() + 1; i++){
-                    if(rs.getString("username" + i) == null && rs.getString("team_name" + i) == null){
+            if (rs.next()) {
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                    if (rs.getString("username" + i) == null && rs.getString("team_name" + i) == null) {
                         statement.executeUpdate("UPDATE league SET username" + i + "= '" + new_username + "', team_name" + i + "= '" + new_team + "'" +
                                 " WHERE invitationcode = '" + invitationcode + "'");
                         return true;
@@ -114,7 +114,25 @@ public class DataLeague extends Data {
         return false;
     }
 
-    public void deleteAllLeagues(){
+    public boolean deleteUserFromLeague(String new_username, String new_team, String invitationcode) {
+        try {
+            startConnection();
+            for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                statement.executeUpdate("UPDATE league SET username" + i + "= null, team_name" + i + " = null" +
+                        " WHERE invitationcode = '" + invitationcode + "' and username" + i + " = '" + new_username + "' and team_name" + i + " = '" + new_team + "'");
+                return true;
+            }
+            return false;
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public void deleteAllLeagues() {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM league");

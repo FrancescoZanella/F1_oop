@@ -62,5 +62,6 @@ public class TestApp {
         lh.setFantaF1points(15);
         vb.setF1points(23);
         lh.setF1points(10);
+        dt.deleteDriverFromTeam(cl.getName(), cl.getNumber(), t2.getTeamName(), "iappi99");
     }
 }

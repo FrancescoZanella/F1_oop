@@ -236,6 +236,25 @@ public class DataTeam extends Data {
         return false;
     }
 
+    public boolean deleteDriverFromTeam(String new_name, int new_number, String new_teamname, String new_nameuser) {
+        try {
+            startConnection();
+            for (int i = 1; i < Team.getNumDriver() + 1; i++) {
+                DataDriver dd = new DataDriver();
+                statement.executeUpdate("UPDATE team SET driver_name" + i + "= null, number_driver" + i + " = 0, budget = budget + " + dd.getDriver(new_name, new_number).getFantavalue() +
+                        " WHERE teamname = '" + new_teamname + "' and driver_name" + i + " = '" + new_name + "' and number_driver" + i + " = '" + new_number + "' and name_user = '" + new_nameuser + "'");
+                return true;
+            }
+            return false;
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
     public void deleteAllTeams() {
         try {
             startConnection();
