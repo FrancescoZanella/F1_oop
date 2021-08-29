@@ -1,5 +1,7 @@
 package domain_classes;
 
+import database.DataRace;
+
 import java.text.DateFormat;
 import java.sql.Date;
 
@@ -10,19 +12,26 @@ public class Race {
     String name, nation;
     Date race_day, qualification_day;
     double km;
+    DataRace dr;
+    boolean date;
 
     public Race(String name, String nation, double km) {
         this.name = name;
         this.nation = nation;
         this.km = km;
+        dr = new DataRace();
+        dr.InsertNewRace(this);
     }
 
-    public Race(String name, String nation, double km, Date race_day, Date qualification_day) {
+    public Race(String name, String nation, double km, Date race_day, Date qualification_day, boolean date) {
         this.name = name;
         this.nation = nation;
         this.race_day = race_day;
         this.km = km;
         this.qualification_day = qualification_day;
+        dr = new DataRace();
+        if(date)
+            dr.InsertNewRace(this);
     }
 
     public String getName() {
@@ -56,6 +65,10 @@ public class Race {
     public Date getQualification_day() { return qualification_day; }
 
     public void setQualification_day(Date qualification_day) { this.qualification_day = qualification_day; }
+
+    public boolean sameRace() {
+        return dr.sameRace(this);
+    }
 
     DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
 

@@ -26,6 +26,7 @@ public class League {
         this.inviteCode = inviteCode;
         this.userteam = new HashMap<>();
         this.dl = new DataLeague();
+        dl.insertNewLeague(this);
     }
 
 
@@ -85,6 +86,8 @@ public class League {
         this.userteam = userteam;
     }
 
+    public boolean sameLeague() { return dl.sameLeague(inviteCode); }
+
     public boolean addNewTeam(User u, Team t) {
         if (userteam.size() < MaxTeamsPerUser) {
             if (userteam.get(u) != null)
@@ -96,6 +99,20 @@ public class League {
             }
         }
         return false;
+    }
+
+    public boolean deleteUserFromLeague(User u, Team t){
+        if(userteam.get(u) != null){
+            userteam.remove(u);
+            dl.deleteUserFromLeague(u.getUsername(), this.inviteCode);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

@@ -114,12 +114,12 @@ public class DataLeague extends Data {
         return false;
     }
 
-    public boolean deleteUserFromLeague(String new_username, String new_team, String invitationcode) {
+    public boolean deleteUserFromLeague(String new_username, String invitationcode) {
         try {
             startConnection();
             for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
                 statement.executeUpdate("UPDATE league SET username" + i + "= null, team_name" + i + " = null" +
-                        " WHERE invitationcode = '" + invitationcode + "' and username" + i + " = '" + new_username + "' and team_name" + i + " = '" + new_team + "'");
+                        " WHERE invitationcode = '" + invitationcode + "' and username" + i + " = '" + new_username + "'");
                 return true;
             }
             return false;

@@ -6,18 +6,22 @@ import database.DataDriver;
 
 import java.lang.reflect.Constructor;
 
-public class Driver extends Abstract_f1_item{
+public class Driver extends Abstract_f1_item {
 
     int age;
+    DataDriver dd;
 
-    public Driver(String name, int age, int number){
+    public Driver(String name, int age, int number) {
         super(name, number);
         this.age = age;
+        this.dd = new DataDriver();
+        dd.InsertNewDriver(this);
     }
 
     public Driver(String name, int age, int number, int f1points, int fantaF1points, double fantavalue) {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.age = age;
+        this.dd = new DataDriver();
     }
 
     public int getAge() {
@@ -28,21 +32,23 @@ public class Driver extends Abstract_f1_item{
         this.age = age;
     }
 
-    public boolean SameDriver(Driver d){
-        return (number == d.number || name.equals(d.name));
+    public boolean sameDriver(Driver d) {
+        return (d.getName().equals(this.name) && d.getNumber() == this.number);
+    }
+
+    public boolean SameDriver() {
+        return dd.sameDriver(this);
     }
 
     @Override
     public void setFantavalue(double fantavalue) {
         super.setFantavalue(fantavalue);
-        DataDriver dd = new DataDriver();
         dd.setFantaValue(name, number, fantavalue);
     }
 
     @Override
-    public void setFantaF1points(int fantaF1points){
+    public void setFantaF1points(int fantaF1points) {
         super.setFantaF1points(fantaF1points);
-        DataDriver dd = new DataDriver();
         dd.setFantaF1Points(name, number, fantaF1points);
         DataConstructor dc = new DataConstructor();
         dc.getConstructorbyDriver(name, number).setFantaF1points(fantaF1points);
@@ -51,7 +57,6 @@ public class Driver extends Abstract_f1_item{
     @Override
     public void setF1points(int f1points) {
         super.setF1points(f1points);
-        DataDriver dd = new DataDriver();
         dd.setF1Points(name, number, f1points);
         DataConstructor dc = new DataConstructor();
         dc.getConstructorbyDriver(name, number).setF1points(f1points);

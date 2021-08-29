@@ -66,7 +66,7 @@ public class DataConstructor extends Data {
             rs = statement.executeQuery("SELECT * FROM constructor WHERE number = " + new_number + " and name = '" + new_name + "'");
             if (rs.next()) {
                 DataDriver d = new DataDriver();
-                return new Squad(rs.getString("name"), rs.getInt("number"), d.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), d.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")));
+                return new Squad(rs.getString("name"), rs.getInt("number"), d.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), d.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getDouble("fantavalue"));
             } else
                 return null;
         } catch (SQLException e) {
@@ -99,7 +99,7 @@ public class DataConstructor extends Data {
     public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, double fantavalue) {
         try {
             startConnection();
-            rs = statement.executeQuery("UPDATE constructor SET fantaf1points = " + fantaf1points + ", f1points = " + f1points + ", fantavalue = " + fantavalue +
+            rs = statement.executeQuery("UPDATE constructor SET fantaf1points = fantaf1points + " + fantaf1points + ", f1points = f1points + " + f1points + ", fantavalue = " + fantavalue +
                     " where name = '" + new_name + "' and number = " + new_number);
         } catch (SQLException e) {
             e.printStackTrace();

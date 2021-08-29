@@ -1,5 +1,7 @@
 package domain_classes;
 
+import database.DataTeam;
+
 import java.util.HashMap;
 
 public class Team {
@@ -8,23 +10,33 @@ public class Team {
     double budget;
     int fantaf1points;
     public HashMap<Integer, Abstract_f1_item> teamDrivers;
+    DataTeam dt;
+    String user;
 
-    public Team(String teamName){
+    public Team(String teamName, String user) {
         this.teamName = teamName;
+        this.user = user;
         this.teamDrivers = new HashMap<>();
+        dt = new DataTeam();
+        dt.insertNewTeam(this.teamName, user);
     }
 
-    public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers) {
+    public Team(String teamName, String user, HashMap<Integer, Abstract_f1_item> teamDrivers) {
         this.teamName = teamName;
         this.teamDrivers = teamDrivers;
         this.budget = 250;
+        this.user = user;
+        dt = new DataTeam();
+        dt.insertNewTeam(this, user);
     }
 
-    public Team(String teamName, HashMap<Integer, Abstract_f1_item> teamDrivers, double budget, int fantaf1points) {
+    public Team(String teamName, String user, HashMap<Integer, Abstract_f1_item> teamDrivers, double budget, int fantaf1points) {
         this.teamName = teamName;
         this.budget = budget;
         this.fantaf1points = fantaf1points;
         this.teamDrivers = teamDrivers;
+        this.user = user;
+        dt = new DataTeam();
     }
 
     public static int getNumDriver() {
@@ -43,24 +55,26 @@ public class Team {
         return teamDrivers;
     }
 
-    public void setTeamDrivers(HashMap<Integer, Abstract_f1_item> teamDrivers) {
+    public void insertAllItem(HashMap<Integer, Abstract_f1_item> teamDrivers) {
         this.teamDrivers = teamDrivers;
+        dt.insertAllItem(this.user, this.teamName, teamDrivers);
     }
 
     public int getFantaf1points() {
         return fantaf1points;
     }
 
-    public void setFantaf1points(int fantaf1points) {
-        this.fantaf1points = fantaf1points;
+
+    public String getUser() {
+        return user;
     }
 
     public double getBudget() {
         return budget;
     }
 
-    public void setBudget(double budget) {
-        this.budget = budget;
+    public void deleteTeam() {
+        dt.deleteTeam(this.teamName, this.user);
     }
 
     //add an Item to the team
@@ -75,6 +89,7 @@ public class Team {
             if (b) {
                 teamDrivers.put(item.getNumber(), item);
                 budget -= item.fantavalue;
+                dt.insertNewItem(this.user, this.teamName, item.getName(), item.getNumber());
             }
         }
     }
@@ -88,6 +103,7 @@ public class Team {
     public void removeItem(Abstract_f1_item item) {
         teamDrivers.remove(item.number);
         budget += item.fantavalue;
+        dt.deleteDriverFromTeam(item.getName(), item.getNumber(), this.teamName, this.user);
     }
 
     @Override

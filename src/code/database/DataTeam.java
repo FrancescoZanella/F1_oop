@@ -34,7 +34,7 @@ public class DataTeam extends Data {
             }
             statement.executeUpdate("INSERT INTO team(teamname, name_user, driver_name1, number_driver1, " +
                     "driver_name2, number_driver2, driver_name3, number_driver3, driver_name4, number_driver4, driver_name5, number_driver5," +
-                    "constructor_name, number_constructor, budget, fantaf1points) VALUES('" + t.getTeamName() + "','" + u + sb + sbc + ", 250, 0)");
+                    "constructor_name, number_constructor, budget, fantaf1points) VALUES('" + t.getTeamName() + "','" + u + "'" + sb + sbc + ", 250, 0)");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,13 +89,13 @@ public class DataTeam extends Data {
         }
     }
 
-    public boolean sameTeam(Team t, User u) {
+    public boolean sameTeam(Team t) {
         try {
             startConnection();
             try {
                 rs = statement.executeQuery("Select * from team");
                 while (rs.next()) {
-                    if (u.getUsername().equals(rs.getString("username")) && t.getTeamName().equals(rs.getString("teamname")))
+                    if (t.getUser().equals(rs.getString("username")) && t.getTeamName().equals(rs.getString("teamname")))
                         return true;
                 }
                 return false;
@@ -119,7 +119,7 @@ public class DataTeam extends Data {
                 for (int i = 1; i < 6; i++)
                     dr.put(rs.getInt("number_driver" + i), dd.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
                 dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("constructor_name"), rs.getInt("number_constructor")));
-                return new Team(rs.getString("teamname"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
+                return new Team(rs.getString("teamname"), rs.getString("name_user"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
             } else
                 return null;
         } catch (SQLException e) {

@@ -1,5 +1,8 @@
 package domain_classes;
 
+import database.DataUser;
+
+import java.sql.SQLException;
 import java.util.LinkedHashSet;
 
 public class User {
@@ -7,6 +10,7 @@ public class User {
     String username;
     String password;
     LinkedHashSet<Team> all_teams;
+    DataUser du;
 
     public User(String name, String surname, String mail, String username, String password) {
         this.name = name;
@@ -14,6 +18,12 @@ public class User {
         this.mail = mail;
         this.username = username;
         this.password = password;
+        du = new DataUser();
+        try {
+            du.InsertNewUser(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -22,11 +32,18 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.username = username;
+        du = new DataUser();
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        du = new DataUser();
+        try {
+            du.InsertNewUser(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getName() { return name; }
