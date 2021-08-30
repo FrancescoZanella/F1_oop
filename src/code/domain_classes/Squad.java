@@ -70,11 +70,11 @@ public class Squad extends Abstract_f1_item {
 
     public static void deleteAllConstructors() { dc.deleteAllConstructors(); }
 
-    public Squad getConstructor() { return dc.getConstructor(this.name, this.number); }
+    public Squad getConstructor() { return dc.getConstructor(this.name); }
 
     public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
 
-    public static Squad getConstructor(String constructor_name, int constructor_number) { return dc.getConstructor(constructor_name, constructor_number); }
+    public static Squad getConstructor(String constructor_name) { return dc.getConstructor(constructor_name); }
 
     public boolean insertNewDriver(String driver_name, int number_driver) { return dc.insertNewDriver(this.name, driver_name, number_driver); }
 
