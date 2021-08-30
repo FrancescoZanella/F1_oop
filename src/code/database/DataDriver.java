@@ -75,7 +75,7 @@ public class DataDriver extends Data{
         return null;
     }
 
-    public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, float fantavalue){
+    public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, double fantavalue){
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET fantaf1points = " + fantaf1points + ", f1points = " + f1points + ", fantavalue = " + fantavalue +

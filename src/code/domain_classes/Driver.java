@@ -1,27 +1,23 @@
 package domain_classes;
 
-import database.Data;
 import database.DataConstructor;
 import database.DataDriver;
 
-import java.lang.reflect.Constructor;
 
 public class Driver extends Abstract_f1_item {
 
     int age;
-    DataDriver dd;
+    static DataDriver dd = new DataDriver();
 
     public Driver(String name, int age, int number) {
         super(name, number);
         this.age = age;
-        this.dd = new DataDriver();
         dd.InsertNewDriver(this);
     }
 
     public Driver(String name, int age, int number, int f1points, int fantaF1points, double fantavalue) {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.age = age;
-        this.dd = new DataDriver();
     }
 
     public int getAge() {
@@ -38,6 +34,21 @@ public class Driver extends Abstract_f1_item {
 
     public boolean SameDriver() {
         return dd.sameDriver(this);
+    }
+
+    public void deleteDriver() { dd.deleteDriver(this); }
+
+    public static void deleteAllDrivers() { dd.deleteAllDrivers(); }
+
+    public Driver getDriver() { return dd.getDriver(this.name, this.number); }
+
+    public static Driver getDriver(String username, int number) { return dd.getDriver(username, number); }
+
+    public void setAllValues(int f1points, int fantaf1points, double fantavalue) {
+        this.f1points += f1points;
+        this.fantaF1points += fantaf1points;
+        this.fantavalue = fantavalue;
+        dd.setAllValues(this.name, this.number, fantaf1points, f1points, fantavalue);
     }
 
     @Override

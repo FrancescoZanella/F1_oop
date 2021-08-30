@@ -1,10 +1,6 @@
 package database;
 
-import domain_classes.Driver;
 import domain_classes.Squad;
-import domain_classes.User;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DataConstructor extends Data {

@@ -12,14 +12,13 @@ public class Race {
     String name, nation;
     Date race_day, qualification_day;
     double km;
-    DataRace dr;
+    static DataRace dr = new DataRace();
     boolean date;
 
     public Race(String name, String nation, double km) {
         this.name = name;
         this.nation = nation;
         this.km = km;
-        dr = new DataRace();
         dr.InsertNewRace(this);
     }
 
@@ -29,7 +28,6 @@ public class Race {
         this.race_day = race_day;
         this.km = km;
         this.qualification_day = qualification_day;
-        dr = new DataRace();
         if(date)
             dr.InsertNewRace(this);
     }
@@ -69,6 +67,14 @@ public class Race {
     public boolean sameRace() {
         return dr.sameRace(this);
     }
+
+    public static void deleteAllRaces() { dr.deleteAllRaces(); }
+
+    public Race getRace() { return dr.getRace(this.name, this.nation, this.race_day); }
+
+    public static Race getRace(String race_name, String race_nation, Date race_day) { return dr.getRace(race_name, race_nation, race_day); }
+
+    public void deleteRace() { dr.deleteRace(this); }
 
     DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
 

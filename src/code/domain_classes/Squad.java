@@ -1,7 +1,6 @@
 package domain_classes;
 
 import database.DataConstructor;
-import database.DataDriver;
 
 import java.util.Random;
 
@@ -9,14 +8,13 @@ public class Squad extends Abstract_f1_item {
 
     Driver d1, d2;
     Random r;
-    DataConstructor dc;
+    static DataConstructor dc = new DataConstructor();
 
     public Squad(String name, Driver d1, Driver d2) {
         super(name);
         this.d1 = d1;
         this.d2 = d2;
         setNumber();
-        dc = new DataConstructor();
         dc.InsertNewConstructor(this);
     }
 
@@ -24,7 +22,6 @@ public class Squad extends Abstract_f1_item {
         super(name, number);
         this.d1 = d1;
         this.d2 = d2;
-        dc = new DataConstructor();
         dc.InsertNewConstructor(this);
     }
 
@@ -32,7 +29,6 @@ public class Squad extends Abstract_f1_item {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.d1 = d1;
         this.d2 = d2;
-        dc = new DataConstructor();
     }
 
     public void setNumber() {
@@ -63,6 +59,16 @@ public class Squad extends Abstract_f1_item {
     public boolean sameConstructor() {
         return dc.sameConstructor(this);
     }
+
+    public void deleteConstructor() { dc.deleteConstructor(this); }
+
+    public static void deleteAllConstructors() { dc.deleteAllConstructors(); }
+
+    public Squad getConstructor() { return dc.getConstructor(this.name, this.number); }
+
+    public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
+
+    public static Squad getConstructor(String constructor_name, int constructor_number) { return dc.getConstructor(constructor_name, constructor_number); }
 
     public void setAllValues(int fantaf1points, int f1points, double fantavalue) {
         this.f1points += f1points;

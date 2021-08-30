@@ -1,6 +1,5 @@
 package database;
 
-import domain_classes.Driver;
 import domain_classes.Race;
 
 import java.sql.Date;

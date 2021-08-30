@@ -9,12 +9,6 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-        DataDriver dd = new DataDriver();
-        DataConstructor dc = new DataConstructor();
-        DataLeague dl = new DataLeague();
-        DataUser du = new DataUser();
-        DataTeam dt = new DataTeam();
-        DataRace dr = new DataRace();
 
         User u1, u2;
         Squad sf, me, am;
@@ -22,12 +16,13 @@ public class TestApp {
         League l1, l2;
 
 
-        dr.deleteAllRaces();
-        du.deleteAllUsers();
-        dt.deleteAllTeams();
-        dd.deleteAllDrivers();
-        dc.deleteAllConstructors();
-        dl.deleteAllLeagues();
+        Driver.deleteAllDrivers();
+        Squad.deleteAllConstructors();
+        Team.deleteAllTeams();
+        League.deleteAllLeagues();
+        Race.deleteAllRaces();
+        User.deleteAllUsers();
+
 
         u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");
         u2 = new User("francesco", "zanella", "francizanella00@gmail.com", "zanzi", "password2");
@@ -42,14 +37,14 @@ public class TestApp {
         cs = new Driver("Carlos Sainz", 25, 55);
         ls = new Driver("Lance Stroll", 24, 31);
         vb = new Driver("Valtteri Bottas", 30, 77);
-        me = new Squad("Mercedes AMG Petronas", dd.getDriver("Lewis Hamilton", 44), dd.getDriver("Valtteri Bottas", 77));
-        sf = new Squad("Scuderia Ferrari", dd.getDriver("Charles Leclerc", 16), dd.getDriver("Carlos Sainz", 55));
-        am = new Squad("Aston Martin", dd.getDriver("Sebastian Vettel", 5), dd.getDriver("Lance Stroll", 31));
+        me = new Squad("Mercedes AMG Petronas", lh.getDriver(), vb.getDriver());
+        sf = new Squad("Scuderia Ferrari", Driver.getDriver("Charles Leclerc", 16), Driver.getDriver("Carlos Sainz", 55));
+        am = new Squad("Aston Martin", Driver.getDriver("Sebastian Vettel", 5), Driver.getDriver("Lance Stroll", 31));
         l1 = new League("cipollini", "polloarrosto", false, 2);
         l2 = new League("fagiolini", "pecorino", true, 2);
-        dt.insertNewTeam(t.getTeamName(), "mari");
-        dt.insertNewTeam("vediamo", u1.getUsername());
-        dt.insertNewTeam("vediam0", u1.getUsername());
+        new Team(t.getTeamName(), "mari");
+        new Team("vediamo", u1.getUsername());
+        new Team("vediam0", u1.getUsername());
 
         t.addItem(cl);
         t.addItem(sv);
@@ -62,13 +57,13 @@ public class TestApp {
         t2.insertAllItem(t.teamDrivers);
         l1.addNewTeam(u1, t);
         l2.addNewTeam(u1, t);
-        System.out.println(dl.LeaguesPerUser("iappi99"));
+        System.out.println(League.leaguesPerUser("iappi99"));
         cl.setFantavalue(13.4);
         cl.setFantaF1points(32);
         vb.setFantaF1points(34);
         lh.setFantaF1points(15);
         vb.setF1points(23);
         lh.setF1points(10);
-        dt.deleteDriverFromTeam(cl.getName(), cl.getNumber(), t2.getTeamName(), "iappi99");
+        t.removeItem(lh);
     }
 }

@@ -1,8 +1,6 @@
 package database;
 
-import domain_classes.League;
-import domain_classes.Team;
-import domain_classes.User;
+import domain_classes.*;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -40,6 +38,25 @@ public class DataLeague extends Data {
             closeConnection();
         }
         return false;
+    }
+
+    public League getLeague(String invitation_code) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM team WHERE invitationcode = '" + invitation_code + "'");
+            if (rs.next()) {
+                HashMap<User, Team> dr = new HashMap<>();
+                for (int i = 1; i < League.getMaxUserPerLeague(); i++)
+                    dr.put(User.getUser(rs.getString("username" + i)), Team.getTeam(rs.getString("team_name" + i), rs.getString("username" + i)));
+                return new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), dr);
+            } else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 
     public int numberOfLeaguePerUser(String new_username) {

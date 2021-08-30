@@ -10,7 +10,7 @@ public class User {
     String username;
     String password;
     LinkedHashSet<Team> all_teams;
-    DataUser du;
+    static DataUser du = new DataUser();
 
     public User(String name, String surname, String mail, String username, String password) {
         this.name = name;
@@ -18,7 +18,6 @@ public class User {
         this.mail = mail;
         this.username = username;
         this.password = password;
-        du = new DataUser();
         try {
             du.InsertNewUser(this);
         } catch (SQLException e) {
@@ -32,13 +31,11 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.username = username;
-        du = new DataUser();
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        du = new DataUser();
         try {
             du.InsertNewUser(this);
         } catch (SQLException e) {
@@ -46,33 +43,73 @@ public class User {
         }
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getSurname() { return surname; }
+    public String getSurname() {
+        return surname;
+    }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-    public String getMail() { return mail; }
+    public String getMail() {
+        return mail;
+    }
 
-    public void setMail(String mail) { this.mail = mail; }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public LinkedHashSet<Team> getAll_teams() { return all_teams; }
+    public LinkedHashSet<Team> getAll_teams() {
+        return all_teams;
+    }
 
-    public void setAll_teams(LinkedHashSet<Team> all_teams) { this.all_teams = all_teams; }
+    public void setAll_teams(LinkedHashSet<Team> all_teams) {
+        this.all_teams = all_teams;
+    }
 
-    public void clearAllTeams(LinkedHashSet<Team> all_teams) { all_teams.clear(); }
+    public void clearAllTeams(LinkedHashSet<Team> all_teams) {
+        all_teams.clear();
+    }
 
-    public LinkedHashSet<Team> newAll_teams() { return new LinkedHashSet<>(); }
+    public LinkedHashSet<Team> newAll_teams() {
+        return new LinkedHashSet<>();
+    }
+
+    public boolean sameUser() {
+        return du.sameUser(this.username);
+    }
+
+    public boolean correctLogin(){ return du.sameUser(this.username); }
+
+    public User getUser() { return du.getUser(this.username); }
+
+    public static User getUser(String username) { return du.getUser(username); }
+
+    public static void deleteAllUsers() { du.deleteAllUsers(); }
 
     public String toString() {
         return "User{" +

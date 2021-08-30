@@ -3,7 +3,7 @@ package domain_classes;
 import database.DataLeague;
 
 import java.util.HashMap;
-import java.util.Random;
+import java.util.List;
 
 public class League {
     String leagueName;
@@ -16,7 +16,7 @@ public class League {
     HashMap<User, Team> userteam;
     //1-25 race's number
     int leagueLenght;
-    DataLeague dl;
+    static DataLeague dl = new DataLeague();
 
     //da usare la prima volta che si crea una lega, così ti genera il codice di invito
     public League(String leagueName, String inviteCode, boolean leagueType, int leagueLenght) {
@@ -25,7 +25,6 @@ public class League {
         this.leagueLenght = leagueLenght;
         this.inviteCode = inviteCode;
         this.userteam = new HashMap<>();
-        this.dl = new DataLeague();
         dl.insertNewLeague(this);
     }
 
@@ -37,7 +36,6 @@ public class League {
         this.leagueType = leagueType;
         this.leagueLenght = leagueLenght;
         this.userteam = userteam;
-        this.dl = new DataLeague();
     }
 
     public String getLeagueName() {
@@ -87,6 +85,16 @@ public class League {
     }
 
     public boolean sameLeague() { return dl.sameLeague(inviteCode); }
+
+    public static int numberofLeaguesPerUser(String username) { return dl.numberOfLeaguePerUser(username); }
+
+    public static List<League> leaguesPerUser(String username) { return dl.LeaguesPerUser(username); }
+
+    public static void deleteAllLeagues() { dl.deleteAllLeagues(); }
+
+    public League getLeague() { return dl.getLeague(this.inviteCode); }
+
+    public static League getLeague(String invitation_code) {return dl.getLeague(invitation_code); }
 
     public boolean addNewTeam(User u, Team t) {
         if (userteam.size() < MaxTeamsPerUser) {

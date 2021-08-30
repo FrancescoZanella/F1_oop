@@ -1,9 +1,6 @@
 package database;
 
-import domain_classes.Abstract_f1_item;
-import domain_classes.League;
-import domain_classes.Team;
-import domain_classes.User;
+import domain_classes.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -113,12 +110,10 @@ public class DataTeam extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM team WHERE name_user = '" + new_username + "' and teamname = '" + new_team + "'");
             if (rs.next()) {
-                DataDriver dd = new DataDriver();
-                DataConstructor dc = new DataConstructor();
                 HashMap<Integer, Abstract_f1_item> dr = new HashMap<>();
-                for (int i = 1; i < 6; i++)
-                    dr.put(rs.getInt("number_driver" + i), dd.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
-                dr.put(rs.getInt("number_constructor"), dc.getConstructor(rs.getString("constructor_name"), rs.getInt("number_constructor")));
+                for (int i = 1; i < Team.getNumDriver(); i++)
+                    dr.put(rs.getInt("number_driver" + i), Driver.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
+                dr.put(rs.getInt("number_constructor"), Squad.getConstructor(rs.getString("constructor_name"), rs.getInt("number_constructor")));
                 return new Team(rs.getString("teamname"), rs.getString("name_user"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
             } else
                 return null;

@@ -10,14 +10,13 @@ public class Team {
     double budget;
     int fantaf1points;
     public HashMap<Integer, Abstract_f1_item> teamDrivers;
-    DataTeam dt;
+    static DataTeam dt = new DataTeam();
     String user;
 
     public Team(String teamName, String user) {
         this.teamName = teamName;
         this.user = user;
         this.teamDrivers = new HashMap<>();
-        dt = new DataTeam();
         dt.insertNewTeam(this.teamName, user);
     }
 
@@ -26,7 +25,6 @@ public class Team {
         this.teamDrivers = teamDrivers;
         this.budget = 250;
         this.user = user;
-        dt = new DataTeam();
         dt.insertNewTeam(this, user);
     }
 
@@ -36,7 +34,6 @@ public class Team {
         this.fantaf1points = fantaf1points;
         this.teamDrivers = teamDrivers;
         this.user = user;
-        dt = new DataTeam();
     }
 
     public static int getNumDriver() {
@@ -105,6 +102,14 @@ public class Team {
         budget += item.fantavalue;
         dt.deleteDriverFromTeam(item.getName(), item.getNumber(), this.teamName, this.user);
     }
+
+    public boolean sameTeam(){return dt.sameTeam(this);}
+
+    public static void deleteAllTeams(){ dt.deleteAllTeams(); }
+
+    public Team getTeam() { return dt.getTeam(this.user, this.teamName);}
+
+    public static Team getTeam(String teamname, String user) {return dt.getTeam(user, teamname); }
 
     @Override
     public String toString() {
