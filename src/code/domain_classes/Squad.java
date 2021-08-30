@@ -10,6 +10,12 @@ public class Squad extends Abstract_f1_item {
     Random r;
     static DataConstructor dc = new DataConstructor();
 
+    public Squad(String name){
+        super(name);
+        setNumber();
+        dc.InsertNewConstructor(this.name, this.number);
+    }
+
     public Squad(String name, Driver d1, Driver d2) {
         super(name);
         this.d1 = d1;
@@ -69,6 +75,8 @@ public class Squad extends Abstract_f1_item {
     public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
 
     public static Squad getConstructor(String constructor_name, int constructor_number) { return dc.getConstructor(constructor_name, constructor_number); }
+
+    public boolean insertNewDriver(String driver_name, int number_driver) { return dc.insertNewDriver(this.name, driver_name, number_driver); }
 
     public void setAllValues(int fantaf1points, int f1points, double fantavalue) {
         this.f1points += f1points;

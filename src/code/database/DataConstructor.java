@@ -1,6 +1,8 @@
 package database;
 
 import domain_classes.Squad;
+import domain_classes.Team;
+
 import java.sql.SQLException;
 
 public class DataConstructor extends Data {
@@ -8,6 +10,17 @@ public class DataConstructor extends Data {
         try {
             startConnection();
             statement.executeUpdate("INSERT INTO constructor VALUES('" + s.getName() + "'," + s.getNumber() + ",'" + s.getD1().getName() + "','" + s.getD2().getName() + "','" + s.getD1().getNumber() + "','" + s.getD2().getNumber() + "', 0, 0, 0)");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void InsertNewConstructor(String name, int number) {
+        try {
+            startConnection();
+            statement.executeUpdate("INSERT INTO constructor(name, number, f1points, fantaf1points, fantavalue) VALUES('" + name + "'," + number + ", 0, 0, 0)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -102,6 +115,29 @@ public class DataConstructor extends Data {
         } finally {
             closeConnection();
         }
+    }
+
+    public boolean insertNewDriver(String constructor_name, String name_driver, int number_driver) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM constructor WHERE name = '" + constructor_name + "'");
+            if (rs.next()) {
+                    DataDriver dd = new DataDriver();
+                    for (int i = 1; i < 3; i++) {
+                        if (rs.getString("driver_name" + i) == null && rs.getInt("number_driver" + i) == 0) {
+                            statement.executeUpdate("UPDATE constructor SET driver_name" + i + "= '" + name_driver + "', number_driver" + i + "= " + number_driver +
+                                    " WHERE name = '" + constructor_name + "'");
+                            return true;
+                        }
+                    }
+            } else
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
     }
 
     public void setFantaValue(String new_name, int new_number, double fantavalue) {

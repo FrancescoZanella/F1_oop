@@ -24,7 +24,7 @@ public class TestApp {
         User.deleteAllUsers();
 
 
-        u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");
+        /*u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");
         u2 = new User("francesco", "zanella", "francizanella00@gmail.com", "zanzi", "password2");
         new User("mario", "rossi", "lamaildimario@yahoo.it", "mari", "password3");
         new Race("Monza", "Italy", 4.02, new Date(-900000), new Date(-1000000), true);
@@ -64,6 +64,6 @@ public class TestApp {
         lh.setFantaF1points(15);
         vb.setF1points(23);
         lh.setF1points(10);
-        t.removeItem(lh);
+        t.removeItem(lh);*/
     }
 }
