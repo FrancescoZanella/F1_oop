@@ -13,6 +13,10 @@ public class Team {
     static DataTeam dt = new DataTeam();
     String user;
 
+    public Team(){
+
+    }
+
     public Team(String teamName, String user) {
         this.teamName = teamName;
         this.user = user;

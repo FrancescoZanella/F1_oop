@@ -7,6 +7,10 @@ public abstract class Abstract_f1_item implements F1_Item {
     int fantaF1points;
     double fantavalue;
 
+    public Abstract_f1_item(){
+
+    }
+
     public Abstract_f1_item(String name, int number) {
         this.name = name;
         this.number = number;

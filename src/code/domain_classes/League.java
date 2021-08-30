@@ -18,6 +18,10 @@ public class League {
     int leagueLenght;
     static DataLeague dl = new DataLeague();
 
+    public League(){
+
+    }
+
     //da usare la prima volta che si crea una lega, così ti genera il codice di invito
     public League(String leagueName, String inviteCode, boolean leagueType, int leagueLenght) {
         this.leagueName = leagueName;

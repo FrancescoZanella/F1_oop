@@ -15,7 +15,6 @@ public class RestDriver extends Rest {
     public void getAllDrivers() {
         setUrl("http://ergast.com/api/f1/2021/1/results");
         start("Result");
-        LocalDate db = null;
         String name;
         int number;
         int age;
@@ -26,7 +25,7 @@ public class RestDriver extends Rest {
                 Element e = (Element) n;
                 name = e.getElementsByTagName("GivenName").item(0).getTextContent() + " " + e.getElementsByTagName("FamilyName").item(0).getTextContent();
                 number = Integer.parseInt(e.getElementsByTagName("PermanentNumber").item(0).getTextContent());
-                age = calculateAge(db.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now());
+                age = calculateAge(LocalDate.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now());
                 if(Squad.getConstructor(e.getElementsByTagName("Name").item(0).getTextContent()) == null)
                     s = new Squad(e.getElementsByTagName("Name").item(0).getTextContent());
                 else
@@ -42,14 +41,14 @@ public class RestDriver extends Rest {
     public void getAllRaces() {
         setUrl("http://ergast.com/api/f1/current");
         start("Race");
-        LocalDate dbr = null, dbq = null;
+        LocalDate dbr = null, dbq;
         String name;
         String nation;
         for (int i = 0; i < nl.getLength(); i++) {
             Node n = nl.item(i);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element e = (Element) n;
-                name = e.getElementsByTagName("CircuitName").item(0).getTextContent();
+                name = e.getElementsByTagName("RaceName").item(0).getTextContent();
                 nation = e.getElementsByTagName("Country").item(0).getTextContent();
                 dbr = dbr.parse(e.getElementsByTagName("Date").item(0).getTextContent());
                 dbq = dbr.withDayOfYear(dbr.getDayOfYear() - 1);
@@ -60,13 +59,6 @@ public class RestDriver extends Rest {
         }
     }
 
-    public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
-        if ((birthDate != null) && (currentDate != null)) {
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
-    }
 
     public static void main(String[] args){
         Driver.deleteAllDrivers();

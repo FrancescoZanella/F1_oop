@@ -15,6 +15,10 @@ public class Race {
     static DataRace dr = new DataRace();
     boolean date;
 
+    public Race(){
+
+    }
+
     public Race(String name, String nation, double km) {
         this.name = name;
         this.nation = nation;

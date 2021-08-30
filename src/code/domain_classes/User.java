@@ -12,6 +12,10 @@ public class User {
     LinkedHashSet<Team> all_teams;
     static DataUser du = new DataUser();
 
+    public User(){
+
+    }
+
     public User(String name, String surname, String mail, String username, String password) {
         this.name = name;
         this.surname = surname;

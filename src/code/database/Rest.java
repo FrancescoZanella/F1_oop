@@ -8,6 +8,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 
 
 public abstract class Rest implements Runnable{
@@ -48,6 +50,14 @@ public abstract class Rest implements Runnable{
         @Override
         public void run() {
 
+        }
+
+        public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+                if ((birthDate != null) && (currentDate != null)) {
+                        return Period.between(birthDate, currentDate).getYears();
+                } else {
+                        return 0;
+                }
         }
 
 }

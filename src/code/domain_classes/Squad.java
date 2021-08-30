@@ -10,6 +10,10 @@ public class Squad extends Abstract_f1_item {
     Random r;
     static DataConstructor dc = new DataConstructor();
 
+    public Squad(){
+
+    }
+
     public Squad(String name){
         super(name);
         setNumber();

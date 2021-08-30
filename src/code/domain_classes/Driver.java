@@ -9,6 +9,10 @@ public class Driver extends Abstract_f1_item {
     int age;
     static DataDriver dd = new DataDriver();
 
+    public Driver(){
+
+    }
+
     public Driver(String name, int age, int number) {
         super(name, number);
         this.age = age;
