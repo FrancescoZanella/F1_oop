@@ -9,7 +9,7 @@ public class DataRace extends Data {
     public void InsertNewRace(Race d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "')");
+            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "', 'false')");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

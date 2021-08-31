@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-public abstract class Rest implements Runnable{
+public abstract class Rest{
         static String url;
         DocumentBuilderFactory dbf;
         DocumentBuilder db;
@@ -45,11 +45,6 @@ public abstract class Rest implements Runnable{
 
                 document.getDocumentElement().normalize();
                 nl = document.getElementsByTagName(type);
-        }
-
-        @Override
-        public void run() {
-
         }
 
         public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {

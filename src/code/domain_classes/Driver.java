@@ -8,8 +8,10 @@ public class Driver extends Abstract_f1_item {
 
     int age;
     static DataDriver dd = new DataDriver();
+    String race_position;
+    String qualifying_position;
 
-    public Driver(){
+    public Driver() {
 
     }
 
@@ -19,9 +21,11 @@ public class Driver extends Abstract_f1_item {
         dd.InsertNewDriver(this);
     }
 
-    public Driver(String name, int age, int number, int f1points, int fantaF1points, double fantavalue) {
+    public Driver(String name, int age, int number, int f1points, int fantaF1points, double fantavalue, String race_position, String qualifying_position) {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.age = age;
+        this.race_position = race_position;
+        this.qualifying_position = qualifying_position;
     }
 
     public int getAge() {
@@ -32,6 +36,24 @@ public class Driver extends Abstract_f1_item {
         this.age = age;
     }
 
+    public String getRace_position() {
+        return race_position;
+    }
+
+    public void setRace_position(String race_position) {
+        this.race_position = race_position;
+        dd.setRacePosition(this.name, this.number, race_position);
+    }
+
+    public String getQualifying_position() {
+        return qualifying_position;
+    }
+
+    public void setQualifying_position(String qualifying_position) {
+        this.qualifying_position = qualifying_position;
+        dd.setQualifyingPosition(this.name, this.number, qualifying_position);
+    }
+
     public boolean sameDriver(Driver d) {
         return (d.getName().equals(this.name) && d.getNumber() == this.number);
     }
@@ -40,13 +62,21 @@ public class Driver extends Abstract_f1_item {
         return dd.sameDriver(this);
     }
 
-    public void deleteDriver() { dd.deleteDriver(this); }
+    public void deleteDriver() {
+        dd.deleteDriver(this);
+    }
 
-    public static void deleteAllDrivers() { dd.deleteAllDrivers(); }
+    public static void deleteAllDrivers() {
+        dd.deleteAllDrivers();
+    }
 
-    public Driver getDriver() { return dd.getDriver(this.name, this.number); }
+    public Driver getDriver() {
+        return dd.getDriver(this.name, this.number);
+    }
 
-    public static Driver getDriver(String username, int number) { return dd.getDriver(username, number); }
+    public static Driver getDriver(String username, int number) {
+        return dd.getDriver(username, number);
+    }
 
     public void setAllValues(int f1points, int fantaf1points, double fantavalue) {
         this.f1points += f1points;
@@ -61,12 +91,13 @@ public class Driver extends Abstract_f1_item {
         dd.setFantaValue(name, number, fantavalue);
     }
 
-    @Override
-    public void setFantaF1points(int fantaF1points) {
+    public void setFantaF1points(int fantaF1points, boolean even_constructor) {
         super.setFantaF1points(fantaF1points);
         dd.setFantaF1Points(name, number, fantaF1points);
-        DataConstructor dc = new DataConstructor();
-        dc.getConstructorbyDriver(name, number).setFantaF1points(fantaF1points);
+        if (even_constructor) {
+            DataConstructor dc = new DataConstructor();
+            dc.getConstructorbyDriver(name, number).setFantaF1points(fantaF1points);
+        }
     }
 
     @Override

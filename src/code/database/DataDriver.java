@@ -1,6 +1,7 @@
 package database;
 
 import domain_classes.Driver;
+import domain_classes.Squad;
 import domain_classes.User;
 
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ public class DataDriver extends Data{
     public void InsertNewDriver(Driver d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO driver VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "', 0, 0, 0)");
+            statement.executeUpdate("INSERT INTO driver VALUES('" + d.getName() + "'," + d.getNumber() + ",'" + d.getAge() + "', 0, 0, 0, 0, 0)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -64,7 +65,7 @@ public class DataDriver extends Data{
             startConnection();
             rs = statement.executeQuery("SELECT * FROM driver WHERE number = " + new_number + " and name = '" + new_name + "'");
             if(rs.next())
-                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"));
+                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position"));
             else
                 return null;
         } catch (SQLException e) {
@@ -73,6 +74,30 @@ public class DataDriver extends Data{
             closeConnection();
         }
         return null;
+    }
+
+    public void setRacePosition(String new_name, int new_number, String position){
+        try {
+            startConnection();
+            statement.executeUpdate("UPDATE driver SET race_position = '" + position +
+                    "' where name = '" + new_name + "' and number = " + new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void setQualifyingPosition(String new_name, int new_number, String position){
+        try {
+            startConnection();
+            statement.executeUpdate("UPDATE driver SET qualifying_position = '" + position +
+                    "' where name = '" + new_name + "' and number = " + new_number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
     }
 
     public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, double fantavalue){
@@ -106,6 +131,8 @@ public class DataDriver extends Data{
             startConnection();
             statement.executeUpdate("UPDATE driver SET f1points = f1points + " + f1points +
                     " where name = '" + new_name + "' and number = " + new_number);
+            DataConstructor dc = new DataConstructor();
+            dc.setF1Points(Squad.getConstructorByDriver(new_name, new_number).getName(), Squad.getConstructorByDriver(new_name, new_number).getNumber(), f1points);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

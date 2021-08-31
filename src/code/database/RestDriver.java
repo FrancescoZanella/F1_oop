@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RestDriver extends Rest {
+public class RestDriver extends Rest implements Runnable{
 
     public void getAllDrivers() {
         setUrl("http://ergast.com/api/f1/2021/1/results");
@@ -34,7 +34,6 @@ public class RestDriver extends Rest {
                 new Driver(name, age, number);
                 s.insertNewDriver(name, number);
             }
-
         }
     }
 
@@ -55,10 +54,13 @@ public class RestDriver extends Rest {
                 System.out.println(name + " " + nation + " " + dbr + " " + dbq);
                 new Race(name, nation, 0, Date.valueOf(dbr), Date.valueOf(dbq), true);
             }
-
         }
     }
 
+    @Override
+    public void run() {
+
+    }
 
     public static void main(String[] args){
         Driver.deleteAllDrivers();
@@ -67,4 +69,6 @@ public class RestDriver extends Rest {
         rd.getAllDrivers();
         rd.getAllRaces();
     }
+
+
 }

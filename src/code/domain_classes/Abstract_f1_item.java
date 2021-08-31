@@ -57,7 +57,7 @@ public abstract class Abstract_f1_item implements F1_Item {
     }
 
     public void setFantaF1points(int fantaF1points) {
-        this.fantaF1points = fantaF1points;
+        this.fantaF1points += fantaF1points;
     }
 
     public double getFantavalue() {
