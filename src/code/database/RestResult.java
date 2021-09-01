@@ -55,22 +55,37 @@ public class RestResult extends Rest {
 
     public ArrayList<Driver> getQualifyingResult() {
         setUrl("http://ergast.com/api/f1/current/last/qualifying");
-        start("QualifyingResult");
-        ArrayList<Driver> ad = new ArrayList<>();
+        start("Race");
+        if (nl.getLength() == 1) {
+            Node n1 = nl.item(0);
+            if (n1.getNodeType() == Node.ELEMENT_NODE) {
+                Element r = (Element) n1;
+                String racename = r.getElementsByTagName("RaceName").item(0).getTextContent();
+                String country = r.getElementsByTagName("Country").item(0).getTextContent();
+                String date = r.getElementsByTagName("Date").item(0).getTextContent();
+                if (!Race.checkIfAlreadyQualified(racename, country, Date.valueOf(date))) {
+                    Race.setAlreadyQualified(racename, country, Date.valueOf(date));
+                    start("QualifyingResult");
+                    ArrayList<Driver> ad = new ArrayList<>();
 
-        for (int i = 0; i < nl.getLength(); i++) {
-            Node n = nl.item(i);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element e = (Element) n;
-                Driver d = new Driver();
-                d.setName(e.getElementsByTagName("GivenName").item(0).getTextContent() + " " + e.getElementsByTagName("FamilyName").item(0).getTextContent());
-                d.setNumber(parseInt(e.getElementsByTagName("PermanentNumber").item(0).getTextContent()));
-                d.setAge(calculateAge(LocalDate.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now()));
-                d.setQualifying_position(e.getAttribute("position"));
-                ad.add(d);
+                    for (int i = 0; i < nl.getLength(); i++) {
+                        Node n = nl.item(i);
+                        if (n.getNodeType() == Node.ELEMENT_NODE) {
+                            Element e = (Element) n;
+                            Driver d = new Driver();
+                            d.setName(e.getElementsByTagName("GivenName").item(0).getTextContent() + " " + e.getElementsByTagName("FamilyName").item(0).getTextContent());
+                            d.setNumber(parseInt(e.getElementsByTagName("PermanentNumber").item(0).getTextContent()));
+                            d.setAge(calculateAge(LocalDate.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now()));
+                            d.setQualifying_position(e.getAttribute("position"));
+                            ad.add(d);
+                        }
+
+                    }
+                    return ad;
+                }
             }
-
         }
-        return ad;
+        return null;
     }
+
 }

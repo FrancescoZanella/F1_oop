@@ -87,6 +87,14 @@ public class Race {
 
     public static boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyRaced(race_name, race_nation, race_day); }
 
+    public void setAlreadyQualified() { dr.setAlreadyQualified(this.name, this.nation, this.race_day); }
+
+    public static void setAlreadyQualified(String race_name, String race_nation, Date race_day) { dr.setAlreadyQualified(race_name, race_nation, race_day); }
+
+    public boolean checkIfAlreadyQualified() { return dr.checkIfAlreadyQualified(this.name, this.nation, this.race_day); }
+
+    public static boolean checkIfAlreadyQualified(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyQualified(race_name, race_nation, race_day); }
+
     public void deleteRace() { dr.deleteRace(this); }
 
     public static ArrayList<Race> getAllRaces() {return dr.getAllRaces(); }

@@ -96,8 +96,8 @@ public class ImplementResult {
             if (!d.getRace_position().equals("R"))
                 posrace = parseInt(d.getRace_position());
 
-            for(Driver dq : qf){
-                if(dq.getName().equals(d.getName()) && dq.getNumber() == d.getNumber())
+            for (Driver dq : qf) {
+                if (dq.getName().equals(d.getName()) && dq.getNumber() == d.getNumber())
                     posq = parseInt(dq.getQualifying_position());
             }
 
@@ -114,20 +114,21 @@ public class ImplementResult {
             d.setFantaF1points(tot, true);
             tot = 0;
         }
-        System.out.println("");
     }
 
     public void implement() {
         race = rr.getRaceResult();
-        if (race != null) {
-            qf = rr.getQualifyingResult();
+        qf = rr.getQualifyingResult();
+        if (qf != null) {
             afterQualifying(qf);
-            afterRace(race);
-            comparison(race, qf);
+            if (race != null) {
+                afterRace(race);
+                comparison(race, qf);
+            }
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ImplementResult ir = new ImplementResult();
         ir.implement();
     }

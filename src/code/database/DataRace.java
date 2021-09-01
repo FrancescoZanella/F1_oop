@@ -11,7 +11,7 @@ public class DataRace extends Data {
     public void InsertNewRace(Race d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "', " + false + ")");
+            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "', 0, 0)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -68,7 +68,7 @@ public class DataRace extends Data {
     public void setAlreadyRaced(String race_name, String race_nation, Date race_day) {
         try {
             startConnection();
-            statement.executeUpdate("UPDATE race SET already_setted = " + true + " WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
+            statement.executeUpdate("UPDATE race SET already_raced = " + true + " WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -79,9 +79,34 @@ public class DataRace extends Data {
     public boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) {
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT already_setted FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
+            rs = statement.executeQuery("SELECT already_raced FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
             if(rs.next())
-                return rs.getBoolean("already_setted");
+                return rs.getBoolean("already_raced");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public void setAlreadyQualified(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            statement.executeUpdate("UPDATE race SET already_qualified = " + true + " WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public boolean checkIfAlreadyQualified(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT already_qualified FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
+            if(rs.next())
+                return rs.getBoolean("already_qualified");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

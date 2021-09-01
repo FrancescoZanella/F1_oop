@@ -1,6 +1,8 @@
 package database;
 
 import domain_classes.*;
+import graphics.Frame;
+import graphics.LoginPage;
 
 import java.lang.reflect.Constructor;
 import java.sql.Date;
@@ -9,7 +11,8 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-
+        new Frame("prova","iappi99");
+        /*
         User u1, u2;
         Squad sf, me, am;
         Driver lh, sv, cl, cs, ls, vb;
@@ -24,7 +27,7 @@ public class TestApp {
         User.deleteAllUsers();
 
 
-        /*u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");
+        u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");
         u2 = new User("francesco", "zanella", "francizanella00@gmail.com", "zanzi", "password2");
         new User("mario", "rossi", "lamaildimario@yahoo.it", "mari", "password3");
         new Race("Monza", "Italy", 4.02, new Date(-900000), new Date(-1000000), true);

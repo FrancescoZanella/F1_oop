@@ -260,9 +260,6 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
     }
 
 
-
-
-
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getSource()==jLabel6){
@@ -271,7 +268,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
             }
             else{
                 this.setVisible(false);
-                new Frame("Formula 1 fanta");
+                new Frame("Formula 1 fanta",jTextField1.getText());
             }
 
         }
@@ -319,7 +316,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
                jLabel10.setVisible(true);
             }
             else{
-                new Frame("Formula 1 fanta");
+                new Frame("Formula 1 fanta",jTextField1.getText());
                 this.setVisible(false);
                 //dispose();
 

@@ -343,9 +343,6 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
 
     }
 
-    public static void main(String[] args) {
-        new CreateLeague();
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {

@@ -36,6 +36,20 @@ public class DataUser extends Data{
         return false;
     }
 
+    public void setPassword(String username, String new_password){
+        try {
+            startConnection();
+            try {
+                statement.executeUpdate("UPDATE user SET password = '" + new_password +
+                        "' where username = '" + username + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            closeConnection();
+        }
+    }
+
     public boolean correctLogin(String new_username, String new_password) {
         try {
             startConnection();
@@ -69,6 +83,19 @@ public class DataUser extends Data{
             closeConnection();
         }
         return null;
+    }
+
+    public void deleteAccount(String username){
+        try {
+            startConnection();
+            try {
+                statement.executeUpdate("DELETE FROM user WHERE username = '" + username + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            closeConnection();
+        }
     }
 
     public void deleteAllUsers(){
