@@ -13,7 +13,7 @@ import java.time.Period;
 public class RestDriver extends Rest{
 
     public void getAllDrivers() {
-        setUrl("http://ergast.com/api/f1/2021/1/results");
+        setUrl("http://ergast.com/api/f1/current/1/results");
         start("Result");
         String name;
         int number;

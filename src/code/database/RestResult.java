@@ -24,7 +24,6 @@ public class RestResult extends Rest {
                 String country = r.getElementsByTagName("Country").item(0).getTextContent();
                 String date = r.getElementsByTagName("Date").item(0).getTextContent();
                 if (!Race.checkIfAlreadyRaced(racename, country, Date.valueOf(date))) {
-                    System.out.println(racename + " " + Race.checkIfAlreadyRaced(racename, country, Date.valueOf(date)));
                     start("Result");
                     ArrayList<Driver> ad = new ArrayList<>();
                     Race.setAlreadyRaced(racename, country, Date.valueOf(date));
@@ -59,7 +58,6 @@ public class RestResult extends Rest {
         start("QualifyingResult");
         ArrayList<Driver> ad = new ArrayList<>();
 
-        System.out.println("");
         for (int i = 0; i < nl.getLength(); i++) {
             Node n = nl.item(i);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
