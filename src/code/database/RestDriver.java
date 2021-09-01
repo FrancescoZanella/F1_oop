@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RestDriver extends Rest implements Runnable{
+public class RestDriver extends Rest{
 
     public void getAllDrivers() {
         setUrl("http://ergast.com/api/f1/2021/1/results");
@@ -30,7 +30,6 @@ public class RestDriver extends Rest implements Runnable{
                     s = new Squad(e.getElementsByTagName("Name").item(0).getTextContent());
                 else
                     s = Squad.getConstructor(e.getElementsByTagName("Name").item(0).getTextContent());
-                System.out.println(name + " " + number + " " + age + " " + s.getName());
                 new Driver(name, age, number);
                 s.insertNewDriver(name, number);
             }
@@ -51,20 +50,16 @@ public class RestDriver extends Rest implements Runnable{
                 nation = e.getElementsByTagName("Country").item(0).getTextContent();
                 dbr = dbr.parse(e.getElementsByTagName("Date").item(0).getTextContent());
                 dbq = dbr.withDayOfYear(dbr.getDayOfYear() - 1);
-                System.out.println(name + " " + nation + " " + dbr + " " + dbq);
                 new Race(name, nation, 0, Date.valueOf(dbr), Date.valueOf(dbq), true);
             }
         }
     }
 
-    @Override
-    public void run() {
-
-    }
 
     public static void main(String[] args){
         Driver.deleteAllDrivers();
         Race.deleteAllRaces();
+        Squad.deleteAllConstructors();
         RestDriver rd = new RestDriver();
         rd.getAllDrivers();
         rd.getAllRaces();

@@ -50,7 +50,7 @@ public class Driver extends Abstract_f1_item {
     public static ArrayList<Driver> getAllDrivers() { return dd.getAllDrivers(); }
 
     public String getQualifying_position() {
-        return qualifying_position;
+        return dd.getDriver(this.name, this.number).qualifying_position;
     }
 
     public void setQualifying_position(String qualifying_position) {
