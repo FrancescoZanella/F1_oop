@@ -78,6 +78,14 @@ public class Race {
 
     public static Race getRace(String race_name, String race_nation, Date race_day) { return dr.getRace(race_name, race_nation, race_day); }
 
+    public void setAlreadyRaced() { dr.setAlreadyRaced(this.name, this.nation, this.race_day); }
+
+    public static void setAlreadyRaced(String race_name, String race_nation, Date race_day) { dr.setAlreadyRaced(race_name, race_nation, race_day); }
+
+    public boolean checkIfAlreadyRaced() { return dr.checkIfAlreadyRaced(this.name, this.nation, this.race_day); }
+
+    public static boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyRaced(race_name, race_nation, race_day); }
+
     public void deleteRace() { dr.deleteRace(this); }
 
     DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);

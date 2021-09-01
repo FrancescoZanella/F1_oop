@@ -47,6 +47,31 @@ public class DataRace extends Data {
         }
     }
 
+    public void setAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            statement.executeUpdate("UPDATE race SET already_setted = 'true' WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT already_setted FROM race WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
+            if(rs.next())
+                return rs.getBoolean("already_setted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
     public void deleteAllRaces(){
         try {
             startConnection();

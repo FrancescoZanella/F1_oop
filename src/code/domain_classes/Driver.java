@@ -3,13 +3,15 @@ package domain_classes;
 import database.DataConstructor;
 import database.DataDriver;
 
+import java.util.ArrayList;
+
 
 public class Driver extends Abstract_f1_item {
 
     int age;
     static DataDriver dd = new DataDriver();
-    String race_position;
-    String qualifying_position;
+    String race_position = "0";
+    String qualifying_position = "0";
 
     public Driver() {
 
@@ -44,6 +46,8 @@ public class Driver extends Abstract_f1_item {
         this.race_position = race_position;
         dd.setRacePosition(this.name, this.number, race_position);
     }
+
+    public static ArrayList<Driver> getAllDrivers() { return dd.getAllDrivers(); }
 
     public String getQualifying_position() {
         return qualifying_position;

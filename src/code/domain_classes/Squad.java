@@ -2,6 +2,7 @@ package domain_classes;
 
 import database.DataConstructor;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Squad extends Abstract_f1_item {
@@ -75,6 +76,8 @@ public class Squad extends Abstract_f1_item {
     public static void deleteAllConstructors() { dc.deleteAllConstructors(); }
 
     public Squad getConstructor() { return dc.getConstructor(this.name); }
+
+    public static ArrayList<Squad> getAllConstructor() { return dc.getAllConstructors(); }
 
     public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
 
