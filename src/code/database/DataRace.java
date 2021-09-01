@@ -1,9 +1,11 @@
 package database;
 
+import domain_classes.Driver;
 import domain_classes.Race;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DataRace extends Data {
     public void InsertNewRace(Race d) {
@@ -34,6 +36,22 @@ public class DataRace extends Data {
             closeConnection();
         }
         return false;
+    }
+
+    public ArrayList<Race> getAllRaces() {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM race ORDER BY name");
+            ArrayList<Race> d = new ArrayList<>();
+            while(rs.next())
+                d.add(getRace(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day")));
+            return d;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 
     public void deleteRace(Race r){

@@ -4,6 +4,7 @@ import database.DataRace;
 
 import java.text.DateFormat;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Race {
 
@@ -87,6 +88,8 @@ public class Race {
     public static boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyRaced(race_name, race_nation, race_day); }
 
     public void deleteRace() { dr.deleteRace(this); }
+
+    public static ArrayList<Race> getAllRaces() {return dr.getAllRaces(); }
 
     DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
 
