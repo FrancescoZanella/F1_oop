@@ -3,6 +3,7 @@ package graphics;
 import database.DataLeague;
 import database.Utils;
 import domain_classes.League;
+import jdk.jshell.execution.Util;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class Frame extends JFrame implements ActionListener{
     MyButton create;
     String current_user;
     List<League> l;
+    JLabel jLabel5;
     DataLeague d;
 
     public Frame(String title,String current_user) throws HeadlessException {
@@ -44,12 +46,14 @@ public class Frame extends JFrame implements ActionListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
+        MyPanel p=new MyPanel(0,0, Utils.width,100,"src/resources/background/bannerslim.JPG");
+        //BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
 
         cbox= new JComboBox<>();
-        l=d.LeaguesPerUser(current_user);
+        l=new ArrayList<>(d.LeaguesPerUser(current_user));
+
         for(League g : l){
             cbox.addItem(g.getLeagueName());
         }
@@ -89,12 +93,16 @@ public class Frame extends JFrame implements ActionListener{
 
 
 
-       // this.setUndecorated(true);
+
+
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setIconImages(listImage);
         this.setResizable(false);
         this.setVisible(true);
+
 
     }
 

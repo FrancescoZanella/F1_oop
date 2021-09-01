@@ -26,7 +26,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         private final MyButton logoutButton;
         MyPanel centerHome;
         MyPanel downPanel;
-        MyPanel centerTeam;
+        TeamPage centerTeam;
         MyPanel centerLeaderboards;
         MyPanel centerProfile;
         MyPanel centerRules;
@@ -114,10 +114,10 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 leftpanel.add(logoutButton);
 
 
-                downPanel = new MyPanel(250,600, Utils.width-250,100, WHITE);
+                downPanel = new MyPanel(250,600, Utils.width-250,120,"src/resources/background/Cattura.jpg");
                 centerPanel = new MyPanel(250,100,Utils.width-250,Utils.height-200,cl);
                 centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
-                centerTeam = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,BLUE);
+                centerTeam = new TeamPage();
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
                 centerProfile = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,GRAY);
                 centerRules = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
@@ -125,7 +125,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerLogout = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,RED);
 
                 centerPanel.add(centerHome, "home");
-                centerPanel.add(centerTeam, "team");
+                centerPanel.add(centerTeam,"team");
                 centerPanel.add(centerLeaderboards, "leaderboards");
                 centerPanel.add(centerProfile, "profile");
                 centerPanel.add(centerRules, "rules");
