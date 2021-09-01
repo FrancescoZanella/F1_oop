@@ -28,9 +28,9 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         MyPanel downPanel;
         TeamPage centerTeam;
         MyPanel centerLeaderboards;
-        MyPanel centerProfile;
+        ProfilePage centerProfile;
         MyPanel centerRules;
-        MyPanel centerSettings;
+        SettingsPage centerSettings;
         MyPanel centerLogout;
         MyPanel centerPanel;
         MyPanel leftpanel;
@@ -119,9 +119,9 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
                 centerTeam = new TeamPage();
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
-                centerProfile = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,GRAY);
+                centerProfile = new ProfilePage();//250, 100, Utils.width - 250, Utils.height - 200,GRAY);
                 centerRules = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
-                centerSettings = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,BLACK);
+                centerSettings = new SettingsPage();
                 centerLogout = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,RED);
 
                 centerPanel.add(centerHome, "home");
