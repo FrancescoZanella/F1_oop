@@ -1,15 +1,17 @@
 package database;
 
+import domain_classes.Driver;
 import domain_classes.Race;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DataRace extends Data {
     public void InsertNewRace(Race d) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "', 'false')");
+            statement.executeUpdate("INSERT INTO race VALUES('" + d.getName() + "','" + d.getNation() + "'," + d.getKm() + ",'" + d.getRace_day() + "','" + d.getQualification_day() + "', " + false + ")");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -36,6 +38,22 @@ public class DataRace extends Data {
         return false;
     }
 
+    public ArrayList<Race> getAllRaces() {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM race ORDER BY name");
+            ArrayList<Race> d = new ArrayList<>();
+            while(rs.next())
+                d.add(getRace(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day")));
+            return d;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
     public void deleteRace(Race r){
         try {
             startConnection();
@@ -45,6 +63,31 @@ public class DataRace extends Data {
         } finally {
             closeConnection();
         }
+    }
+
+    public void setAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            statement.executeUpdate("UPDATE race SET already_setted = " + true + " WHERE(name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT already_setted FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
+            if(rs.next())
+                return rs.getBoolean("already_setted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
     }
 
     public void deleteAllRaces(){

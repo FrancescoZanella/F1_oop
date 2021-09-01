@@ -1,9 +1,11 @@
 package database;
 
+import domain_classes.Driver;
 import domain_classes.Squad;
 import domain_classes.Team;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DataConstructor extends Data {
     public void InsertNewConstructor(Squad s) {
@@ -67,6 +69,22 @@ public class DataConstructor extends Data {
         } finally {
             closeConnection();
         }
+    }
+
+    public ArrayList<Squad> getAllConstructors() {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM constructor ORDER BY name");
+            ArrayList<Squad> d = new ArrayList<>();
+            while(rs.next())
+                d.add(getConstructor((rs.getString("name"))));
+            return d;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 
     public Squad getConstructor(String new_name) {

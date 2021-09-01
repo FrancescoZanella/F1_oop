@@ -2,13 +2,16 @@ package database;
 
 import domain_classes.Driver;
 import domain_classes.Squad;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import static java.lang.Integer.parseInt;
 
-public class ImplementResult implements Runnable{
-    List<Driver> race;
-    List<Driver> qf;
+public class ImplementResult {
+    ArrayList<Driver> race;
+    ArrayList<Driver> qf;
     RestResult rr = new RestResult();
 
     public void afterQualifying(List<Driver> qf) {
@@ -27,23 +30,25 @@ public class ImplementResult implements Runnable{
                         tot += 11 - j;
             }
 
-            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getQualifying_position()) < parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getQualifying_position()) &&
+            if (pos < parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getQualifying_position()) &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getNumber())
                 i.setFantaF1points(2, false);
-            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getQualifying_position()) > parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getQualifying_position()) &&
+            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getQualifying_position()) > pos &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getNumber())
                 i.setFantaF1points(2, false);
 
             i.setFantaF1points(tot, true);
+            tot = 0;
         }
+        System.out.println("");
     }
 
     public void afterRace(List<Driver> race) {
         int tot = 0;
         int pos = 21;
         for (Driver i : race) {
-            if (!i.getQualifying_position().equals("R")) {
-                pos = parseInt(i.getQualifying_position());
+            if (!i.getRace_position().equals("R")) {
+                pos = parseInt(i.getRace_position());
                 tot += 1;
             } else
                 i.setFantaF1points(-15, false);
@@ -69,51 +74,61 @@ public class ImplementResult implements Runnable{
             if (pos == 10)
                 tot += 1;
 
-            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getQualifying_position()) < parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getQualifying_position()) &&
+            if (pos < parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getRace_position()) &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getNumber())
                 i.setFantaF1points(3, false);
-            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getQualifying_position()) > parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getQualifying_position()) &&
+            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getRace_position()) > pos &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getNumber())
                 i.setFantaF1points(3, false);
 
             i.setFantaF1points(tot, true);
+            tot = 0;
         }
+        System.out.println("");
     }
 
-    public void comparison(List<Driver> race){
+    public void comparison(List<Driver> race, List<Driver> qf) {
 
         int tot = 0;
-        int posrace = 21, posq;
-        Driver d;
+        int posrace = 21, posq = 21;
 
-        for(int i = 1; i < race.size() + 1; i++){
-            d = race.get(i);
-            if(!d.getRace_position().equals("R"))
+        for (Driver d : race) {
+            if (!d.getRace_position().equals("R"))
                 posrace = parseInt(d.getRace_position());
 
-            posq = parseInt(d.getQualifying_position());
+            for(Driver dq : qf){
+                if(dq.getName().equals(d.getName()) && dq.getNumber() == d.getNumber())
+                    posq = parseInt(dq.getQualifying_position());
+            }
 
-            if(posq < posrace && posq <= 10 && posrace != 21)
+            if (posq < posrace && posq <= 10 && posrace != 21)
                 tot -= Math.min((posrace - posq) * 2, 10);
 
-            if(posq < posrace && posq > 10 && posrace != 21)
+            if (posq < posrace && posq > 10 && posrace != 21)
                 tot -= Math.min((posrace - posq), 5);
 
-            if(posq > posrace && posrace != 21) {
-                tot += Math.max((posq - posrace) * 2, 10);
+            if (posq > posrace && posrace != 21) {
+                tot += Math.min((posq - posrace) * 2, 10);
             }
 
             d.setFantaF1points(tot, true);
+            tot = 0;
+        }
+        System.out.println("");
+    }
+
+    public void implement() {
+        race = rr.getRaceResult();
+        if (race != null) {
+            qf = rr.getQualifyingResult();
+            afterQualifying(qf);
+            afterRace(race);
+            comparison(race, qf);
         }
     }
 
-    @Override
-    public void run() {
-        race = rr.getRaceResult();
-        qf = rr.getQualifyingResult();
-        afterQualifying(qf);
-        afterRace(race);
-        comparison(race);
+    public static void main(String[] args){
+        ImplementResult ir = new ImplementResult();
+        ir.implement();
     }
-
 }
