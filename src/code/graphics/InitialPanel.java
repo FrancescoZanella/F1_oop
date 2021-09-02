@@ -29,7 +29,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         TeamPage centerTeam;
         MyPanel centerLeaderboards;
         ProfilePage centerProfile;
-        MyPanel centerRules;
+        RulesPage centerRules;
         SettingsPage centerSettings;
         MyPanel centerLogout;
         MyPanel centerPanel;
@@ -119,8 +119,8 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
                 centerTeam = new TeamPage();
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
-                centerProfile = new ProfilePage();//250, 100, Utils.width - 250, Utils.height - 200,GRAY);
-                centerRules = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
+                centerProfile = new ProfilePage();
+                centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
                 centerSettings = new SettingsPage();
                 centerLogout = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,RED);
 
