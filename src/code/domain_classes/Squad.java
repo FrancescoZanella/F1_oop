@@ -77,7 +77,7 @@ public class Squad extends Abstract_f1_item {
 
     public Squad getConstructor() { return dc.getConstructor(this.name); }
 
-    public static ArrayList<Squad> getAllConstructor() { return dc.getAllConstructors(); }
+    public static ArrayList<Squad> getAllConstructor(String order) { return dc.getAllConstructors(order); }
 
     public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
 
