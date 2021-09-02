@@ -1,5 +1,6 @@
 package graphics;
 
+import database.Utils;
 import domain_classes.User;
 
 import javax.swing.*;
@@ -36,15 +37,15 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
         jPasswordField1.addKeyListener(this);
         jPasswordField3.addKeyListener(this);
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_settings_35px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_settings_35px.png")); // NOI18N
         jLabel1.setText("Settings");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_username_35px.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_username_35px.png")); // NOI18N
         jLabel3.setText("Change Password");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\background\\top2.jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\background\\top2.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N

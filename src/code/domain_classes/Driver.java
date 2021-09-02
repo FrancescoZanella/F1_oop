@@ -48,7 +48,7 @@ public class Driver extends Abstract_f1_item {
         dd.setRacePosition(this.name, this.number, race_position);
     }
 
-    public static ArrayList<Driver> getAllDrivers() { return dd.getAllDrivers(); }
+    public static ArrayList<Driver> getAllDrivers(String order) { return dd.getAllDrivers(order); }
 
     public String getQualifying_position() {
         return dd.getDriver(this.name, this.number).qualifying_position;
@@ -100,8 +100,7 @@ public class Driver extends Abstract_f1_item {
         super.setFantaF1points(fantaF1points);
         dd.setFantaF1Points(name, number, fantaF1points);
         if (even_constructor) {
-            DataConstructor dc = new DataConstructor();
-            dc.getConstructorbyDriver(name, number).setFantaF1points(fantaF1points);
+            Squad.getConstructorByDriver(name, number).setFantaF1points(fantaF1points);
         }
     }
 
@@ -109,8 +108,6 @@ public class Driver extends Abstract_f1_item {
     public void setF1points(int f1points) {
         super.setF1points(f1points);
         dd.setF1Points(name, number, f1points);
-        DataConstructor dc = new DataConstructor();
-        dc.getConstructorbyDriver(name, number).setF1points(f1points);
     }
 
     public String F1informations() {
