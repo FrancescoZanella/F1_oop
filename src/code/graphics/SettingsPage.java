@@ -3,10 +3,12 @@ package graphics;
 import domain_classes.User;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class SettingsPage extends JPanel implements MouseListener {
+public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -31,7 +33,8 @@ public class SettingsPage extends JPanel implements MouseListener {
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         this.current_user = current_user;
-
+        jPasswordField1.addKeyListener(this);
+        jPasswordField3.addKeyListener(this);
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_settings_35px.png")); // NOI18N
         jLabel1.setText("Settings");
@@ -162,6 +165,40 @@ public class SettingsPage extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            String b = new String(jPasswordField3.getPassword());
+            if(!User.getUser(current_user).getPassword().equals(b)){
+                jLabel2.setText("Current password incorrect!");
+                jLabel2.setVisible(true);
+            } else {
+                b = new String(jPasswordField1.getPassword());
+                if(b.length() < 8){
+                    jLabel2.setText("New password must be at least 8 carachters");
+                    jLabel2.setVisible(true);
+                } else {
+                    User.getUser(current_user).setPassword(b);
+                    jLabel2.setText("Password changed correctly!");
+                    jLabel2.setVisible(true);
+
+                }
+            }
+
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
