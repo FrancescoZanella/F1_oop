@@ -258,8 +258,8 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("Team saved correctly!");
-        jLabel4.setVisible(false);
+        jLabel4.setText("Team Unsaved!");
+        jLabel4.setVisible(true);
 
         javax.swing.GroupLayout mainpanelLayout = new javax.swing.GroupLayout(mainpanel);
         mainpanel.setLayout(mainpanelLayout);
@@ -308,12 +308,17 @@ public class TeamPage extends JPanel implements MouseListener {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(mainpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
         );
+        jLabel3.addMouseListener(this);
     }
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource() == jPanel1){
+        if(e.getSource()==jLabel3){
+            jLabel4.setText("Team saved");
+            jLabel4.setVisible(true);
+            // TODO: 02/09/2021
+            //metodo per salvare team nel db
 
         }
     }
