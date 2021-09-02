@@ -46,10 +46,10 @@ public class ProfilePage extends JPanel {
         jTextField1.setText(User.getUser(current_user).getMail());
         jTextField1.setEnabled(false);
 
-        jTextField2.setText(User.getUser(current_user).getUsername());
+        jTextField2.setText(User.getUser(current_user).getName() + " " + User.getUser(current_user).getSurname());
         jTextField2.setEnabled(false);
 
-        jTextField3.setText(User.getUser(current_user).getName() + " " + User.getUser(current_user).getUsername());
+        jTextField3.setText(User.getUser(current_user).getUsername());
         jTextField3.setEnabled(false);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\background\\top2.jpg")); // NOI18N

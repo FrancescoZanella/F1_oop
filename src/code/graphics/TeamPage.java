@@ -2,6 +2,7 @@ package graphics;
 
 import database.Utils;
 import domain_classes.Team;
+import domain_classes.User;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -225,7 +226,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_business_building_35px_1.png")); // NOI18N
-        jLabel2.setText("TeamName-UserName");
+        jLabel2.setText(current_user);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

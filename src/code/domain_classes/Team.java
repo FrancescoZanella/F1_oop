@@ -14,7 +14,7 @@ public class Team {
     String user;
 
     public Team(){
-
+        this.budget = 100;
     }
 
     public Team(String teamName, String user) {

@@ -129,7 +129,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerPanel.add(centerProfile, "profile");
                 centerPanel.add(centerRules, "rules");
                 centerPanel.add(centerSettings, "settings");
-                centerPanel.add(centerLogout, "logout");
+                //centerPanel.add(centerLogout, "logout");
 
 
                 this.add(centerPanel);
