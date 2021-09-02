@@ -60,7 +60,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jPanel13.setBackground(new java.awt.Color(69, 73, 74));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -80,8 +80,7 @@ public class TeamPage extends JPanel implements MouseListener {
         );
 
         jPanel16.setBackground(new java.awt.Color(69, 73, 74));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -102,7 +101,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jPanel17.setBackground(new java.awt.Color(69, 73, 74));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -123,7 +122,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jPanel18.setBackground(new java.awt.Color(69, 73, 74));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -144,7 +143,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jPanel19.setBackground(new java.awt.Color(69, 73, 74));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -165,7 +164,7 @@ public class TeamPage extends JPanel implements MouseListener {
 
         jPanel20.setBackground(new java.awt.Color(69, 73, 74));
 
-        jLabel20.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -225,12 +224,12 @@ public class TeamPage extends JPanel implements MouseListener {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_business_building_35px_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_business_building_35px_1.png")); // NOI18N
         jLabel2.setText(current_user);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_coins_35px_2.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_coins_35px_2.png")); // NOI18N
         jLabel1.setText("Crediti rimanenti: " + t.getBudget() + " M");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 

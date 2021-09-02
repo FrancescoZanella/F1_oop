@@ -1,5 +1,7 @@
 package graphics;
 
+import database.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,7 +28,7 @@ public class RulesPage extends JPanel {
         jLabel9 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_rules_35px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_rules_35px.png")); // NOI18N
         jLabel1.setText("Rules");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

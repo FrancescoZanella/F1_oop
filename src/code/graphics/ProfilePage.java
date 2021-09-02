@@ -1,5 +1,6 @@
 package graphics;
 
+import database.Utils;
 import domain_classes.User;
 
 import javax.swing.*;
@@ -27,20 +28,20 @@ public class ProfilePage extends JPanel{
         this.current_user = current_user;
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_account_35px_1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_account_35px_1.png")); // NOI18N
         jLabel1.setText("Account details");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_email_open_35px_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_email_open_35px_1.png")); // NOI18N
         jLabel2.setText("Email");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_username_35px.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_username_35px.png")); // NOI18N
         jLabel3.setText("Username");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_name_35px.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_name_35px.png")); // NOI18N
         jLabel5.setText("Name & surname");
 
 
@@ -55,7 +56,7 @@ public class ProfilePage extends JPanel{
         jTextField3.setText(User.getUser(current_user).getUsername());
         jTextField3.setEnabled(false);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\background\\top2.jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\background\\top2.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
