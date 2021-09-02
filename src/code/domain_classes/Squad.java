@@ -134,4 +134,9 @@ public class Squad extends Abstract_f1_item {
                 '}';
     }
 
+    @Override
+    public String toString() {
+        return name + " " +
+                fantavalue;
+    }
 }

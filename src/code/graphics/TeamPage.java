@@ -1,8 +1,11 @@
 package graphics;
 
+import database.DataConstructor;
 import database.DataDriver;
 import database.Utils;
 import domain_classes.Driver;
+import domain_classes.F1_Item;
+import domain_classes.Squad;
 import domain_classes.Team;
 
 import javax.swing.*;
@@ -28,7 +31,7 @@ import java.util.Objects;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel8;
-        private javax.swing.JList<Driver> jList1;
+        private javax.swing.JList<F1_Item> jList1;
         private javax.swing.JPanel jPanel2;
         private MyPanel jPanel3;
         private javax.swing.JScrollPane jScrollPane1;
@@ -37,7 +40,8 @@ import java.util.Objects;
         String current_user;
         Team t;
         DataDriver d=new DataDriver();
-        DefaultListModel<Driver> dd=new DefaultListModel<>();
+        DataConstructor d1=new DataConstructor();
+        DefaultListModel<F1_Item> dd=new DefaultListModel<>();
 
         public TeamPage(String current_user){
 
@@ -47,7 +51,7 @@ import java.util.Objects;
             jLabel3 = new javax.swing.JLabel();
             jLabel4 = new javax.swing.JLabel();
             jScrollPane1 = new javax.swing.JScrollPane();
-            jList1 = new javax.swing.JList<Driver>();
+            jList1 = new javax.swing.JList<F1_Item>();
             jPanel2 = new javax.swing.JPanel();
             jLabel8 = new javax.swing.JLabel();
             jLabel11 = new javax.swing.JLabel();
@@ -254,13 +258,22 @@ import java.util.Objects;
             }
             //aggiungi al team
             if(e.getSource()==jLabel11 || e.getSource()==jLabel12 || e.getSource()==jLabel13 || e.getSource()==jLabel15 || e.getSource()==jLabel8){
-                //modifica la label e aggiungi al team
                 jList1.setEnabled(true);
                 a=(JLabel) e.getSource();
 
             }
             //costruttore
             if(e.getSource()==jLabel14){
+
+                jList1.setEnabled(true);
+                a=(JLabel) e.getSource();
+                dd.clear();
+                for(Squad s : d1.getAllConstructors()){
+                    dd.addElement(s);
+                }
+
+
+
 
             }
         }

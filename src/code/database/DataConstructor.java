@@ -76,8 +76,8 @@ public class DataConstructor extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM constructor ORDER BY name");
             ArrayList<Squad> d = new ArrayList<>();
-            while(rs.next())
-                d.add(getConstructor((rs.getString("name"))));
+            while(rs.next()){
+                d.add(getConstructor((rs.getString("name"))));}
             return d;
         } catch (SQLException e) {
             e.printStackTrace();
