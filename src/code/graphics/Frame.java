@@ -76,15 +76,16 @@ public class Frame extends JFrame implements ActionListener{
 
         main.add(p);
 
-        InitialPanel e=new InitialPanel(current_user);
-        InitialPanel e1=new InitialPanel(current_user);
-        InitialPanel e2=new InitialPanel(current_user);
+
         panel=new JPanel();
         panel.setBounds(0,0,Utils.width,Utils.height);
         panel.setLayout(cl1);
-        panel.add(e,"panel1");
-        panel.add(e1,"panel2");
-        panel.add(e2,"panel3");
+
+        for(League g : l){
+            panel.add(new InitialPanel(current_user),g.getLeagueName());
+
+        }
+
         main.add(panel);
 
 
@@ -107,21 +108,9 @@ public class Frame extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==cbox){
+        if(e.getSource()==cbox) {
             String msg=(String)cbox.getSelectedItem();
-            if(e.getSource()==cbox) {
-                if(msg.equals("Lega 1")){
-                    cl1.show(panel,"panel1");
-                }
-                if(msg.equals("Lega 2")){
-                    cl1.show(panel,"panel2");
-                }
-                else{
-                    cl1.show(panel,"panel3");
-
-                }
-            }
-
+            cl1.show(panel, msg);
         }
         if(e.getSource()==create){
             this.setVisible(false);

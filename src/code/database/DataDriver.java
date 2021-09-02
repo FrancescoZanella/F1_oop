@@ -80,7 +80,7 @@ public class DataDriver extends Data{
     public ArrayList<Driver> getAllDrivers() {
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM driver ORDER BY name");
+            rs = statement.executeQuery("SELECT * FROM driver ORDER BY fantavalue");
             ArrayList<Driver> d = new ArrayList<>();
             while(rs.next())
                 d.add(new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position")));

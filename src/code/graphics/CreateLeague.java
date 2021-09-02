@@ -374,9 +374,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            //System.exit(0);
             this.setVisible(false);
-            dispose();
 
         }
 
