@@ -48,7 +48,7 @@ public class Driver extends Abstract_f1_item {
         dd.setRacePosition(this.name, this.number, race_position);
     }
 
-    public static ArrayList<Driver> getAllDrivers() { return dd.getAllDrivers(); }
+    public static ArrayList<Driver> getAllDrivers(String order) { return dd.getAllDrivers(order); }
 
     public String getQualifying_position() {
         return dd.getDriver(this.name, this.number).qualifying_position;

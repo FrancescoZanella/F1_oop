@@ -13,7 +13,7 @@ public class Team {
     static DataTeam dt = new DataTeam();
     String user;
 
-    public Team(){
+    public Team() {
         this.budget = 100;
     }
 
@@ -79,6 +79,10 @@ public class Team {
         dt.deleteTeam(this.teamName, this.user);
     }
 
+    public boolean Updateitem(String name_item, int number_item, int position) {
+        return dt.UpdateItem(this.user, this.teamName, name_item, number_item, position);
+    }
+
     //add an Item to the team
     public void addItem(Abstract_f1_item item) {
         //se non c'è gia nel team lo posso aggiungere
@@ -108,13 +112,21 @@ public class Team {
         dt.deleteDriverFromTeam(item.getName(), item.getNumber(), this.teamName, this.user);
     }
 
-    public boolean sameTeam(){return dt.sameTeam(this);}
+    public boolean sameTeam() {
+        return dt.sameTeam(this);
+    }
 
-    public static void deleteAllTeams(){ dt.deleteAllTeams(); }
+    public static void deleteAllTeams() {
+        dt.deleteAllTeams();
+    }
 
-    public Team getTeam() { return dt.getTeam(this.user, this.teamName);}
+    public Team getTeam() {
+        return dt.getTeam(this.user, this.teamName);
+    }
 
-    public static Team getTeam(String teamname, String user) {return dt.getTeam(user, teamname); }
+    public static Team getTeam(String teamname, String user) {
+        return dt.getTeam(user, teamname);
+    }
 
     @Override
     public String toString() {
