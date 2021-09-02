@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Driver extends Abstract_f1_item {
 
+
     int age;
     static DataDriver dd = new DataDriver();
     String race_position = "0";
@@ -125,6 +126,11 @@ public class Driver extends Abstract_f1_item {
                 ", fantaF1points=" + fantaF1points +
                 ", fantavalue=" + fantavalue +
                 '}';
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + fantavalue;
     }
 
     public String fantainformations() {
