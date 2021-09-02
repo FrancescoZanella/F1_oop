@@ -50,6 +50,22 @@ public class DataUser extends Data{
         }
     }
 
+    public String getPassword(String new_username){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT password FROM user WHERE username = '" + new_username + "'");
+            if(rs.next())
+                return rs.getString("password");
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
     public boolean correctLogin(String new_username, String new_password) {
         try {
             startConnection();

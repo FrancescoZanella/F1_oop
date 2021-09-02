@@ -268,7 +268,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
             }
             else{
                 this.setVisible(false);
-                new Frame("Formula 1 fanta",jTextField1.getText());
+                EventQueue.invokeLater(() -> new Frame("Formula 1 fanta",jTextField1.getText()));
             }
 
         }
@@ -277,7 +277,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
 
         }
         if(e.getSource()==jLabel9){
-            new RegisterPage();
+            EventQueue.invokeLater(() -> new RegisterPage());
         }
 
 

@@ -38,14 +38,14 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         MyPanel leftuppanel;
         CardLayout cl = new CardLayout();
         ArrayList<MyButton> ar;
+        String current_user;
 
 
 
 
-
-        public InitialPanel(){
+        public InitialPanel(String current_user){
                 
-
+                this.current_user = current_user;
                 this.setLayout(null);
 
                 leftpanel = new MyPanel(0,100,250,Utils.height-100,new Color(19, 19, 31, 255),new FlowLayout());
@@ -117,11 +117,11 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 downPanel = new MyPanel(250,600, Utils.width-250,120,"src/resources/background/Cattura.jpg");
                 centerPanel = new MyPanel(250,100,Utils.width-250,Utils.height-200,cl);
                 centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
-                centerTeam = new TeamPage();
+                centerTeam = new TeamPage(current_user);
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
-                centerProfile = new ProfilePage();
+                centerProfile = new ProfilePage(current_user);
                 centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
-                centerSettings = new SettingsPage();
+                centerSettings = new SettingsPage(current_user);
                 centerLogout = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,RED);
 
                 centerPanel.add(centerHome, "home");

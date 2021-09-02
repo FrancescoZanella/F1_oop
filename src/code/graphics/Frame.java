@@ -76,9 +76,9 @@ public class Frame extends JFrame implements ActionListener{
 
         main.add(p);
 
-        InitialPanel e=new InitialPanel();
-        InitialPanel e1=new InitialPanel();
-        InitialPanel e2=new InitialPanel();
+        InitialPanel e=new InitialPanel(current_user);
+        InitialPanel e1=new InitialPanel(current_user);
+        InitialPanel e2=new InitialPanel(current_user);
         panel=new JPanel();
         panel.setBounds(0,0,Utils.width,Utils.height);
         panel.setLayout(cl1);
@@ -126,7 +126,7 @@ public class Frame extends JFrame implements ActionListener{
         if(e.getSource()==create){
             this.setVisible(false);
             dispose();
-            new CreateLeague();
+            EventQueue.invokeLater(() -> new CreateLeague());
 
         }
         if(e.getSource()==join){

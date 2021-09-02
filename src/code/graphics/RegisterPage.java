@@ -6,6 +6,7 @@ import database.DataUser;
 import domain_classes.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -335,6 +336,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                             incorrectfield.setVisible(true);
                             passworderror.setVisible(false);
                             d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
+                            EventQueue.invokeLater(() -> new Frame("Fanta F1", namefield.getText()));
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }

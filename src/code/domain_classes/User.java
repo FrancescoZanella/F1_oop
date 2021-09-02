@@ -81,10 +81,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+        du.setPassword(this.username, password);
     }
 
     public String getPassword() {
-        return password;
+        return du.getPassword(this.username);
     }
 
     public LinkedHashSet<Team> getAll_teams() {

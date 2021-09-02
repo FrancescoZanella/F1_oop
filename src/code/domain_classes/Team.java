@@ -20,6 +20,7 @@ public class Team {
     public Team(String teamName, String user) {
         this.teamName = teamName;
         this.user = user;
+        this.budget = 100;
         this.teamDrivers = new HashMap<>();
         dt.insertNewTeam(this.teamName, user);
     }
@@ -27,7 +28,7 @@ public class Team {
     public Team(String teamName, String user, HashMap<Integer, Abstract_f1_item> teamDrivers) {
         this.teamName = teamName;
         this.teamDrivers = teamDrivers;
-        this.budget = 250;
+        this.budget = 100;
         this.user = user;
         dt.insertNewTeam(this, user);
     }

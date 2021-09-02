@@ -1,5 +1,7 @@
 package graphics;
 
+import domain_classes.User;
+
 import javax.swing.*;
 
 public class ProfilePage extends JPanel {
@@ -11,8 +13,9 @@ public class ProfilePage extends JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    String current_user;
     // End of variables declaration
-    public ProfilePage() {
+    public ProfilePage(String current_user) {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -21,6 +24,7 @@ public class ProfilePage extends JPanel {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        this.current_user = current_user;
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_account_35px_1.png")); // NOI18N
@@ -39,13 +43,13 @@ public class ProfilePage extends JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_name_35px.png")); // NOI18N
         jLabel5.setText("Name & surname");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText(User.getUser(current_user).getMail());
         jTextField1.setEnabled(false);
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText(User.getUser(current_user).getUsername());
         jTextField2.setEnabled(false);
 
-        jTextField3.setText("jTextField1");
+        jTextField3.setText(User.getUser(current_user).getName() + " " + User.getUser(current_user).getUsername());
         jTextField3.setEnabled(false);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\background\\top2.jpg")); // NOI18N

@@ -1,8 +1,12 @@
 package graphics;
 
-import javax.swing.*;
+import domain_classes.User;
 
-public class SettingsPage extends JPanel {
+import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class SettingsPage extends JPanel implements MouseListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -13,8 +17,9 @@ public class SettingsPage extends JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField3;
+    String current_user;
 
-    public SettingsPage(){
+    public SettingsPage(String current_user){
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -25,6 +30,7 @@ public class SettingsPage extends JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        this.current_user = current_user;
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_settings_35px.png")); // NOI18N
@@ -38,20 +44,18 @@ public class SettingsPage extends JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\background\\top2.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
 
-        jPasswordField1.setText("jPasswordField1");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel4.setText("Current Password");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel5.setText("New Password");
 
-        jPasswordField3.setText("jPasswordField1");
 
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("New password must be at least 8 carachters long");
+        jLabel2.setVisible(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel1.addMouseListener(this);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Save");
@@ -116,5 +120,48 @@ public class SettingsPage extends JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource() == jPanel1){
+            String b = new String(jPasswordField3.getPassword());
+            if(!User.getUser(current_user).getPassword().equals(b)){
+                jLabel2.setText("Current password incorrect!");
+                jLabel2.setVisible(true);
+            } else {
+                b = new String(jPasswordField1.getPassword());
+                if(b.length() < 8){
+                    jLabel2.setText("New password must be at least 8 carachters");
+                    jLabel2.setVisible(true);
+                } else {
+                    User.getUser(current_user).setPassword(b);
+                    jLabel2.setText("Password changed correctly!");
+                    jLabel2.setVisible(true);
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

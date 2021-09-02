@@ -1,6 +1,7 @@
 package graphics;
 
 import database.Utils;
+import domain_classes.Team;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -26,8 +27,10 @@ public class TeamPage extends JPanel implements MouseListener {
     private MyPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel mainpanel;
+    String current_user;
+    Team t;
 
-    public TeamPage() {
+    public TeamPage(String current_user) {
         mainpanel = new javax.swing.JPanel();
         jPanel2 = new MyPanel(250,100, Utils.width-250,500,"src/resources/background/Cattura1.jpg");
         jPanel13 = new javax.swing.JPanel();
@@ -47,7 +50,8 @@ public class TeamPage extends JPanel implements MouseListener {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-
+        this.current_user = current_user;
+        t = new Team();
         mainpanel.setBackground(new java.awt.Color(255, 255, 255));
         mainpanel.setPreferredSize(new java.awt.Dimension(1030, 500));
 
@@ -226,7 +230,7 @@ public class TeamPage extends JPanel implements MouseListener {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_coins_35px_2.png")); // NOI18N
-        jLabel1.setText("Crediti rimanenti 00");
+        jLabel1.setText("Crediti rimanenti: " + t.getBudget() + " M");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
@@ -254,6 +258,7 @@ public class TeamPage extends JPanel implements MouseListener {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("Team saved correctly!");
+        jLabel4.setVisible(false);
 
         javax.swing.GroupLayout mainpanelLayout = new javax.swing.GroupLayout(mainpanel);
         mainpanel.setLayout(mainpanelLayout);
