@@ -31,7 +31,6 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         ProfilePage centerProfile;
         RulesPage centerRules;
         SettingsPage centerSettings;
-        MyPanel centerLogout;
         MyPanel centerPanel;
         MyPanel leftpanel;
         MyPanel leftdownpanel;
@@ -122,7 +121,6 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerProfile = new ProfilePage();
                 centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
                 centerSettings = new SettingsPage();
-                centerLogout = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,RED);
 
                 centerPanel.add(centerHome, "home");
                 centerPanel.add(centerTeam,"team");
@@ -130,7 +128,6 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 centerPanel.add(centerProfile, "profile");
                 centerPanel.add(centerRules, "rules");
                 centerPanel.add(centerSettings, "settings");
-                centerPanel.add(centerLogout, "logout");
 
 
                 this.add(centerPanel);
@@ -164,7 +161,8 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                         cl.show(centerPanel, "settings");
                 }
                 if (e.getSource() == logoutButton) {
-                        cl.show(centerPanel, "logout");
+                        new LoginPage();
+                        SwingUtilities.getWindowAncestor(this).dispose();
                 }
         }
 
