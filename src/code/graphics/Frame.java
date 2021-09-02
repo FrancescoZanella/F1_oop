@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.awt.Color.white;
 
 
 public class Frame extends JFrame implements ActionListener{
@@ -47,7 +46,6 @@ public class Frame extends JFrame implements ActionListener{
             e.printStackTrace();
         }
         MyPanel p=new MyPanel(0,0, Utils.width,100,"src/resources/background/bannerslim.JPG");
-        //BackroundPanel p=new BackroundPanel("src/resources/background/bannerslim.JPG");
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
 
@@ -78,7 +76,6 @@ public class Frame extends JFrame implements ActionListener{
 
         main.add(p);
 
-    InitialPanel e5=new InitialPanel();
         InitialPanel e=new InitialPanel();
         InitialPanel e1=new InitialPanel();
         InitialPanel e2=new InitialPanel();
