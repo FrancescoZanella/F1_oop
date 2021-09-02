@@ -2,7 +2,7 @@ package graphics;
 
 import javax.swing.*;
 
-public class ProfilePage extends JPanel {
+public class ProfilePage extends JPanel{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -39,7 +39,7 @@ public class ProfilePage extends JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_name_35px.png")); // NOI18N
         jLabel5.setText("Name & surname");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText(SwingUtilities.getWindowAncestor(this));
         jTextField1.setEnabled(false);
 
         jTextField2.setText("jTextField1");
