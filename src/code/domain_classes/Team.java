@@ -15,6 +15,7 @@ public class Team {
 
     public Team() {
         this.budget = 100;
+        this.teamDrivers = new HashMap<>();
     }
 
     public Team(String teamName, String user) {
@@ -89,8 +90,10 @@ public class Team {
         if (teamDrivers.size() < numDriver) {
             boolean b = true;
             for (Abstract_f1_item i : teamDrivers.values()) {
-                if (item.getNumber() == i.getNumber())
+                if (item.getNumber() == i.getNumber()){
                     b = false;
+                    break;
+                }
             }
             if (b) {
                 teamDrivers.put(item.getNumber(), item);

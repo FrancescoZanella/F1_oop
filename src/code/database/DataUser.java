@@ -1,9 +1,10 @@
 package database;
 
 import domain_classes.User;
+
 import java.sql.SQLException;
 
-public class DataUser extends Data{
+public class DataUser extends Data {
 
     public void InsertNewUser(User u) throws SQLException {
         try {
@@ -36,7 +37,7 @@ public class DataUser extends Data{
         return false;
     }
 
-    public void setPassword(String username, String new_password){
+    public void setPassword(String username, String new_password) {
         try {
             startConnection();
             try {
@@ -50,11 +51,11 @@ public class DataUser extends Data{
         }
     }
 
-    public String getPassword(String new_username){
+    public String getPassword(String new_username) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT password FROM user WHERE username = '" + new_username + "'");
-            if(rs.next())
+            if (rs.next())
                 return rs.getString("password");
             else
                 return null;
@@ -69,28 +70,25 @@ public class DataUser extends Data{
     public boolean correctLogin(String new_username, String new_password) {
         try {
             startConnection();
-            try {
-                rs = statement.executeQuery("Select * from user " +
-                        "where username = '" + new_username +
-                        "' and password = '" + new_password + "'");
+            rs = statement.executeQuery("Select * from user " +
+                    "where username = '" + new_username +
+                    "' and password = '" + new_password + "'");
 
-                return new_username.equals(rs.getString("username")) && new_password.equals(rs.getString("password"));
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             closeConnection();
         }
         return false;
     }
 
-    public User getUser(String new_username){
+    public User getUser(String new_username) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM user WHERE username = '" + new_username + "'");
-            if(rs.next())
-                    return new User(rs.getString("name"), rs.getString("surname"), rs.getString("mail"), rs.getString("username"));
+            if (rs.next())
+                return new User(rs.getString("name"), rs.getString("surname"), rs.getString("mail"), rs.getString("username"));
             else
                 return null;
         } catch (SQLException e) {
@@ -101,7 +99,7 @@ public class DataUser extends Data{
         return null;
     }
 
-    public void deleteAccount(String username){
+    public void deleteAccount(String username) {
         try {
             startConnection();
             try {
@@ -114,7 +112,7 @@ public class DataUser extends Data{
         }
     }
 
-    public void deleteAllUsers(){
+    public void deleteAllUsers() {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM user");
