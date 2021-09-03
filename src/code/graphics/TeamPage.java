@@ -291,15 +291,15 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         a.setVerticalAlignment(SwingConstants.CENTER);
         a.setVerticalTextPosition(SwingConstants.BOTTOM);
         jList1.setEnabled(false);
-        if(a == jLabel11)
+        if (a == jLabel11)
             t.Updateitem(jList1.getSelectedValue().getName(), jList1.getSelectedValue().getNumber(), 1);
-        if(a == jLabel12)
+        if (a == jLabel12)
             t.Updateitem(jList1.getSelectedValue().getName(), jList1.getSelectedValue().getNumber(), 2);
-        if(a == jLabel13)
+        if (a == jLabel13)
             t.Updateitem(jList1.getSelectedValue().getName(), jList1.getSelectedValue().getNumber(), 3);
-        if(a == jLabel15)
+        if (a == jLabel15)
             t.Updateitem(jList1.getSelectedValue().getName(), jList1.getSelectedValue().getNumber(), 4);
-        if(a == jLabel8)
+        if (a == jLabel8)
             t.Updateitem(jList1.getSelectedValue().getName(), jList1.getSelectedValue().getNumber(), 5);
     }
 }

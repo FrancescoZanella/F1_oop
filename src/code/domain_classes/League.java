@@ -18,7 +18,7 @@ public class League {
     int leagueLenght;
     static DataLeague dl = new DataLeague();
 
-    public League(){
+    public League() {
 
     }
 
@@ -50,7 +50,9 @@ public class League {
         this.leagueName = leagueName;
     }
 
-    public void setInviteCode(String inviteCode) { this.inviteCode = inviteCode; }
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
+    }
 
     public String getInviteCode() {
         return inviteCode;
@@ -88,17 +90,33 @@ public class League {
         this.userteam = userteam;
     }
 
-    public boolean sameLeague() { return dl.sameLeague(inviteCode); }
+    public boolean sameLeague() {
+        return dl.sameLeague(inviteCode);
+    }
 
-    public static int numberofLeaguesPerUser(String username) { return dl.numberOfLeaguePerUser(username); }
+    public static boolean sameLeague(String inviteCode) {
+        return dl.sameLeague(inviteCode);
+    }
 
-    public static List<League> leaguesPerUser(String username) { return dl.LeaguesPerUser(username); }
+    public static int numberofLeaguesPerUser(String username) {
+        return dl.numberOfLeaguePerUser(username);
+    }
 
-    public static void deleteAllLeagues() { dl.deleteAllLeagues(); }
+    public static List<League> leaguesPerUser(String username) {
+        return dl.LeaguesPerUser(username);
+    }
 
-    public League getLeague() { return dl.getLeague(this.inviteCode); }
+    public static void deleteAllLeagues() {
+        dl.deleteAllLeagues();
+    }
 
-    public static League getLeague(String invitation_code) {return dl.getLeague(invitation_code); }
+    public League getLeague() {
+        return dl.getLeague(this.inviteCode);
+    }
+
+    public static League getLeague(String invitation_code) {
+        return dl.getLeague(invitation_code);
+    }
 
     public boolean addNewTeam(User u, Team t) {
         if (userteam.size() < MaxTeamsPerUser) {
@@ -113,8 +131,8 @@ public class League {
         return false;
     }
 
-    public boolean deleteUserFromLeague(User u, Team t){
-        if(userteam.get(u) != null){
+    public boolean deleteUserFromLeague(User u, Team t) {
+        if (userteam.get(u) != null) {
             userteam.remove(u);
             dl.deleteUserFromLeague(u.getUsername(), this.inviteCode);
             return true;

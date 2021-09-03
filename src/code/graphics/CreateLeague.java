@@ -1,14 +1,13 @@
 package graphics;
 
-import database.DataLeague;
-import database.DataUser;
 import domain_classes.League;
 import domain_classes.User;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.SQLException;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class CreateLeague extends JFrame implements MouseListener, KeyListener {
     private JCheckBox jCheckBox1;
@@ -34,7 +33,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
     private JSlider jSlider1;
     private JTextField jTextField1;
     private JTextField jTextField2;
-    DataLeague d;
+    League l;
 
     public CreateLeague() {
         jPanel1 = new JPanel();
@@ -60,6 +59,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         jSlider1 = new JSlider();
         jTextField2 = new JTextField();
         jLabel9 = new JLabel();
+        l = new League();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -334,12 +334,6 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         this.setVisible(true);
         this.setResizable(false);
 
-        try {
-            d = new DataLeague();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -362,13 +356,13 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                     jLabel10.setText("Invitation code must be long at least 8 characters!");
                     jLabel10.setVisible(true);
                 } else {
-                    if (d.sameLeague(jTextField2.getText())) {
-                        jLabel10.setText("This username already exist, more fantasy please!");
+                    if (League.sameLeague(jTextField2.getText())) {
+                        jLabel10.setText("This code already exist, more fantasy please!");
                         jLabel10.setVisible(true);
                     } else {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
-                        d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
+                        l = new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue());
                     }
                 }
             }
@@ -402,13 +396,13 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                     jLabel10.setText("Invitation code must be long at least 8 characters!");
                     jLabel10.setVisible(true);
                 } else {
-                    if (d.sameLeague(jTextField2.getText())) {
+                    if (League.sameLeague(jTextField2.getText())) {
                         jLabel10.setText("This code already exist, more fantasy please!");
                         jLabel10.setVisible(true);
                     } else {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
-                        d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
+                        l = new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue());
                     }
                 }
             }

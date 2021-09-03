@@ -22,7 +22,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     private javax.swing.JPasswordField jPasswordField3;
     String current_user;
 
-    public SettingsPage(String current_user){
+    public SettingsPage(String current_user) {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -129,14 +129,14 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource() == jPanel1){
+        if (e.getSource() == jPanel1) {
             String b = new String(jPasswordField3.getPassword());
-            if(!User.getUser(current_user).getPassword().equals(b)){
+            if (!User.getUser(current_user).getPassword().equals(b)) {
                 jLabel2.setText("Current password incorrect!");
                 jLabel2.setVisible(true);
             } else {
                 b = new String(jPasswordField1.getPassword());
-                if(b.length() < 8){
+                if (b.length() < 8) {
                     jLabel2.setText("New password must be at least 8 carachters");
                     jLabel2.setVisible(true);
                 } else {
@@ -176,14 +176,14 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             String b = new String(jPasswordField3.getPassword());
-            if(!User.getUser(current_user).getPassword().equals(b)){
+            if (!User.getUser(current_user).getPassword().equals(b)) {
                 jLabel2.setText("Current password incorrect!");
                 jLabel2.setVisible(true);
             } else {
                 b = new String(jPasswordField1.getPassword());
-                if(b.length() < 8){
+                if (b.length() < 8) {
                     jLabel2.setText("New password must be at least 8 carachters");
                     jLabel2.setVisible(true);
                 } else {

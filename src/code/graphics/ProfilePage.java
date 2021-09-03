@@ -5,7 +5,7 @@ import domain_classes.User;
 
 import javax.swing.*;
 
-public class ProfilePage extends JPanel{
+public class ProfilePage extends JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -15,6 +15,7 @@ public class ProfilePage extends JPanel{
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     String current_user;
+
     // End of variables declaration
     public ProfilePage(String current_user) {
         jLabel1 = new javax.swing.JLabel();

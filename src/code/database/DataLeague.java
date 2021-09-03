@@ -12,7 +12,12 @@ public class DataLeague extends Data {
     public void insertNewLeague(League l) {
         try {
             startConnection();
-            statement.executeUpdate("INSERT INTO league (leaguename, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + l.getLeagueType() + "','" + l.getLeagueLenght() + "')");
+            int bool;
+            if(l.getLeagueType())
+                bool = 1;
+            else
+                bool = 0;
+            statement.executeUpdate("INSERT INTO league (leaguename, invitationcode, leaguetype, leaguelength) VALUES('" + l.getLeagueName() + "','" + l.getInviteCode() + "','" + bool + "','" + l.getLeagueLenght() + "')");
 
         } catch (SQLException e) {
             e.printStackTrace();

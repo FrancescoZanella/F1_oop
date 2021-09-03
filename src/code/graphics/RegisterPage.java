@@ -38,8 +38,8 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JTextField usernamefield;
     DataUser d;
 
-    
-    public RegisterPage(){
+
+    public RegisterPage() {
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -285,14 +285,14 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         );
         incorrectfield.setVisible(false);
         passworderror.setVisible(false);
-        this.setBounds(400,50,550,580);
+        this.setBounds(400, 50, 550, 580);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
 
-        try{
+        try {
             d = new DataUser();
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         namefield.addKeyListener(this);
@@ -309,16 +309,16 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(e.getSource()==jLabel9){
+        if (e.getSource() == jLabel9) {
             this.setVisible(false);
             dispose();
             //System.exit(0);
         }
-        if(e.getSource()==finishbutton){
+        if (e.getSource() == finishbutton) {
             incorrectfield.setVisible(false);
             passworderror.setVisible(false);
-            if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
-                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+            if (namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
+                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0) {
                 incorrectfield.setText("All fields are required!");
                 incorrectfield.setVisible(true);
             } else {
@@ -346,9 +346,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         }
 
 
-
-        }
-
+    }
 
 
     @Override
@@ -373,11 +371,11 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             incorrectfield.setVisible(false);
             passworderror.setVisible(false);
-            if(namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
-                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0){
+            if (namefield.getText().length() == 0 || surnamefield.getText().length() == 0 || passwordfield.getPassword().length == 0
+                    || mailfield.getText().length() == 0 || usernamefield.getText().length() == 0) {
                 incorrectfield.setText("All fields are required!");
                 incorrectfield.setVisible(true);
             } else {
@@ -403,9 +401,9 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
             }
 
         }
-        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.setVisible(false);
-           dispose();
+            dispose();
 
         }
 

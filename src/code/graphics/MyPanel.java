@@ -38,7 +38,7 @@ public class MyPanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.setBounds(x,y,weight,height);
+        this.setBounds(x, y, weight, height);
 
     }
 
@@ -47,7 +47,7 @@ public class MyPanel extends JPanel {
         this.height = height;
         this.background = background;
 
-        this.setPreferredSize(new Dimension(weight,height));
+        this.setPreferredSize(new Dimension(weight, height));
         this.setBackground(background);
     }
 
@@ -57,7 +57,7 @@ public class MyPanel extends JPanel {
         this.weight = weight;
         this.height = height;
         this.layout = layout;
-        this.setBounds(x,y,weight,height);
+        this.setBounds(x, y, weight, height);
         this.setLayout(layout);
     }
 
@@ -67,7 +67,7 @@ public class MyPanel extends JPanel {
         this.weight = weight;
         this.height = height;
         this.background = background;
-        this.setBounds(x,y,weight,height);
+        this.setBounds(x, y, weight, height);
         this.setBackground(background);
     }
 
@@ -80,7 +80,7 @@ public class MyPanel extends JPanel {
         this.layout = layout;
 
         this.setLayout(layout);
-        this.setBounds(x,y,weight,height);
+        this.setBounds(x, y, weight, height);
         this.setBackground(background);
     }
 

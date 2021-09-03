@@ -90,7 +90,7 @@ public class Team {
         if (teamDrivers.size() < numDriver) {
             boolean b = true;
             for (Abstract_f1_item i : teamDrivers.values()) {
-                if (item.getNumber() == i.getNumber()){
+                if (item.getNumber() == i.getNumber()) {
                     b = false;
                     break;
                 }
