@@ -21,6 +21,10 @@ public class Squad extends Abstract_f1_item {
         dc.InsertNewConstructor(this.name, this.number);
     }
 
+    public Squad(String name,int fantavalue){
+        super(name,fantavalue);
+    }
+
     public Squad(String name, Driver d1, Driver d2) {
         super(name);
         this.d1 = d1;

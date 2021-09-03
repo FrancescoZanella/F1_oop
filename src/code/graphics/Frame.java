@@ -3,7 +3,6 @@ package graphics;
 import database.DataLeague;
 import database.Utils;
 import domain_classes.League;
-import jdk.jshell.execution.Util;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

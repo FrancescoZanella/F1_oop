@@ -2,11 +2,9 @@ package graphics;
 
 import database.DataConstructor;
 import database.DataDriver;
+import database.DataTeam;
 import database.Utils;
-import domain_classes.Driver;
-import domain_classes.F1_Item;
-import domain_classes.Squad;
-import domain_classes.Team;
+import domain_classes.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -14,6 +12,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.TextListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -22,6 +22,7 @@ import java.util.Objects;
 
     public class TeamPage extends JPanel implements MouseListener, ListSelectionListener {
         private javax.swing.JLabel jLabel1;
+        private JLabel jLabel5;
         private javax.swing.JLabel jLabel11;
         private javax.swing.JLabel jLabel12;
         private javax.swing.JLabel jLabel13;
@@ -31,27 +32,31 @@ import java.util.Objects;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel8;
-        private javax.swing.JList<F1_Item> jList1;
+        private javax.swing.JList<Abstract_f1_item> jList1;
         private javax.swing.JPanel jPanel2;
         private MyPanel jPanel3;
         private javax.swing.JScrollPane jScrollPane1;
+        private ArrayList<JLabel> labels;
+        private javax.swing.JTextField jTextField1;
 
         JLabel a;
         String current_user;
         Team t;
+        DataTeam dt=new DataTeam();
         DataDriver d=new DataDriver();
         DataConstructor d1=new DataConstructor();
-        DefaultListModel<F1_Item> dd=new DefaultListModel<>();
+        DefaultListModel<Abstract_f1_item> dd=new DefaultListModel<>();
 
         public TeamPage(String current_user){
 
             jPanel3 =new MyPanel(250,100, Utils.width-250,500,"src/resources/background/Cattura1.jpg");
+            jLabel5=new JLabel();
             jLabel1 = new javax.swing.JLabel();
             jLabel2 = new javax.swing.JLabel();
             jLabel3 = new javax.swing.JLabel();
             jLabel4 = new javax.swing.JLabel();
             jScrollPane1 = new javax.swing.JScrollPane();
-            jList1 = new javax.swing.JList<F1_Item>();
+            jList1 = new javax.swing.JList<Abstract_f1_item>();
             jPanel2 = new javax.swing.JPanel();
             jLabel8 = new javax.swing.JLabel();
             jLabel11 = new javax.swing.JLabel();
@@ -59,6 +64,16 @@ import java.util.Objects;
             jLabel13 = new javax.swing.JLabel();
             jLabel14 = new javax.swing.JLabel();
             jLabel15 = new javax.swing.JLabel();
+            jTextField1 = new javax.swing.JTextField();
+
+            labels=new ArrayList<JLabel>();
+            labels.add(jLabel12);
+            labels.add(jLabel11);
+            labels.add(jLabel13);
+            labels.add(jLabel15);
+            labels.add(jLabel8);
+            labels.add(jLabel14);
+
 
             this.current_user = current_user;
             t = new Team();
@@ -88,6 +103,7 @@ import java.util.Objects;
             jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
             jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_business_building_35px_1.png")); // NOI18N
             jLabel3.setText(current_user);
+            t.setUser(current_user);
 
             jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
             jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\franc\\Desktop\\Università\\F1_oop\\src\\resources\\icons\\icons8_coins_35px_2.png")); // NOI18N
@@ -181,6 +197,11 @@ import java.util.Objects;
                                     .addContainerGap(98, Short.MAX_VALUE))
             );
 
+            jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+            jLabel5.setText("Insert Team name");
+
+            jTextField1.setText("Team-name");
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
             this.setLayout(layout);
             layout.setHorizontalGroup(
@@ -191,14 +212,17 @@ import java.util.Objects;
                                             .addGroup(layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addContainerGap(143, Short.MAX_VALUE))
-            );
+        );
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -210,7 +234,11 @@ import java.util.Objects;
                                                                     .addGap(15, 15, 15)
                                                                     .addComponent(jLabel3)
                                                                     .addGap(30, 30, 30)
-                                                                    .addComponent(jLabel4))
+                                                                    .addComponent(jLabel4)
+                                                                    .addGap(53, 53, 53)
+                                                                    .addComponent(jLabel5)
+                                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,6 +247,7 @@ import java.util.Objects;
                                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addContainerGap(23, Short.MAX_VALUE))
             );
+
 
             jList1.setEnabled(false);
             jLabel1.addMouseListener(this);
@@ -231,7 +260,7 @@ import java.util.Objects;
 
             jList1.addListSelectionListener(this);
             jList1.setModel(dd);
-            for(Driver h : d.getAllDrivers()){
+            for(Driver h : d.getAllDrivers("fantavalue desc")){
                 dd.addElement(h);
             }
             jLabel11.setForeground(Color.WHITE);
@@ -242,6 +271,8 @@ import java.util.Objects;
             jLabel15.setFont(new Font("Tahoma",Font.PLAIN,8));
             jLabel8.setForeground(Color.WHITE);
             jLabel8.setFont(new Font("Tahoma",Font.PLAIN,8));
+            jLabel14.setForeground(Color.WHITE);
+            jLabel14.setFont(new Font("Tahoma",Font.PLAIN,8));
 
 
 
@@ -251,30 +282,45 @@ import java.util.Objects;
         @Override
         public void mouseClicked(MouseEvent e) {
             if(e.getSource()==jLabel1){
-                jLabel2.setText("Team saved");
-                // TODO: 02/09/2021
-                //metodo per salvare team nel db
+                t.setTeamName(jTextField1.getText());
+
+                if(t.getBudget()>=0 && t.teamDrivers.size()==6 && !dt.sameTeam(t)){
+                    dt.insertNewTeam(t,current_user);
+                    jLabel2.setText("Team Saved correctly");
+
+                }
+
+                    if(t.getBudget()<0){
+                        jLabel2.setText("Budget insufficient!");
+
+                    }
+                   if(t.teamDrivers.size()!=6) {jLabel2.setText("Insert 5 drivers and 1 costructor");}
+                   else{
+                       jLabel2.setText("Already a Team with this name");
+
+                   }
+
+
+
 
             }
             //aggiungi al team
             if(e.getSource()==jLabel11 || e.getSource()==jLabel12 || e.getSource()==jLabel13 || e.getSource()==jLabel15 || e.getSource()==jLabel8){
+                dd.clear();
+                for(Driver h : d.getAllDrivers("fantavalue desc")){
+                    dd.addElement(h);
+                }
                 jList1.setEnabled(true);
                 a=(JLabel) e.getSource();
-
             }
             //costruttore
             if(e.getSource()==jLabel14){
-
-                jList1.setEnabled(true);
-                a=(JLabel) e.getSource();
                 dd.clear();
                 for(Squad s : d1.getAllConstructors()){
                     dd.addElement(s);
                 }
-
-
-
-
+                jList1.setEnabled(true);
+                a=(JLabel) e.getSource();
             }
         }
 
@@ -300,14 +346,40 @@ import java.util.Objects;
 
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            a.setText(jList1.getSelectedValue().getName());
-            a.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/"+jList1.getSelectedValue().getName()+".png"))));
-            a.setHorizontalTextPosition(SwingConstants.CENTER);
-            a.setHorizontalAlignment(SwingConstants.CENTER);
-            a.setVerticalAlignment(SwingConstants.CENTER);
-            a.setVerticalTextPosition(SwingConstants.BOTTOM);
-            jList1.setEnabled(false);
+            if(!jList1.isSelectionEmpty()){
+                        if(t.addItem(jList1.getSelectedValue())) {
+                            if (jList1.getSelectedValue() instanceof Driver) {
+                                a.setText(jList1.getSelectedValue().getName());
+                                a.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/" + jList1.getSelectedValue().getName() + ".png"))));
+                                a.setHorizontalTextPosition(SwingConstants.CENTER);
+                                a.setHorizontalAlignment(SwingConstants.CENTER);
+                                a.setVerticalAlignment(SwingConstants.CENTER);
+                                a.setVerticalTextPosition(SwingConstants.BOTTOM);
+                                jLabel4.setText("Crediti rimanenti "+ t.getBudget()+" M");
+                                jList1.setEnabled(false);
+                            } else {
+                                a.setText(jList1.getSelectedValue().getName());
+                                a.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/" + jList1.getSelectedValue().getName() + ".png"))));
+                                a.setHorizontalTextPosition(SwingConstants.CENTER);
+                                a.setHorizontalAlignment(SwingConstants.CENTER);
+                                a.setVerticalAlignment(SwingConstants.CENTER);
+                                a.setVerticalTextPosition(SwingConstants.BOTTOM);
+                                jLabel4.setText("Crediti rimanenti "+ t.getBudget()+" M");
+                                jList1.setEnabled(false);
+                            }
+
+                        }
+                        else{
+                            jLabel2.setText("Drivers must be all differents");
+
+                        }
+            }
+
         }
     }
+
+
+
+
 
 

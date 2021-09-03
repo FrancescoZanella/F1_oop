@@ -4,6 +4,7 @@ import domain_classes.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
@@ -14,7 +15,7 @@ public class DataTeam extends Data {
             startConnection();
             StringBuffer sb = new StringBuffer();
             StringBuffer sbc = new StringBuffer();
-            for (Abstract_f1_item i : t.getTeamDrivers().values()) {
+            for (Abstract_f1_item i : t.getTeamDrivers()) {
                 if (i.getNumber() < 100) {
                     sb.append(",'");
                     sb.append(i.getName());
@@ -92,7 +93,7 @@ public class DataTeam extends Data {
             try {
                 rs = statement.executeQuery("Select * from team");
                 while (rs.next()) {
-                    if (t.getUser().equals(rs.getString("username")) && t.getTeamName().equals(rs.getString("teamname")))
+                    if (t.getUser().equals(rs.getString("name_user")) && t.getTeamName().equals(rs.getString("teamname")))
                         return true;
                 }
                 return false;
@@ -110,10 +111,10 @@ public class DataTeam extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM team WHERE name_user = '" + new_username + "' and teamname = '" + new_team + "'");
             if (rs.next()) {
-                HashMap<Integer, Abstract_f1_item> dr = new HashMap<>();
+                ArrayList<Abstract_f1_item> dr = new ArrayList<Abstract_f1_item>();
                 for (int i = 1; i < Team.getNumDriver(); i++)
-                    dr.put(rs.getInt("number_driver" + i), Driver.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
-                dr.put(rs.getInt("number_constructor"), Squad.getConstructor(rs.getString("constructor_name")));
+                    dr.add(Driver.getDriver(rs.getString("driver_name" + i), rs.getInt("number_driver" + i)));
+                dr.add(Squad.getConstructor(rs.getString("constructor_name")));
                 return new Team(rs.getString("teamname"), rs.getString("name_user"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
             } else
                 return null;
@@ -229,12 +230,12 @@ public class DataTeam extends Data {
         return false;
     }
 
-    public boolean insertAllItem(String new_username, String new_teamname, HashMap<Integer, Abstract_f1_item> alldrivers) {
+    public boolean insertAllItem(String new_username, String new_teamname, ArrayList<Abstract_f1_item> alldrivers) {
         try {
             startConnection();
             int c = 1;
             if (alldrivers.size() == Team.getNumDriver()) {
-                for (Abstract_f1_item i : alldrivers.values()) {
+                for (Abstract_f1_item i : alldrivers) {
                     if (i.getNumber() < 100) {
                         DataDriver dd = new DataDriver();
                         statement.executeUpdate("UPDATE team SET driver_name" + c + "= '" + i.getName() + "', number_driver" + c + "= " + i.getNumber() + ", budget = budget - " + dd.getDriver(i.getName(), i.getNumber()).getFantavalue() +

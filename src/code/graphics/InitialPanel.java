@@ -17,14 +17,14 @@ import java.util.Objects;
 import static java.awt.Color.*;
 
 public class InitialPanel extends JPanel implements ActionListener, MouseListener {
-        private final MyButton homeButton;
+        //private final MyButton homeButton;
         private final MyButton teamButton;
         private final MyButton leaderboardButton;
         private final MyButton profileButton;
         private final MyButton rulesButton;
         private final MyButton settingsButton;
         private final MyButton logoutButton;
-        MyPanel centerHome;
+        //MyPanel centerHome;
         MyPanel downPanel;
         TeamPage centerTeam;
         MyPanel centerLeaderboards;
@@ -53,11 +53,11 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 //leftpanel.add(leftuppanel);
 
                 //HomeButton
-                homeButton = new MyButton("Home", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/home.png"))));
+                /*homeButton = new MyButton("Home", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/home.png"))));
                 homeButton.addActionListener(this);
                 homeButton.addMouseListener(this);
 
-                leftpanel.add(homeButton);
+                leftpanel.add(homeButton);*/
 
                 //TeamButton
                 teamButton = new MyButton("Team", new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/team.png"))));
@@ -116,14 +116,14 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
 
                 downPanel = new MyPanel(250,600, Utils.width-250,120,"src/resources/background/Cattura.jpg");
                 centerPanel = new MyPanel(250,100,Utils.width-250,Utils.height-200,cl);
-                centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
+                //centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
                 centerTeam = new TeamPage(current_user);//(current_user);
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
                 centerProfile = new ProfilePage(current_user);
                 centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
                 centerSettings = new SettingsPage(current_user);
 
-                centerPanel.add(centerHome, "home");
+                //centerPanel.add(centerHome, "home");
                 centerPanel.add(centerTeam,"team");
                 centerPanel.add(centerLeaderboards, "leaderboards");
                 centerPanel.add(centerProfile, "profile");
@@ -144,9 +144,9 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
 
         @Override
         public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == homeButton) {
+               /* if (e.getSource() == homeButton) {
                         cl.show(centerPanel, "home");
-                }
+                }*/
                 if (e.getSource() == teamButton) {
                         cl.show(centerPanel, "team");
                 }
@@ -171,7 +171,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         @Override
         public void mouseClicked(MouseEvent e) {
                 ar=new ArrayList<MyButton>();
-                ar.add(homeButton);
+               // ar.add(homeButton);
                 ar.add(teamButton);
                 ar.add(leaderboardButton);
                 ar.add(profileButton);

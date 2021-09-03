@@ -77,6 +77,22 @@ public class DataDriver extends Data{
         return null;
     }
 
+    public Driver getDriver(String new_name){
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM driver WHERE name = '" + new_name + "'");
+            if(rs.next())
+                return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position"));
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
     public ArrayList<Driver> getAllDrivers(String order) {
         try {
             startConnection();
