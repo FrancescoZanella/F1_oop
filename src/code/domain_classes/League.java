@@ -90,6 +90,10 @@ public class League {
         this.userteam = userteam;
     }
 
+    public Team getTeamInTheLeague(String user) { return dl.getTeamInTheLeague(user, this.inviteCode); }
+
+    public static Team getTeamInTheLeague(String user, String invitation_code) { return dl.getTeamInTheLeague(user, invitation_code); }
+
     public boolean sameLeague() {
         return dl.sameLeague(inviteCode);
     }

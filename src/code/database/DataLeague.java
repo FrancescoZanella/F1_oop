@@ -13,7 +13,7 @@ public class DataLeague extends Data {
         try {
             startConnection();
             int bool;
-            if(l.getLeagueType())
+            if (l.getLeagueType())
                 bool = 1;
             else
                 bool = 0;
@@ -56,6 +56,24 @@ public class DataLeague extends Data {
                 return new League(rs.getString("leaguename"), rs.getString("invitationcode"), rs.getBoolean("leaguetype"), rs.getInt("leaguelength"), dr);
             } else
                 return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
+    public Team getTeamInTheLeague(String user, String invitation_code) {
+        try {
+            startConnection();
+            for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitation_code + "' and username" + i + " = '" + user + "'");
+                if (rs.next()) {
+                    return Team.getTeam(rs.getString("team_name" + i), user);
+                }
+            }
+            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -119,7 +137,7 @@ public class DataLeague extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
             if (rs.next()) {
-                for(int i = 1; i < League.getMaxUserPerLeague() + 1; i++){
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
                     if (rs.getString("username" + i).equals(new_username))
                         return false;
                 }

@@ -11,7 +11,6 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-        new Frame("prova","iappi99");
         /*
         User u1, u2;
         Squad sf, me, am;
@@ -68,5 +67,7 @@ public class TestApp {
         vb.setF1points(23);
         lh.setF1points(10);
         t.removeItem(lh);*/
+
+        System.out.println(League.getTeamInTheLeague("iappi99", "bestiale").toString());
     }
 }
