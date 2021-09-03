@@ -119,6 +119,10 @@ public class DataLeague extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
             if (rs.next()) {
+                for(int i = 1; i < League.getMaxUserPerLeague() + 1; i++){
+                    if (rs.getString("username" + i).equals(new_username))
+                        return false;
+                }
                 for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
                     if (rs.getString("username" + i) == null && rs.getString("team_name" + i) == null) {
                         statement.executeUpdate("UPDATE league SET username" + i + "= '" + new_username + "', team_name" + i + "= '" + new_team + "'" +
