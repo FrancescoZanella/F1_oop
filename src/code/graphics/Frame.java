@@ -81,7 +81,7 @@ public class Frame extends JFrame implements ActionListener{
         panel.setLayout(cl1);
 
         for(League g : l){
-            panel.add(new InitialPanel(current_user),g.getLeagueName());
+            panel.add(new InitialPanel(current_user,g.getLeagueName()),g.getLeagueName());
 
         }
 

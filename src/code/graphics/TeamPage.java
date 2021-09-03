@@ -1,9 +1,6 @@
 package graphics;
 
-import database.DataConstructor;
-import database.DataDriver;
-import database.DataTeam;
-import database.Utils;
+import database.*;
 import domain_classes.*;
 
 import javax.swing.*;
@@ -40,6 +37,8 @@ import java.util.Objects;
         private javax.swing.JTextField jTextField1;
 
         JLabel a;
+        String current_league;
+        DataLeague dl=new DataLeague();
         String current_user;
         Team t;
         DataTeam dt=new DataTeam();
@@ -47,7 +46,7 @@ import java.util.Objects;
         DataConstructor d1=new DataConstructor();
         DefaultListModel<Abstract_f1_item> dd=new DefaultListModel<>();
 
-        public TeamPage(String current_user){
+        public TeamPage(String current_user,String current_league){
 
             jPanel3 =new MyPanel(250,100, Utils.width-250,500,"src/resources/background/Cattura1.jpg");
             jLabel5=new JLabel();
@@ -76,6 +75,7 @@ import java.util.Objects;
 
 
             this.current_user = current_user;
+            this.current_league=current_league;
             t = new Team();
 
             setPreferredSize(new java.awt.Dimension(1030, 500));
@@ -283,25 +283,21 @@ import java.util.Objects;
         public void mouseClicked(MouseEvent e) {
             if(e.getSource()==jLabel1){
                 t.setTeamName(jTextField1.getText());
-
-                if(t.getBudget()>=0 && t.teamDrivers.size()==6 && !dt.sameTeam(t)){
+                if(t.getBudget()>=0 && t.teamDrivers.size()==6 && dl.insertNewUser(current_user,t.getTeamName(),current_league)){
                     dt.insertNewTeam(t,current_user);
                     jLabel2.setText("Team Saved correctly");
 
                 }
+                else if(t.getBudget()<0){
+                    jLabel2.setText("Budget insufficient!");
 
-                    if(t.getBudget()<0){
-                        jLabel2.setText("Budget insufficient!");
+                }else if(t.teamDrivers.size()!=6){
+                    jLabel2.setText("Insert 5 drivers and 1 costructor");
+                }
+                else{
+                    jLabel2.setText("You have already a team for this league");
 
-                    }
-                   if(t.teamDrivers.size()!=6) {jLabel2.setText("Insert 5 drivers and 1 costructor");}
-                   else{
-                       jLabel2.setText("Already a Team with this name");
-
-                   }
-
-
-
+                }
 
             }
             //aggiungi al team
