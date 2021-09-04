@@ -75,9 +75,13 @@ public class Frame extends JFrame implements ActionListener{
         p.add(join);
         main.add(p);
 
+
+        panel=new MyPanel(0,0,Utils.width,Utils.height,"src/resources/background/blum (2).JPG");
+        panel.setLayout(cl1);
+
         label=new JLabel();
-        panel=new MyPanel(0,0,Utils.width,Utils.height,cl1);
-        panel.add(label);
+
+        //panel.add(label);
         label.setText("                                                                                                              You don't have a league, join or create a new one!!");
         label.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_error_35px.png"))));
         label.setForeground(Color.RED);
@@ -85,7 +89,8 @@ public class Frame extends JFrame implements ActionListener{
         label.setFont(new Font("Segoe UI",Font.BOLD,15));
 
         for(League g : l){
-            panel.add(new InitialPanel(current_user,g.getLeagueName()),g.getLeagueName());
+            panel.add(new InitialPanel(current_user,g.getLeagueName(),g.getInviteCode()),g.getLeagueName());
+
 
         }
 
@@ -123,6 +128,7 @@ public class Frame extends JFrame implements ActionListener{
         }
         if(e.getSource()==join){
             new JoinLeague(current_user);
+            dispose();
 
         }
 

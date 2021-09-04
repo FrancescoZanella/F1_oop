@@ -39,11 +39,15 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
         CardLayout cl = new CardLayout();
         ArrayList<MyButton> ar;
         String current_user;
+        String current_league;
+        String invitation_code;
 
 
 
 
-        public InitialPanel(String current_user,String current_league){
+        public InitialPanel(String current_user,String current_league,String invitation_code){
+                this.invitation_code=invitation_code;
+                this.current_league=current_league;
                 
                 this.current_user = current_user;
                 this.setLayout(null);
@@ -117,7 +121,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 downPanel = new MyPanel(250,600, Utils.width-250,120,"src/resources/background/Cattura.jpg");
                 centerPanel = new MyPanel(250,100,Utils.width-250,Utils.height-200,cl);
                 //centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
-                centerTeam = new TeamPage(current_user,current_league);//(current_user);
+                centerTeam = new TeamPage(current_user,current_league,invitation_code);//(current_user);
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
                 //gli passo current user e current_league e se
                 centerProfile = new ProfilePage(current_user);

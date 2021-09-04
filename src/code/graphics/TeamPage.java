@@ -40,13 +40,14 @@ import java.util.Objects;
         String current_league;
         DataLeague dl=new DataLeague();
         String current_user;
+        String invitation_code;
         Team t;
         DataTeam dt=new DataTeam();
         DataDriver d=new DataDriver();
         DataConstructor d1=new DataConstructor();
         DefaultListModel<Abstract_f1_item> dd=new DefaultListModel<>();
 
-        public TeamPage(String current_user,String current_league){
+        public TeamPage(String current_user,String current_league,String invitation_code){
 
             jPanel3 =new MyPanel(250,100, Utils.width-250,500,"src/resources/background/Cattura1.jpg");
             jLabel5=new JLabel();
@@ -76,6 +77,7 @@ import java.util.Objects;
 
             this.current_user = current_user;
             this.current_league=current_league;
+            this.invitation_code=invitation_code;
             t = new Team();
 
             setPreferredSize(new java.awt.Dimension(1030, 500));
@@ -283,7 +285,7 @@ import java.util.Objects;
         public void mouseClicked(MouseEvent e) {
             if(e.getSource()==jLabel1){
                 t.setTeamName(jTextField1.getText());
-                if(t.getBudget()>=0 && t.teamDrivers.size()==6 && dl.insertNewUser(current_user,t.getTeamName(),current_league)){
+                if(t.getBudget()>=0 && t.teamDrivers.size()==6 && dl.insertOnlyTeam(invitation_code,current_user,t.getTeamName())){
                     dt.insertNewTeam(t,current_user);
                     jLabel2.setText("Team Saved correctly");
 

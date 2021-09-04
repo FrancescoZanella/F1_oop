@@ -1,10 +1,7 @@
 package database;
 
 import domain_classes.*;
-import graphics.CreateLeague;
-import graphics.Frame;
-import graphics.JoinLeague;
-import graphics.LoginPage;
+import graphics.*;
 
 import java.lang.reflect.Constructor;
 import java.sql.Date;
@@ -13,7 +10,7 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-        new Frame("prova","iapp");
+        new LoginPage();
         //new CreateLeague("francesco001");
         /*
         User u1, u2;

@@ -412,6 +412,9 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
                         d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
+                        d.insertOnlyUser(jTextField2.getText(),current_user);
+                        new Frame("Fantasy F1",current_user);
+                        dispose();
                     }
                 }
             }

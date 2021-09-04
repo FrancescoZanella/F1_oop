@@ -278,6 +278,7 @@ public class LoginPage extends JFrame implements MouseListener,KeyListener {
         }
         if(e.getSource()==jLabel9){
             EventQueue.invokeLater(() -> new RegisterPage());
+            dispose();
         }
 
 
