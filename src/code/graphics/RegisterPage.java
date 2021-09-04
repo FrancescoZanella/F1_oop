@@ -36,7 +36,6 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JTextField mailfield;
     private JTextField surnamefield;
     private JTextField usernamefield;
-    DataUser d;
 
 
     public RegisterPage() {
@@ -290,11 +289,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         this.setVisible(true);
         this.setResizable(false);
 
-        try {
-            d = new DataUser();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+
         namefield.addKeyListener(this);
         surnamefield.addKeyListener(this);
         mailfield.addKeyListener(this);
@@ -326,20 +321,16 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                     incorrectfield.setVisible(false);
                     passworderror.setVisible(true);
                 } else {
-                    if (d.sameUser(usernamefield.getText())) {
+                    if (User.sameUser(usernamefield.getText())) {
                         incorrectfield.setText("This username already exist, more fantasy please!");
                         incorrectfield.setVisible(true);
                         passworderror.setVisible(false);
                     } else {
-                        try {
-                            incorrectfield.setText("Sign up correctly!");
-                            incorrectfield.setVisible(true);
-                            passworderror.setVisible(false);
-                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
-                            EventQueue.invokeLater(() -> new Frame("Fanta F1", namefield.getText()));
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
+                        incorrectfield.setText("Sign up correctly!");
+                        incorrectfield.setVisible(true);
+                        passworderror.setVisible(false);
+                        new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword()));
+                        EventQueue.invokeLater(() -> new Frame("Fanta F1", namefield.getText()));
                     }
                 }
             }
@@ -383,23 +374,19 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                     incorrectfield.setVisible(false);
                     passworderror.setVisible(true);
                 } else {
-                    if (d.sameUser(usernamefield.getText())) {
+                    if (User.sameUser(usernamefield.getText())) {
                         incorrectfield.setText("This username already exist, more fantasy please!");
                         incorrectfield.setVisible(true);
                         passworderror.setVisible(false);
                     } else {
-                        try {
-                            incorrectfield.setText("Sign up correctly!");
-                            incorrectfield.setVisible(true);
-                            passworderror.setVisible(false);
-                            d.InsertNewUser(new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword())));
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
+                        incorrectfield.setText("Sign up correctly!");
+                        incorrectfield.setVisible(true);
+                        passworderror.setVisible(false);
+                        new User(namefield.getText(), surnamefield.getText(), null, usernamefield.getText(), new String(passwordfield.getPassword()));
                     }
                 }
-            }
 
+            }
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.setVisible(false);

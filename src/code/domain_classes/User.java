@@ -108,6 +108,10 @@ public class User {
         return du.sameUser(this.username);
     }
 
+    public static boolean sameUser(String username) {
+        return du.sameUser(username);
+    }
+
     public boolean correctLogin(){ return du.sameUser(this.username); }
 
     public User getUser() { return du.getUser(this.username); }
