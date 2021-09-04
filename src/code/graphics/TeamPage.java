@@ -34,16 +34,16 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     private javax.swing.JTextField jTextField1;
 
     JLabel a;
-    String current_league;
+
     DataLeague dl = new DataLeague();
     String current_user;
     String invitation_code;
     Team t;
     DefaultListModel<Abstract_f1_item> dd = new DefaultListModel<>();
 
-    public TeamPage(String current_user, String current_league, String invitation_code) {
+    public TeamPage(String current_user,  String invitation_code) {
 
-        jPanel3 = new MyPanel(250, 100, Utils.width - 250, 500, "src/resources/background/Cattura1.jpg");
+        jPanel3 = new MyPanel( "src/resources/background/Cattura1.jpg");
         jLabel5 = new JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -70,7 +70,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
 
 
         this.current_user = current_user;
-        this.current_league = current_league;
+
         this.invitation_code = invitation_code;
         t = new Team();
 
@@ -117,8 +117,9 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         jList1.setVisibleRowCount(20);
         jScrollPane1.setViewportView(jList1);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(445, 500));
+
+
+
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_plus_35px_2.png")); // NOI18N

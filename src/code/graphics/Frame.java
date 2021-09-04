@@ -89,7 +89,8 @@ public class Frame extends JFrame implements ActionListener{
         label.setFont(new Font("Segoe UI",Font.BOLD,15));
 
         for(League g : l){
-            panel.add(new InitialPanel(current_user,g.getLeagueName(),g.getInviteCode()),g.getLeagueName());
+            panel.add(new InitialPanel(current_user,g.getInviteCode()),g.getLeagueName());
+
 
 
         }
