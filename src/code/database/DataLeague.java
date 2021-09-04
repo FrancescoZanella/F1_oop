@@ -1,10 +1,32 @@
 package database;
 import domain_classes.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 public class DataLeague extends Data {
+    public ArrayList<Team> getallTeamsInTheLeague(String invitation_code) {
+        try {
+            startConnection();
+            ArrayList<Team> t=new ArrayList<>();
+            rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitation_code + "'");
+
+                for(int i=1;i<9;i++){
+                    t.add(League.getTeamInTheLeague(rs.getString("team_name" + i), invitation_code));
+                }
+                return t;
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
     public void insertNewLeague(League l) {
         try {
             startConnection();

@@ -279,7 +279,9 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         if (e.getSource() == jLabel1) {
             t.setTeamName(jTextField1.getText());
             if (t.getBudget() >= 0 && t.teamDrivers.size() == 6 && dl.insertOnlyTeam(invitation_code, current_user, t.getTeamName())) {
-                new Team(t.getTeamName(), current_user);
+                DataTeam dt=new DataTeam();
+                dt.insertNewTeam(t,current_user);
+
                 jLabel2.setText("Team Saved correctly");
 
             } else if (t.getBudget() < 0) {

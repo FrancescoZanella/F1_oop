@@ -1,5 +1,6 @@
 package graphics;
 
+import database.DataLeague;
 import database.Utils;
 import domain_classes.Abstract_f1_item;
 import domain_classes.League;
@@ -19,15 +20,15 @@ public class LeaderBoardPage extends JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<Team> jList1;
+    DefaultListModel<Team> dd=new DefaultListModel<>();
     private MyPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     String current_user;
     String invitation_code;
-
-    public LeaderBoardPage(String current_user, String invitation_code) {
-        this.invitation_code = invitation_code;
-        this.current_user = current_user;
+    public LeaderBoardPage(String current_user,String invitation_code){
+        this.invitation_code=invitation_code;
+        this.current_user=current_user;
 
 
         jPanel2 = new MyPanel("src/resources/background/piccolo.png");
@@ -46,17 +47,7 @@ public class LeaderBoardPage extends JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Your Team - teamname");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
-            public int getSize() {
-                return strings.length;
-            }
-
-            public String getElementAt(int i) {
-                return strings[i];
-            }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel2.setText("Leaderboard");
@@ -166,24 +157,35 @@ public class LeaderBoardPage extends JPanel {
                                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(20, 20, 20))
         );
+      /*ArrayList<Abstract_f1_item> al=League.getTeamInTheLeague(current_user,invitation_code).teamDrivers;
 
-        /*ArrayList<Abstract_f1_item> al = League.getTeamInTheLeague(current_user, invitation_code).teamDrivers;
+        ArrayList<JLabel> labels=new ArrayList<>();
+        labels.add(jLabel12);
+        labels.add(jLabel19);
+        labels.add(jLabel16);
+        labels.add(jLabel17);
+        labels.add(jLabel20);
+        labels.add(jLabel18);
+        int i =0;
+        for (JLabel l : labels){
+            l.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\"+al.get(i).getName()+"png"));
+            l.setText(al.get(i).getName());
+           l.setFont(new Font("Segoe UI",Font.PLAIN,8));
+            i++;
+        }
+        jList1.setModel(dd);
+        DataLeague d=new DataLeague();
+        ArrayList<Team> tleagues= d.getallTeamsInTheLeague(invitation_code);
+        for(Team a : tleagues){
+            dd.addElement(Team.getTeam(a.getTeamName(),current_user));
+        }
+*/
 
-        if (al.size() == 6) {
-            jLabel12.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(0).getName() + "png"));
-            jLabel20.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(1).getName() + "png"));
-            jLabel17.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(2).getName() + "png"));
-            jLabel16.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(3).getName() + "png"));
-            jLabel18.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(4).getName() + "png"));
-            jLabel19.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(5).getName() + "png"));
-            jLabel16.setText("Lewis Hamilton");
-            jLabel16.setFont(new Font("Segoe UI", Font.PLAIN, 8));
-        }*/
 
 
     }
 
     public static void main(String[] args) {
-        new Frame("home", "r");
+        new Frame("home","iappi99");
     }
 }
