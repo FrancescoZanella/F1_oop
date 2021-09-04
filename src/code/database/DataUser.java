@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class DataUser extends Data {
 
-    public void InsertNewUser(User u) throws SQLException {
+    public void InsertNewUser(User u) {
         try {
             startConnection();
+            System.out.println("INSERT INTO user VALUES('" + u.getName() + "','" + u.getSurname() + "','" + u.getMail() + "','" + u.getUsername() + "','" + u.getPassword() + "')");
             statement.executeUpdate("INSERT INTO user VALUES('" + u.getName() + "','" + u.getSurname() + "','" + u.getMail() + "','" + u.getUsername() + "','" + u.getPassword() + "')");
 
         } catch (SQLException e) {

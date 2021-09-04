@@ -22,11 +22,7 @@ public class User {
         this.mail = mail;
         this.username = username;
         this.password = password;
-        try {
-            du.InsertNewUser(this);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        du.InsertNewUser(this);
     }
 
 
@@ -40,11 +36,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        try {
-            du.InsertNewUser(this);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        du.InsertNewUser(this);
     }
 
     public String getName() {
@@ -85,6 +77,10 @@ public class User {
     }
 
     public String getPassword() {
+        return this.password;
+    }
+
+    public String getDbPassword() {
         return du.getPassword(this.username);
     }
 

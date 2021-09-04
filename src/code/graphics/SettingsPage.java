@@ -131,7 +131,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == jPanel1) {
             String b = new String(jPasswordField3.getPassword());
-            if (!User.getUser(current_user).getPassword().equals(b)) {
+            if (!User.getUser(current_user).getDbPassword().equals(b)) {
                 jLabel2.setText("Current password incorrect!");
                 jLabel2.setVisible(true);
             } else {
@@ -178,7 +178,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             String b = new String(jPasswordField3.getPassword());
-            if (!User.getUser(current_user).getPassword().equals(b)) {
+            if (!User.getUser(current_user).getDbPassword().equals(b)) {
                 jLabel2.setText("Current password incorrect!");
                 jLabel2.setVisible(true);
             } else {
