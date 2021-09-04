@@ -32,6 +32,7 @@ public class DataUser extends Data {
             }
             return false;
         }
+
         public void setPassword(String username, String new_password) {
             try {
                 startConnection();
@@ -45,6 +46,7 @@ public class DataUser extends Data {
                 closeConnection();
             }
         }
+
         public String getPassword(String new_username) {
             try {
                 startConnection();
@@ -60,6 +62,7 @@ public class DataUser extends Data {
             }
             return null;
         }
+
         public boolean correctLogin(String new_username, String new_password) {
             try {
                 startConnection();
@@ -74,6 +77,7 @@ public class DataUser extends Data {
             }
             return false;
         }
+
         public User getUser(String new_username) {
             try {
                 startConnection();
@@ -89,6 +93,7 @@ public class DataUser extends Data {
             }
             return null;
         }
+
         public void deleteAccount(String username) {
             try {
                 startConnection();
@@ -102,6 +107,7 @@ public class DataUser extends Data {
                 closeConnection();
             }
         }
+
     public void deleteAllUsers() {
         try {
             startConnection();

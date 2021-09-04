@@ -19,12 +19,7 @@ public class TestApp {
         League l1, l2;
 
 
-        Driver.deleteAllDrivers();
-        Squad.deleteAllConstructors();
-        Team.deleteAllTeams();
-        League.deleteAllLeagues();
-        Race.deleteAllRaces();
-        User.deleteAllUsers();
+
 
 
         u1 = new User("iacopo", "valli", "japy99@gmail.com", "iappi99", "password");

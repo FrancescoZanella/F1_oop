@@ -54,6 +54,7 @@ public class DataLeague extends Data {
         }
         return null;
     }
+
     public Team getTeamInTheLeague(String user, String invitation_code) {
         try {
             startConnection();
@@ -63,14 +64,15 @@ public class DataLeague extends Data {
                     return Team.getTeam(rs.getString("team_name" + i), user);
                 }
             }
-            return null;
+            return new Team();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConnection();
         }
-        return null;
+        return new Team();
     }
+
     public int numberOfLeaguePerUser(String new_username) {
         int c = 0;
         try {
@@ -91,6 +93,7 @@ public class DataLeague extends Data {
         }
         return c;
     }
+
     public List<League> LeaguesPerUser(String new_username) {
         List<League> l = new LinkedList<>();
         try {
@@ -119,6 +122,7 @@ public class DataLeague extends Data {
         }
         return null;
     }
+
     public boolean insertNewUser(String new_username, String new_team, String invitationcode) {
         try {
             startConnection();
@@ -218,6 +222,7 @@ public class DataLeague extends Data {
         }
         return false;
     }
+
     public void deleteAllLeagues() {
         try {
             startConnection();

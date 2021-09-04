@@ -11,6 +11,7 @@ public class User {
     public User(String username) {
         this.username = username;
     }
+
     public User(String name, String surname, String mail, String username, String password) {
         this.name = name;
         this.surname = surname;
@@ -36,27 +37,35 @@ public class User {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getSurname() {
         return surname;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
     public String getMail() {
         return mail;
     }
+
     public void setMail(String mail) {
         this.mail = mail;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public void setPassword(String password) {
         this.password = password;
         du.setPassword(this.username, password);
@@ -73,25 +82,35 @@ public class User {
     public LinkedHashSet<Team> getAll_teams() {
         return all_teams;
     }
+
     public void setAll_teams(LinkedHashSet<Team> all_teams) {
         this.all_teams = all_teams;
     }
+
     public void clearAllTeams(LinkedHashSet<Team> all_teams) {
         all_teams.clear();
     }
+
     public LinkedHashSet<Team> newAll_teams() {
         return new LinkedHashSet<>();
     }
+
     public boolean sameUser() {
         return du.sameUser(this.username);
     }
+
     public static boolean sameUser(String username) {
         return du.sameUser(username);
     }
+
     public boolean correctLogin(){ return du.sameUser(this.username); }
+
     public User getUser() { return du.getUser(this.username); }
+
     public static User getUser(String username) { return du.getUser(username); }
+
     public static void deleteAllUsers() { du.deleteAllUsers(); }
+
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +

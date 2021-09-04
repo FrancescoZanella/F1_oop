@@ -26,7 +26,6 @@ public class Frame extends JFrame implements ActionListener{
     String current_user;
     List<League> l;
     JLabel jLabel5;
-    DataLeague d;
     JLabel label;
 
     public Frame(String title,String current_user) throws HeadlessException {
@@ -36,7 +35,6 @@ public class Frame extends JFrame implements ActionListener{
         setContentPane(main);
         main.setLayout(null);
         List <Image> listImage=new ArrayList<>();
-        d=new DataLeague();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
@@ -50,7 +48,7 @@ public class Frame extends JFrame implements ActionListener{
         p.setLayout(null);
 
         cbox= new JComboBox<>();
-        l=new ArrayList<>(d.LeaguesPerUser(current_user));
+        l=new ArrayList<>(League.leaguesPerUser(current_user));
 
         for(League g : l){
             cbox.addItem(g.getLeagueName());
@@ -89,7 +87,8 @@ public class Frame extends JFrame implements ActionListener{
         label.setFont(new Font("Segoe UI",Font.BOLD,15));
 
         for(League g : l){
-            panel.add(new InitialPanel(current_user,g.getLeagueName(),g.getInviteCode()),g.getLeagueName());
+            panel.add(new InitialPanel(current_user,g.getInviteCode()),g.getLeagueName());
+
 
 
         }

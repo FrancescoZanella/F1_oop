@@ -10,12 +10,13 @@ public class Team {
     String teamName;
     double budget;
     int fantaf1points;
-    public ArrayList<Abstract_f1_item> teamDrivers=new ArrayList<>();
+    public ArrayList<Abstract_f1_item> teamDrivers;
     static DataTeam dt = new DataTeam();
     String user;
 
     public Team() {
         this.budget = 100;
+        teamDrivers = new ArrayList<>();
     }
 
     public Team(String teamName, String user) {

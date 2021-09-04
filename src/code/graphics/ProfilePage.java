@@ -47,7 +47,10 @@ public class ProfilePage extends JPanel {
         jLabel5.setText("Name & surname");
 
 
-        jTextField1.setText(User.getUser(current_user).getMail());
+        if (User.getUser(current_user).getMail() != null)
+            jTextField1.setText(User.getUser(current_user).getMail());
+        else
+            jTextField1.setText("null");
 
 
         jTextField1.setEnabled(false);

@@ -117,13 +117,13 @@ public class DataTeam extends Data {
                 dr.add(Squad.getConstructor(rs.getString("constructor_name")));
                 return new Team(rs.getString("teamname"), rs.getString("name_user"), dr, rs.getFloat("budget"), rs.getInt("fantaf1points"));
             } else
-                return null;
+                return new Team();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConnection();
         }
-        return null;
+        return new Team();
     }
 
     public void setFantaPointsTeam(String new_name, int number) {
