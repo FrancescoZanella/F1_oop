@@ -1,14 +1,11 @@
 package graphics;
-
 import database.Utils;
 import domain_classes.User;
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -21,7 +18,6 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField3;
     String current_user;
-
     public SettingsPage(String current_user) {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,30 +36,21 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
         jLabel1.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_settings_35px.png")); // NOI18N
         jLabel1.setText("Settings");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_username_35px.png")); // NOI18N
         jLabel3.setText("Change Password");
-
         jLabel6.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\background\\top2.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel4.setText("Current Password");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel5.setText("New Password");
-
-
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setVisible(false);
-
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
         jPanel1.addMouseListener(this);
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Save");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,7 +67,6 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                                 .addComponent(jLabel7)
                                 .addContainerGap())
         );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,8 +111,6 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
     }
-
-
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == jPanel1) {
@@ -143,63 +127,46 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                     User.getUser(current_user).setPassword(b);
                     jLabel2.setText("Password changed correctly!");
                     jLabel2.setVisible(true);
-
                 }
             }
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            String b = new String(jPasswordField3.getPassword());
-            if (!User.getUser(current_user).getDbPassword().equals(b)) {
-                jLabel2.setText("Current password incorrect!");
-                jLabel2.setVisible(true);
-            } else {
-                b = new String(jPasswordField1.getPassword());
-                if (b.length() < 8) {
-                    jLabel2.setText("New password must be at least 8 carachters");
-                    jLabel2.setVisible(true);
-                } else {
-                    User.getUser(current_user).setPassword(b);
-                    jLabel2.setText("Password changed correctly!");
-                    jLabel2.setVisible(true);
-
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                String b = new String(jPasswordField3.getPassword());
+                    if (!User.getUser(current_user).getDbPassword().equals(b)) {
+                        jLabel2.setText("Current password incorrect!");
+                        jLabel2.setVisible(true);
+                    } else {
+                        b = new String(jPasswordField1.getPassword());
+                        if (b.length() < 8) {
+                            jLabel2.setText("New password must be at least 8 carachters");
+                            jLabel2.setVisible(true);
+                        } else {
+                            User.getUser(current_user).setPassword(b);
+                            jLabel2.setText("Password changed correctly!");
+                            jLabel2.setVisible(true);
+                        }
+                    }
                 }
             }
-
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
         }
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-}

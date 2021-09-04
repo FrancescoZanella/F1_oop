@@ -18,6 +18,9 @@ public class Driver extends Abstract_f1_item {
 
     }
 
+    public Driver(String name, int number) {
+        super(name, number);
+    }
     public Driver(String name, int age, int number) {
         super(name, number);
         this.age = age;

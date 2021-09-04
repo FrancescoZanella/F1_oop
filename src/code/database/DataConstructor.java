@@ -2,6 +2,7 @@ package database;
 
 import domain_classes.Driver;
 import domain_classes.Squad;
+import domain_classes.Team;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,13 +71,13 @@ public class DataConstructor extends Data {
         }
     }
 
-    public ArrayList<Squad> getAllConstructors(String order) {
+    public ArrayList<Squad> getAllConstructors() {
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM constructor ORDER BY " + order);
+            rs = statement.executeQuery("SELECT * FROM constructor ORDER BY name");
             ArrayList<Squad> d = new ArrayList<>();
-            while(rs.next())
-                d.add(new Squad(rs.getString("name"), rs.getInt("number"), Driver.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), Driver.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getDouble("fantavalue")));
+            while(rs.next()){
+                d.add(new Squad(rs.getString("name"),rs.getInt("fantavalue")));}
             return d;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,7 +92,8 @@ public class DataConstructor extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM constructor WHERE name = '" + new_name + "'");
             if (rs.next()) {
-                return new Squad(rs.getString("name"), rs.getInt("number"), Driver.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), Driver.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getDouble("fantavalue"));
+                DataDriver d = new DataDriver();
+                return new Squad(rs.getString("name"), rs.getInt("number"), d.getDriver(rs.getString("driver_name1"), rs.getInt("number_driver1")), d.getDriver(rs.getString("driver_name2"), rs.getInt("number_driver2")), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getDouble("fantavalue"));
             } else
                 return null;
         } catch (SQLException e) {
@@ -138,6 +140,7 @@ public class DataConstructor extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM constructor WHERE name = '" + constructor_name + "'");
             if (rs.next()) {
+                    DataDriver dd = new DataDriver();
                     for (int i = 1; i < 3; i++) {
                         if (rs.getString("driver_name" + i) == null && rs.getInt("number_driver" + i) == 0) {
                             statement.executeUpdate("UPDATE constructor SET driver_name" + i + "= '" + name_driver + "', number_driver" + i + "= " + number_driver +

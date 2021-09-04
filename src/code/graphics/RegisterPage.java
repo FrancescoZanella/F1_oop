@@ -1,10 +1,7 @@
 package graphics;
-
-
 import database.Data;
 import database.DataUser;
 import domain_classes.User;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,8 +9,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-
-
 public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JLabel jLabel1;
     private JLabel incorrectfield;
@@ -36,8 +31,6 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JTextField mailfield;
     private JTextField surnamefield;
     private JTextField usernamefield;
-
-
     public RegisterPage() {
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
@@ -60,41 +53,30 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         incorrectfield = new JLabel();
         passworderror = new JLabel();
         jLabel9 = new JLabel();
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-
         jPanel3.setBackground(new java.awt.Color(19, 19, 31));
         jPanel3.setForeground(new java.awt.Color(204, 204, 204));
-
         jLabel1.setBackground(new java.awt.Color(60, 63, 65));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Sign Up");
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Name");
-
         namefield.setBackground(new java.awt.Color(69, 73, 74));
         namefield.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         namefield.setForeground(new java.awt.Color(153, 153, 153));
         namefield.setHorizontalAlignment(JTextField.CENTER);
         namefield.setBorder(null);
-
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Create your F1 account");
-
         jPanel4.setBackground(new java.awt.Color(255, 0, 0));
         jPanel4.setForeground(new java.awt.Color(240, 240, 240));
-
         finishbutton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         finishbutton.setForeground(new java.awt.Color(255, 255, 255));
         finishbutton.setText("             Sign Up");
-
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -109,56 +91,41 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                         .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(finishbutton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
         );
-
         jLabel7.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel7.setIcon(new ImageIcon(getClass().getResource("/icons/cars.png"))); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Surname");
-
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Username");
-
         mailfield.setBackground(new java.awt.Color(69, 73, 74));
         mailfield.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         mailfield.setForeground(new java.awt.Color(153, 153, 153));
         mailfield.setHorizontalAlignment(JTextField.CENTER);
         mailfield.setBorder(null);
-
-
         surnamefield.setBackground(new java.awt.Color(69, 73, 74));
         surnamefield.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         surnamefield.setForeground(new java.awt.Color(153, 153, 153));
         surnamefield.setHorizontalAlignment(JTextField.CENTER);
         surnamefield.setBorder(null);
-
-
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(204, 204, 204));
         jLabel13.setText("Password");
-
         passwordfield.setBackground(new java.awt.Color(69, 74, 74));
         passwordfield.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         passwordfield.setForeground(new java.awt.Color(153, 153, 153));
         passwordfield.setHorizontalAlignment(JTextField.CENTER);
         passwordfield.setBorder(null);
-
-
         usernamefield.setBackground(new java.awt.Color(69, 73, 74));
         usernamefield.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         usernamefield.setForeground(new java.awt.Color(153, 153, 153));
         usernamefield.setHorizontalAlignment(JTextField.CENTER);
         usernamefield.setBorder(null);
-
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Email");
-
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -169,11 +136,9 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGap(0, 13, Short.MAX_VALUE)
         );
-
         incorrectfield.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         incorrectfield.setForeground(new java.awt.Color(255, 0, 0));
         incorrectfield.setText("All fields are required!");
-
         passworderror.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         passworderror.setForeground(new java.awt.Color(255, 0, 0));
         passworderror.setText("Password must be long at least 8 characters!");
@@ -244,13 +209,11 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                                 .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
-
         jLabel9.setBackground(new java.awt.Color(60, 63, 65));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel9.setText("X");
-
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -271,7 +234,6 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                                 .addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(42, Short.MAX_VALUE))
         );
-
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -288,20 +250,15 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
-
-
         namefield.addKeyListener(this);
         surnamefield.addKeyListener(this);
         mailfield.addKeyListener(this);
         usernamefield.addKeyListener(this);
         passwordfield.addKeyListener(this);
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getSource() == jLabel9) {
@@ -335,31 +292,19 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                 }
             }
         }
-
-
     }
-
-
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
-
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
-
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -391,14 +336,8 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.setVisible(false);
             dispose();
-
         }
-
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
-
-    }
-}
-
+    }}

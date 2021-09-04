@@ -1,8 +1,7 @@
 package database;
 
 import domain_classes.*;
-import graphics.Frame;
-import graphics.LoginPage;
+import graphics.*;
 
 import java.lang.reflect.Constructor;
 import java.sql.Date;
@@ -11,6 +10,8 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
+        new LoginPage();
+        //new CreateLeague("francesco001");
         /*
         User u1, u2;
         Squad sf, me, am;
@@ -67,9 +68,5 @@ public class TestApp {
         vb.setF1points(23);
         lh.setF1points(10);
         t.removeItem(lh);*/
-
-        League l = new League("porcino", "bestiale", true, 3);
-        Team t = new Team ("ghibellini", "zanzi");
-        System.out.println(l.insertOnlyTeam("zanzi", "ghibellini"));
     }
 }
