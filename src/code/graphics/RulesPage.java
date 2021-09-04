@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RulesPage extends JPanel {
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -94,6 +95,7 @@ public class RulesPage extends JPanel {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34))
         );
+
         jLabel6.setFont(new Font("Segoe UI", 2, 12));
         jLabel7.setFont(new Font("Segoe UI", 2, 12));
         jLabel8.setFont(new Font("Segoe UI", 2, 12));

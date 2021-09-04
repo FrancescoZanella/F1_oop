@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 public class SettingsPage extends JPanel implements MouseListener, KeyListener {
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -18,6 +19,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField3;
     String current_user;
+
     public SettingsPage(String current_user) {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,6 +113,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == jPanel1) {
@@ -131,21 +134,27 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
             }
         }
         }
+
         @Override
         public void mousePressed(MouseEvent e) {
         }
+
         @Override
         public void mouseReleased(MouseEvent e) {
         }
+
         @Override
         public void mouseEntered(MouseEvent e) {
         }
+
         @Override
         public void mouseExited(MouseEvent e) {
         }
+
         @Override
         public void keyTyped(KeyEvent e) {
         }
+
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -166,6 +175,7 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                     }
                 }
             }
+
             @Override
             public void keyReleased(KeyEvent e) {
             }

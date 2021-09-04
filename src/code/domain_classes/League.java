@@ -33,6 +33,7 @@ public class League {
         this.leagueLenght = leagueLenght;
         this.userteam = userteam;
     }
+
     public String getLeagueName() {
         return leagueName;
     }
@@ -113,6 +114,10 @@ public class League {
             return true;
         }
         return false;
+    }
+
+    public static boolean insertOnlyUser(String inviteCode, String new_username) {
+        return dl.insertOnlyUser(inviteCode, new_username);
     }
 
     public boolean addNewTeam(User u, Team t) {

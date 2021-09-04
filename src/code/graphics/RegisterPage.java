@@ -31,7 +31,9 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JTextField mailfield;
     private JTextField surnamefield;
     private JTextField usernamefield;
+
     public RegisterPage() {
+
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -53,6 +55,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         incorrectfield = new JLabel();
         passworderror = new JLabel();
         jLabel9 = new JLabel();
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBackground(new java.awt.Color(19, 19, 31));
@@ -256,9 +259,11 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         usernamefield.addKeyListener(this);
         passwordfield.addKeyListener(this);
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
+
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getSource() == jLabel9) {
@@ -293,18 +298,23 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
             }
         }
     }
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
+
     @Override
     public void mouseEntered(MouseEvent e) {
     }
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {

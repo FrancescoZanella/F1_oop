@@ -1,12 +1,12 @@
 package database;
 
-import domain_classes.*;
+import domain_classes.Abstract_f1_item;
+import domain_classes.Driver;
+import domain_classes.Squad;
+import domain_classes.Team;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 
 public class DataTeam extends Data {
 

@@ -24,11 +24,12 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
-    League l=new League();
-    DataLeague dl=new DataLeague();
+    League l = new League();
+    DataLeague dl = new DataLeague();
     String current_user;
-    public JoinLeague(String current_user){
-        this.current_user=current_user;
+
+    public JoinLeague(String current_user) {
+        this.current_user = current_user;
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -214,7 +215,7 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
         jLabel6.addMouseListener(this);
         jLabel5.addMouseListener(this);
 
-        this.setBounds(400,50,489,372);
+        this.setBounds(400, 50, 489, 372);
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
@@ -228,22 +229,21 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             //System.exit(0);
             this.setVisible(false);
             dispose();
 
         }
 
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
-            if((l=getLeague(jTextField1.getText()))==null){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if ((l = getLeague(jTextField1.getText())) == null) {
                 jLabel10.setText("Invitation code incorrect");
-            }
-            else{
+            } else {
                 jLabel10.setText("League" + l.getLeagueName() + " joined!!");
-                dl.insertOnlyUser(jTextField1.getText(),current_user);
+                l.insertOnlyUser(current_user);
                 System.out.println(current_user);
-                new Frame("Fantasy F1",current_user);
+                new Frame("Fantasy F1", current_user);
                 dispose();
             }
 
@@ -257,15 +257,18 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()==jLabel5){
+        if (e.getSource() == jLabel5) {
             this.setVisible(false);
         }
-        if(e.getSource()==jLabel6){
-            if(getLeague(jTextField1.getText())==null){
+        if (e.getSource() == jLabel6) {
+            if (getLeague(jTextField1.getText()) == null) {
                 jLabel10.setText("Invitation code incorrect");
-            }
-            else{
-                dl.insertOnlyUser(jTextField1.getText(),current_user);
+            } else {
+                jLabel10.setText("League" + l.getLeagueName() + " joined!!");
+                l.insertOnlyUser(current_user);
+                System.out.println(current_user);
+                new Frame("Fantasy F1", current_user);
+                dispose();
             }
         }
     }

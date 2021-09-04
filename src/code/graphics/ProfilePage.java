@@ -18,6 +18,7 @@ public class ProfilePage extends JPanel {
 
     // End of variables declaration
     public ProfilePage(String current_user) {
+
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();

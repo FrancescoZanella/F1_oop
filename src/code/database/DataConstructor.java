@@ -71,10 +71,10 @@ public class DataConstructor extends Data {
         }
     }
 
-    public ArrayList<Squad> getAllConstructors() {
+    public ArrayList<Squad> getAllConstructors(String order) {
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM constructor ORDER BY name");
+            rs = statement.executeQuery("SELECT * FROM constructor ORDER BY " + order);
             ArrayList<Squad> d = new ArrayList<>();
             while(rs.next()){
                 d.add(new Squad(rs.getString("name"),rs.getInt("fantavalue")));}
