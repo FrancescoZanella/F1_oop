@@ -68,6 +68,9 @@ public class TestApp {
         lh.setF1points(10);
         t.removeItem(lh);*/
 
-        System.out.println(League.getTeamInTheLeague("iappi99", "bestiale").toString());
+        League l = new League("porcino", "bestiale", true, 3);
+        l.deleteUserFromLeague(User.getUser("zanzi"));
+        l.insertOnlyUser("zanzi");
+        l.insertOnlyTeam("zanzi", "pariolini");
     }
 }

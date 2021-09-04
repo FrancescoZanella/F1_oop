@@ -30,11 +30,9 @@ public class DataLeague extends Data {
         try {
             startConnection();
             try {
-                rs = statement.executeQuery("Select * from league");
-                while (rs.next()) {
-                    if (invitation_code.equals(rs.getString("invitationcode")))
-                        return true;
-                }
+                rs = statement.executeQuery("Select * from league WHERE invitationcode = '" + invitation_code + "'");
+                if (rs.next())
+                    return true;
                 return false;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -144,6 +142,62 @@ public class DataLeague extends Data {
                 for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
                     if (rs.getString("username" + i) == null && rs.getString("team_name" + i) == null) {
                         statement.executeUpdate("UPDATE league SET username" + i + "= '" + new_username + "', team_name" + i + "= '" + new_team + "'" +
+                                " WHERE invitationcode = '" + invitationcode + "'");
+                        return true;
+                    }
+                }
+            } else
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public boolean insertOnlyUser(String invitationcode, String new_username) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
+            if (rs.next()) {
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                    if (rs.getString("username" + i) != null) {
+                        if (rs.getString("username" + i).equals(new_username))
+                            return false;
+                    }
+                }
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                    if (rs.getString("username" + i) == null) {
+                        statement.executeUpdate("UPDATE league SET username" + i + " = '" + new_username + "'" +
+                                " WHERE invitationcode = '" + invitationcode + "'");
+                        return true;
+                    }
+                }
+            } else
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public boolean insertOnlyTeam(String invitationcode, String new_username, String new_team) {
+        try {
+            startConnection();
+            rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitationcode + "'");
+            if (rs.next()) {
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                    if (rs.getString("username" + i) != null) {
+                        if (rs.getString("username" + i).equals(new_username) && rs.getString("team_name" + i) != null)
+                            return false;
+                    }
+                }
+                for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                    if (rs.getString("team_name" + i) == null && rs.getString("username" + i).equals(new_username)) {
+                        statement.executeUpdate("UPDATE league SET team_name" + i + "= '" + new_team + "'" +
                                 " WHERE invitationcode = '" + invitationcode + "'");
                         return true;
                     }

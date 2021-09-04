@@ -90,9 +90,13 @@ public class League {
         this.userteam = userteam;
     }
 
-    public Team getTeamInTheLeague(String user) { return dl.getTeamInTheLeague(user, this.inviteCode); }
+    public Team getTeamInTheLeague(String user) {
+        return dl.getTeamInTheLeague(user, this.inviteCode);
+    }
 
-    public static Team getTeamInTheLeague(String user, String invitation_code) { return dl.getTeamInTheLeague(user, invitation_code); }
+    public static Team getTeamInTheLeague(String user, String invitation_code) {
+        return dl.getTeamInTheLeague(user, invitation_code);
+    }
 
     public boolean sameLeague() {
         return dl.sameLeague(inviteCode);
@@ -122,6 +126,23 @@ public class League {
         return dl.getLeague(invitation_code);
     }
 
+    public boolean insertOnlyTeam(String new_username, String new_team) {
+        if (dl.insertOnlyTeam(this.inviteCode, new_username, new_team)) {
+            userteam.remove(User.getUser(new_username));
+            userteam.put(User.getUser(new_username), Team.getTeam(new_team, new_username));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean insertOnlyUser(String new_username) {
+        if (dl.insertOnlyUser(this.inviteCode, new_username)) {
+            userteam.put(User.getUser(new_username), null);
+            return true;
+        }
+        return false;
+    }
+
     public boolean addNewTeam(User u, Team t) {
         if (userteam.size() < MaxTeamsPerUser) {
             if (userteam.get(u) != null)
@@ -135,13 +156,9 @@ public class League {
         return false;
     }
 
-    public boolean deleteUserFromLeague(User u, Team t) {
-        if (userteam.get(u) != null) {
-            userteam.remove(u);
-            dl.deleteUserFromLeague(u.getUsername(), this.inviteCode);
-            return true;
-        }
-        return false;
+    public boolean deleteUserFromLeague(User u) {
+        userteam.remove(u);
+        return dl.deleteUserFromLeague(u.getUsername(), this.inviteCode);
     }
 
     @Override
