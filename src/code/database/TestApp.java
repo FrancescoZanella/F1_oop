@@ -10,6 +10,9 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
+        /*Team.deleteAllTeams();
+        League.deleteAllLeagues();
+        User.deleteAllUsers();*/
         new LoginPage();
         //new CreateLeague("francesco001");
         /*

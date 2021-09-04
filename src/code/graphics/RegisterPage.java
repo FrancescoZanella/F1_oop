@@ -292,7 +292,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                         incorrectfield.setVisible(true);
                         passworderror.setVisible(false);
                         new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), new String(passwordfield.getPassword()));
-                        EventQueue.invokeLater(() -> new Frame("Fanta F1", namefield.getText()));
+                        EventQueue.invokeLater(() -> new Frame("Fanta F1", usernamefield.getText()));
                     }
                 }
             }
@@ -338,7 +338,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                         incorrectfield.setVisible(true);
                         passworderror.setVisible(false);
                         new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), new String(passwordfield.getPassword()));
-                        EventQueue.invokeLater(() -> new Frame("Fanta F1", namefield.getText()));
+                        EventQueue.invokeLater(() -> new Frame("Fanta F1", usernamefield.getText()));
 
                     }
                 }

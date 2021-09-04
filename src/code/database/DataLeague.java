@@ -1,24 +1,25 @@
 package database;
+
 import domain_classes.*;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
 public class DataLeague extends Data {
+
     public ArrayList<Team> getallTeamsInTheLeague(String invitation_code) {
         try {
             startConnection();
-            ArrayList<Team> t=new ArrayList<>();
+            ArrayList<Team> t = new ArrayList<>();
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitation_code + "'");
 
-                for(int i=1;i<9;i++){
-                    t.add(League.getTeamInTheLeague(rs.getString("team_name" + i), invitation_code));
-                }
-                return t;
-
-
-
+            for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
+                t.add(League.getTeamInTheLeague(rs.getString("username" + i), invitation_code));
+            }
+            return t;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,6 +28,7 @@ public class DataLeague extends Data {
         }
         return null;
     }
+
     public void insertNewLeague(League l) {
         try {
             startConnection();
@@ -43,10 +45,12 @@ public class DataLeague extends Data {
             closeConnection();
         }
     }
+
     public boolean sameLeague(String invitation_code) {
         try {
             startConnection();
-            try {rs = statement.executeQuery("Select * from league WHERE invitationcode = '" + invitation_code + "'");
+            try {
+                rs = statement.executeQuery("Select * from league WHERE invitationcode = '" + invitation_code + "'");
                 if (rs.next())
                     return true;
                 return false;
@@ -58,6 +62,7 @@ public class DataLeague extends Data {
         }
         return false;
     }
+
     public League getLeague(String invitation_code) {
         try {
             startConnection();
@@ -86,13 +91,13 @@ public class DataLeague extends Data {
                     return Team.getTeam(rs.getString("team_name" + i), user);
                 }
             }
-            return new Team();
+            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConnection();
         }
-        return new Team();
+        return null;
     }
 
     public int numberOfLeaguePerUser(String new_username) {
