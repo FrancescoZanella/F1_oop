@@ -43,7 +43,7 @@ public class DataLeague extends Data {
     public League getLeague(String invitation_code) {
         try {
             startConnection();
-            rs = statement.executeQuery("SELECT * FROM team WHERE invitationcode = '" + invitation_code + "'");
+            rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitation_code + "'");
             if (rs.next()) {
                 HashMap<User, Team> dr = new HashMap<>();
                 for (int i = 1; i < League.getMaxUserPerLeague(); i++)

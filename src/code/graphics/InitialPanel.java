@@ -119,6 +119,7 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 //centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
                 centerTeam = new TeamPage(current_user,current_league);//(current_user);
                 centerLeaderboards = new MyPanel(250, 100, Utils.width - 250, Utils.height - 200,WHITE);
+                //gli passo current user e current_league e se
                 centerProfile = new ProfilePage(current_user);
                 centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
                 centerSettings = new SettingsPage(current_user);

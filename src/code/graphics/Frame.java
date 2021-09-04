@@ -20,13 +20,14 @@ import java.util.Objects;
 public class Frame extends JFrame implements ActionListener{
     JComboBox<String> cbox;
     CardLayout cl1=new CardLayout();
-    JPanel panel;
+    MyPanel panel;
     MyButton join;
     MyButton create;
     String current_user;
     List<League> l;
     JLabel jLabel5;
     DataLeague d;
+    JLabel label;
 
     public Frame(String title,String current_user) throws HeadlessException {
         super(title);
@@ -72,13 +73,16 @@ public class Frame extends JFrame implements ActionListener{
         p.add(cbox);
         p.add(create);
         p.add(join);
-
         main.add(p);
 
-
-        panel=new JPanel();
-        panel.setBounds(0,0,Utils.width,Utils.height);
-        panel.setLayout(cl1);
+        label=new JLabel();
+        panel=new MyPanel(0,0,Utils.width,Utils.height,cl1);
+        panel.add(label);
+        label.setText("                                                                                                              You don't have a league, join or create a new one!!");
+        label.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/icons8_error_35px.png"))));
+        label.setForeground(Color.RED);
+        label.setHorizontalTextPosition(SwingConstants.LEFT);
+        label.setFont(new Font("Segoe UI",Font.BOLD,15));
 
         for(League g : l){
             panel.add(new InitialPanel(current_user,g.getLeagueName()),g.getLeagueName());
@@ -114,10 +118,11 @@ public class Frame extends JFrame implements ActionListener{
         if(e.getSource()==create){
             this.setVisible(false);
             dispose();
-            EventQueue.invokeLater(() -> new CreateLeague());
+            EventQueue.invokeLater(() -> new CreateLeague(current_user));
 
         }
         if(e.getSource()==join){
+            new JoinLeague(current_user);
 
         }
 

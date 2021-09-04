@@ -35,8 +35,10 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
     private JTextField jTextField1;
     private JTextField jTextField2;
     DataLeague d;
+    String current_user;
 
-    public CreateLeague() {
+    public CreateLeague(String current_user) {
+        this.current_user=current_user;
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -363,12 +365,13 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                     jLabel10.setVisible(true);
                 } else {
                     if (d.sameLeague(jTextField2.getText())) {
-                        jLabel10.setText("This username already exist, more fantasy please!");
+                        jLabel10.setText("This league name already exist, more fantasy please!");
                         jLabel10.setVisible(true);
                     } else {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
                         d.insertNewLeague(new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue()));
+                        new Frame("prova",current_user);
                     }
                 }
             }
