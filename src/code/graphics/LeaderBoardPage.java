@@ -157,7 +157,7 @@ public class LeaderBoardPage extends JPanel {
                                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(20, 20, 20))
         );
-      ArrayList<Abstract_f1_item> al=League.getTeamInTheLeague(current_user,invitation_code).teamDrivers;
+      /*ArrayList<Abstract_f1_item> al=League.getTeamInTheLeague(current_user,invitation_code).teamDrivers;
 
         ArrayList<JLabel> labels=new ArrayList<>();
         labels.add(jLabel12);
@@ -179,7 +179,7 @@ public class LeaderBoardPage extends JPanel {
         for(Team a : tleagues){
             dd.addElement(Team.getTeam(a.getTeamName(),current_user));
         }
-
+*/
 
 
 
