@@ -9,6 +9,8 @@ import domain_classes.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class LeaderBoardPage extends JPanel{
     private javax.swing.JLabel jLabel1;
@@ -46,7 +48,7 @@ public class LeaderBoardPage extends JPanel{
         jLabel20 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText(League.getTeamInTheLeague(current_user, invitation_code).getTeamName() + " - " + League.getLeague(invitation_code).getLeagueName());
+        jLabel1.setText("Team Name: " + League.getTeamInTheLeague(current_user, invitation_code).getTeamName() + " - League Name: " + League.getLeague(invitation_code).getLeagueName());
 
 
         jScrollPane1.setViewportView(jList1);
@@ -187,7 +189,7 @@ public class LeaderBoardPage extends JPanel{
 
         jList1.setModel(dd);
         DataLeague d = new DataLeague();
-        ArrayList<Team> tleagues = d.getallTeamsInTheLeague(invitation_code);
+        Team[] tleagues = d.getallTeamsInTheLeague(invitation_code);
         //Collections.sort(tleagues, Comparator.comparingInt(Team::getFantaf1points));
 
 

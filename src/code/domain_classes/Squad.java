@@ -16,17 +16,17 @@ public class Squad extends Abstract_f1_item {
     }
 
     public Squad(String name){
-        super(name);
+        this.name = name;
         setNumber();
         dc.InsertNewConstructor(this.name, this.number);
     }
 
-    public Squad(String name,int fantavalue){
-        super(name,fantavalue);
+    public Squad(String name, int number, double fantavalue){
+        super(name, number, fantavalue);
     }
 
     public Squad(String name, Driver d1, Driver d2) {
-        super(name);
+        this.name = name;
         this.d1 = d1;
         this.d2 = d2;
         setNumber();

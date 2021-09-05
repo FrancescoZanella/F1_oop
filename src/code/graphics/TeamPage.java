@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -32,7 +33,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     private javax.swing.JTextField jTextField1;
 
     JLabel a;
-
+    HashMap<JLabel, Abstract_f1_item> dr;
     DataLeague dl = new DataLeague();
     String current_user;
     String invitation_code;
@@ -66,6 +67,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         labels.add(jLabel15);
         labels.add(jLabel8);
         labels.add(jLabel14);
+        dr = new HashMap<>();
 
 
         this.current_user = current_user;
@@ -193,6 +195,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Insert Team name");
         t2 = League.getTeamInTheLeague(current_user, invitation_code);
+        jTextField1.setForeground(Color.BLACK);
 
         if (t2 == null || t2.getTeamDrivers().size() == 0)
             jTextField1.setText("Team-name");
@@ -280,9 +283,11 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
 
         jList1.addListSelectionListener(this);
         jList1.setModel(dd);
+
         for (Driver h : Driver.getAllDrivers("fantavalue desc")) {
             dd.addElement(h);
         }
+
         jLabel11.setForeground(Color.WHITE);
         jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 8));
         jLabel13.setForeground(Color.WHITE);
@@ -301,8 +306,10 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     public void mouseClicked(MouseEvent e) {
         if (t2 == null || t2.getTeamDrivers().size() == 0) {
             if (e.getSource() == jLabel1) {
-
                 t.setTeamName(jTextField1.getText());
+                for(Abstract_f1_item i : dr.values())
+                    t.addItem(i);
+
                 if (t.getBudget() >= 0 && t.teamDrivers.size() == 6 && dl.insertOnlyTeam(invitation_code, current_user, t.getTeamName())) {
                     DataTeam dt = new DataTeam();
                     dt.insertNewTeam(t, current_user);
@@ -320,8 +327,8 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                 } else if (t.getBudget() < 0) {
                     jLabel2.setText("Budget insufficient!");
 
-                } else if (t.teamDrivers.size() != 6) {
-                    jLabel2.setText("Insert 5 drivers and 1 costructor");
+                } else if (t.teamDrivers.size() != Team.getNumDriver()) {
+                    jLabel2.setText("Insert 5 different drivers and 1 costructor");
                 } else {
                     jLabel2.setText("You have already a team for this league");
 
@@ -338,10 +345,11 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                 jList1.setEnabled(true);
                 a = (JLabel) e.getSource();
             }
+
             //costruttore
             if (e.getSource() == jLabel14) {
                 dd.clear();
-                for (Squad s : Squad.getAllConstructors("name")) {
+                for (Squad s : Squad.getAllConstructors("fantavalue desc")) {
                     dd.addElement(s);
                 }
                 jList1.setEnabled(true);
@@ -374,7 +382,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!jList1.isSelectionEmpty()) {
-            if (t.addItem(jList1.getSelectedValue())) {
+            if (t.check(jList1.getSelectedValue())) {
                 if (jList1.getSelectedValue() instanceof Driver) {
                     a.setText(jList1.getSelectedValue().getName());
                     a.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/" + jList1.getSelectedValue().getName() + ".png"))));
@@ -382,6 +390,12 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     a.setHorizontalAlignment(SwingConstants.CENTER);
                     a.setVerticalAlignment(SwingConstants.CENTER);
                     a.setVerticalTextPosition(SwingConstants.BOTTOM);
+                    if(dr.containsKey(a)){
+                        t.setBudget(t.getBudget() + dr.get(a).getFantavalue());
+                        dr.remove(a);
+                    }
+                    dr.put(a, jList1.getSelectedValue());
+                    t.setBudget(t.getBudget() - jList1.getSelectedValue().getFantavalue());
                     jLabel4.setText("Crediti rimanenti " + t.getBudget() + " M");
                     jList1.setEnabled(false);
                 } else {
@@ -391,6 +405,12 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     a.setHorizontalAlignment(SwingConstants.CENTER);
                     a.setVerticalAlignment(SwingConstants.CENTER);
                     a.setVerticalTextPosition(SwingConstants.BOTTOM);
+                    if(dr.containsKey(a)){
+                        t.setBudget(t.getBudget() + dr.get(a).getFantavalue());
+                        dr.remove(a);
+                    }
+                    dr.put(a, jList1.getSelectedValue());
+                    t.setBudget(t.getBudget() - jList1.getSelectedValue().getFantavalue());
                     jLabel4.setText("Crediti rimanenti " + t.getBudget() + " M");
                     jList1.setEnabled(false);
                 }

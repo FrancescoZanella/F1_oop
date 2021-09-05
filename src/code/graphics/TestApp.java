@@ -10,7 +10,6 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-       new JoinLeague("zanzi");
-       new CreateLeague("zanzi");
+       new LoginPage();
     }
 }

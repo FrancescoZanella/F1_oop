@@ -119,12 +119,10 @@ public class ImplementResult {
     public void implement() {
         race = rr.getRaceResult();
         qf = rr.getQualifyingResult();
-        if (qf != null) {
+        if (race != null) {
             afterQualifying(qf);
-            if (race != null) {
-                afterRace(race);
-                comparison(race, qf);
-            }
+            afterRace(race);
+            comparison(race, qf);
         }
     }
 

@@ -3,22 +3,21 @@ package database;
 import domain_classes.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class DataLeague extends Data {
 
-    public ArrayList<Team> getallTeamsInTheLeague(String invitation_code) {
+    public Team[] getallTeamsInTheLeague(String invitation_code) {
         try {
             startConnection();
-            ArrayList<Team> t = new ArrayList<>();
+            Team[] t = new Team[League.getMaxUserPerLeague()];
             rs = statement.executeQuery("SELECT * FROM league WHERE invitationcode = '" + invitation_code + "'");
 
-            for (int i = 1; i < League.getMaxUserPerLeague() + 1; i++) {
-                t.add(League.getTeamInTheLeague(rs.getString("username" + i), invitation_code));
+            for (int i = 0; i < League.getMaxUserPerLeague(); i++) {
+                t[i] = League.getTeamInTheLeague(rs.getString("username" + (i + 1)), invitation_code);
             }
+            bubbleSort(t);
+
             return t;
 
         } catch (SQLException e) {
@@ -27,6 +26,27 @@ public class DataLeague extends Data {
             closeConnection();
         }
         return null;
+    }
+
+    public void bubbleSort(Team[] array) {
+        for (int i = 0; i < array.length; i++) {
+            boolean flag = false;
+            for (int j = 0; j < array.length - 1; j++) {
+                //Se l' elemento j e maggiore del successivo allora
+                //scambiamo i valori
+                if (array[j] != null && array[j + 1] != null) {
+                    if (array[j].getFantaf1points() < array[j + 1].getFantaf1points()) {
+                        Team k = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = k;
+                        flag = true; //Lo setto a true per indicare che é avvenuto uno scambio
+                    }
+                }
+            }
+            if (!flag) break; //Se flag=false allora vuol dire che nell' ultima iterazione
+            //non ci sono stati scambi, quindi il metodo può terminare
+            //poiché l' array risulta ordinato
+        }
     }
 
     public void insertNewLeague(League l) {

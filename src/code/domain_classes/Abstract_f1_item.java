@@ -11,13 +11,15 @@ public abstract class Abstract_f1_item implements F1_Item {
 
     }
 
+    public Abstract_f1_item(String name, int number, double fantavalue) {
+        this.name = name;
+        this.number = number;
+        this.fantavalue = fantavalue;
+    }
+
     public Abstract_f1_item(String name, int number) {
         this.name = name;
         this.number = number;
-    }
-
-    public Abstract_f1_item(String name) {
-        this.name = name;
     }
 
     public Abstract_f1_item(String name, int number, int f1points, int fantaF1points, double fantavalue) {
