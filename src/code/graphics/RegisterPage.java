@@ -2,13 +2,20 @@ package graphics;
 import database.Data;
 import database.DataUser;
 import domain_classes.User;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     private JLabel jLabel1;
     private JLabel incorrectfield;
@@ -253,6 +260,16 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
+        List<Image> listImage=new ArrayList<>();
+        try {
+            listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/64x64.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/128x128.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.setIconImages(listImage);
         namefield.addKeyListener(this);
         surnamefield.addKeyListener(this);
         mailfield.addKeyListener(this);
@@ -267,7 +284,6 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getSource() == jLabel9) {
-            this.setVisible(false);
             dispose();
             //System.exit(0);
         }
@@ -293,6 +309,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                         passworderror.setVisible(false);
                         new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), new String(passwordfield.getPassword()));
                         EventQueue.invokeLater(() -> new Frame("Fanta F1", usernamefield.getText()));
+                        dispose();
                     }
                 }
             }
@@ -339,6 +356,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
                         passworderror.setVisible(false);
                         new User(namefield.getText(), surnamefield.getText(), mailfield.getText(), usernamefield.getText(), new String(passwordfield.getPassword()));
                         EventQueue.invokeLater(() -> new Frame("Fanta F1", usernamefield.getText()));
+                        dispose();
 
                     }
                 }
@@ -346,7 +364,6 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            this.setVisible(false);
             dispose();
         }
     }

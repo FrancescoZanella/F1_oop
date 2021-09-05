@@ -3,11 +3,17 @@ package graphics;
 import database.DataLeague;
 import domain_classes.League;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static domain_classes.League.getLeague;
 
@@ -213,7 +219,16 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
         jTextField1.addKeyListener(this);
         jLabel6.addMouseListener(this);
         jLabel5.addMouseListener(this);
-
+        List<Image> listImage=new ArrayList<>();
+        try {
+            listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/64x64.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/128x128.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.setIconImages(listImage);
         this.setBounds(400, 50, 489, 372);
         this.setUndecorated(true);
         this.setVisible(true);

@@ -2,11 +2,17 @@ package graphics;
 
 import domain_classes.League;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateLeague extends JFrame implements MouseListener, KeyListener {
 
@@ -329,6 +335,16 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         jLabel9.addKeyListener(this);
 
         jLabel10.setVisible(false);
+        List<Image> listImage=new ArrayList<>();
+        try {
+            listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/64x64.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/128x128.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.setIconImages(listImage);
         this.setBounds(400, 30, 578, 666);
         this.setUndecorated(true);
         this.setVisible(true);

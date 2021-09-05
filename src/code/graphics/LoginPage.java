@@ -3,9 +3,14 @@ package graphics;
 import database.Data;
 import database.DataUser;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LoginPage extends JFrame implements MouseListener, KeyListener {
@@ -31,6 +36,15 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
 
 
     public LoginPage() {
+        List<Image> listImage=new ArrayList<>();
+        try {
+            listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/64x64.png")));
+            listImage.add(ImageIO.read(new File("src/resources/images/128x128.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             d = new DataUser();
         } catch (NullPointerException e) {
@@ -253,6 +267,7 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
+        this.setIconImages(listImage);
 
 
     }
@@ -264,8 +279,8 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
             if (jTextField1.getText().length() == 0 || jPasswordField1.getPassword().length < 8 || !d.correctLogin(jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
                 jLabel10.setVisible(true);
             } else {
-                this.setVisible(false);
                 EventQueue.invokeLater(() -> new Frame("Formula 1 fanta", jTextField1.getText()));
+                dispose();
             }
 
         }
@@ -314,14 +329,13 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
                 jLabel10.setVisible(true);
             } else {
                 new Frame("Formula 1 fanta", jTextField1.getText());
-                this.setVisible(false);
-                //dispose();
+                dispose();
+
 
             }
 
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            //System.exit(0);
             this.setVisible(false);
             dispose();
 

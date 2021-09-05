@@ -9,9 +9,6 @@ import domain_classes.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
 
 public class LeaderBoardPage extends JPanel{
     private javax.swing.JLabel jLabel1;
@@ -180,6 +177,13 @@ public class LeaderBoardPage extends JPanel{
                 i++;
             }
         }
+        else{
+            jLabel1.setText("<html>You haven't created a team for this league yet,<br/> do it in team section</html>");
+            jLabel1.setForeground(Color.RED);
+            jLabel1.setFont(new Font("Segoe UI",Font.BOLD,10));
+            jLabel1.setIcon(new ImageIcon(Utils.p.toString()+ "\\src\\resources\\icons\\icons8_error_35px.png"));
+            jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
+        }
 
         jList1.setModel(dd);
         DataLeague d = new DataLeague();
@@ -199,7 +203,5 @@ public class LeaderBoardPage extends JPanel{
 
     }
 
-    public static void main(String[] args) {
-        new Frame("home", "zanzi");
-    }
+
 }
