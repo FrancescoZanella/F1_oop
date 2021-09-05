@@ -9,6 +9,7 @@ import domain_classes.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class LeaderBoardPage extends JPanel {
     private javax.swing.JLabel jLabel1;
@@ -20,16 +21,15 @@ public class LeaderBoardPage extends JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    DefaultListModel<String> dd = new DefaultListModel<>();
+    private javax.swing.JList<Team> jList1;
+    DefaultListModel<Team> dd=new DefaultListModel<>();
     private MyPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     String current_user;
     String invitation_code;
-
-    public LeaderBoardPage(String current_user, String invitation_code) {
-        this.invitation_code = invitation_code;
-        this.current_user = current_user;
+    public LeaderBoardPage(String current_user,String invitation_code){
+        this.invitation_code=invitation_code;
+        this.current_user=current_user;
 
 
         jPanel2 = new MyPanel("src/resources/background/piccolo.png");
@@ -46,7 +46,7 @@ public class LeaderBoardPage extends JPanel {
         jLabel20 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText(League.getTeamInTheLeague(current_user, invitation_code).getTeamName() + " - " + League.getLeague(invitation_code).getLeagueName());
+        jLabel1.setText("Your Team - teamname");
 
 
         jScrollPane1.setViewportView(jList1);
@@ -158,38 +158,42 @@ public class LeaderBoardPage extends JPanel {
                                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(20, 20, 20))
         );
-
-        ArrayList<Abstract_f1_item> al = League.getTeamInTheLeague(current_user, invitation_code).teamDrivers;
-
-        ArrayList<JLabel> labels = new ArrayList<>();
-        labels.add(jLabel12);
-        labels.add(jLabel19);
-        labels.add(jLabel16);
-        labels.add(jLabel17);
-        labels.add(jLabel20);
-        labels.add(jLabel18);
-        int i = 0;
-        if (al.size() == 6) {
+        DataLeague dl=new DataLeague();
+        //QUESTO IF NON FUNZIONA
+        if(dl.getTeamInTheLeague(current_user, invitation_code)!=null) {
+            ArrayList<Abstract_f1_item> al = League.getTeamInTheLeague(current_user, invitation_code).teamDrivers;
+            ArrayList<JLabel> labels = new ArrayList<>();
+            labels.add(jLabel12);
+            labels.add(jLabel19);
+            labels.add(jLabel16);
+            labels.add(jLabel17);
+            labels.add(jLabel20);
+            labels.add(jLabel18);
+            int i = 0;
             for (JLabel l : labels) {
                 l.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(i).getName() + ".png"));
                 l.setText(al.get(i).getName());
                 l.setFont(new Font("Segoe UI", Font.PLAIN, 8));
                 i++;
             }
+            jList1.setModel(dd);
+            DataLeague d = new DataLeague();
+            ArrayList<Team> ar = new ArrayList<>(d.getallTeamsInTheLeague(invitation_code));
+            for (Team t : ar) {
+                dd.addElement(t);
+            }
         }
 
-        jList1.setModel(dd);
-        DataLeague d = new DataLeague();
-        ArrayList<Team> tleagues = d.getallTeamsInTheLeague(invitation_code);
-        for (Team a : tleagues) {
-            if (a != null)
-                dd.addElement(Team.getTeam(a.getTeamName(), current_user).getTeamName());
-        }
+
+
+
 
 
     }
 
     public static void main(String[] args) {
-        new Frame("home", "zanzi");
+        new Frame("h","zanzi");
     }
+
+
 }

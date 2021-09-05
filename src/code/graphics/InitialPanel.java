@@ -3,7 +3,10 @@ package graphics;
 
 
 import database.Utils;
+import domain_classes.League;
+import domain_classes.Team;
 
+import javax.lang.model.type.NullType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -123,14 +126,18 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 //centerHome = new MyPanel(250,100,Utils.width-250,Utils.height-200,BLACK);
                 centerTeam = new TeamPage(current_user,invitation_code);//(current_user);
                 centerLeaderboards = new LeaderBoardPage(current_user,invitation_code);
-                //gli passo current user e current_league e se
+
+
                 centerProfile = new ProfilePage(current_user);
                 centerRules = new RulesPage();//MyPanel(250, 100, Utils.width - 250, Utils.height - 200,ORANGE);
                 centerSettings = new SettingsPage(current_user);
 
                 //centerPanel.add(centerHome, "home");
                 centerPanel.add(centerTeam,"team");
-                centerPanel.add(centerLeaderboards, "leaderboards");
+
+                        centerPanel.add(centerLeaderboards, "leaderboards");
+
+
                 centerPanel.add(centerProfile, "profile");
                 centerPanel.add(centerRules, "rules");
                 centerPanel.add(centerSettings, "settings");
