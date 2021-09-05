@@ -114,6 +114,12 @@ public class Squad extends Abstract_f1_item {
         dc.setF1Points(name, number, f1points);
     }
 
+    @Override
+    public double getFantavalue(){
+        this.fantavalue = dc.getConstructor(this.name).fantavalue;
+        return super.getFantavalue();
+    }
+
     public String F1informations() {
         return "Driver{" +
                 "name='" + name + '\'' +

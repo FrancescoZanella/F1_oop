@@ -21,6 +21,7 @@ public class Driver extends Abstract_f1_item {
     public Driver(String name, int number) {
         super(name, number);
     }
+
     public Driver(String name, int age, int number) {
         super(name, number);
         this.age = age;
@@ -111,6 +112,12 @@ public class Driver extends Abstract_f1_item {
     public void setF1points(int f1points) {
         super.setF1points(f1points);
         dd.setF1Points(name, number, f1points);
+    }
+
+    @Override
+    public double getFantavalue(){
+        this.fantavalue = dd.getDriver(this.name, this.number).fantavalue;
+        return super.getFantavalue();
     }
 
     public String F1informations() {

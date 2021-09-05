@@ -96,11 +96,6 @@ public class Frame extends JFrame implements ActionListener{
         main.add(panel);
 
 
-
-
-
-
-
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

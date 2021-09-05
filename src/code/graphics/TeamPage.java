@@ -39,11 +39,12 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     String current_user;
     String invitation_code;
     Team t;
+    Team t2;
     DefaultListModel<Abstract_f1_item> dd = new DefaultListModel<>();
 
-    public TeamPage(String current_user,  String invitation_code) {
+    public TeamPage(String current_user, String invitation_code) {
 
-        jPanel3 = new MyPanel( "src/resources/background/Cattura1.jpg");
+        jPanel3 = new MyPanel("src/resources/background/Cattura1.jpg");
         jLabel5 = new JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -116,9 +117,6 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setVisibleRowCount(20);
         jScrollPane1.setViewportView(jList1);
-
-
-
 
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -196,8 +194,35 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Insert Team name");
+        t2 = League.getTeamInTheLeague(current_user, invitation_code);
 
-        jTextField1.setText("Team-name");
+        if (t2 == null || t2.getTeamDrivers().size() == 0)
+            jTextField1.setText("Team-name");
+        else {
+            jTextField1.setText(League.getTeamInTheLeague(current_user, invitation_code).getTeamName());
+            jTextField1.setEnabled(false);
+            ArrayList<Abstract_f1_item> ld = t2.getTeamDrivers();
+            ArrayList<JLabel> labels = new ArrayList<>();
+            labels.add(jLabel11);
+            labels.add(jLabel12);
+            labels.add(jLabel13);
+            labels.add(jLabel15);
+            labels.add(jLabel8);
+            labels.add(jLabel14);
+
+            jLabel4.setText("Crediti rimanenti " + t2.getBudget() + " M");
+            jList1.setEnabled(false);
+
+            int i = 0;
+
+            for (JLabel l : labels) {
+                l.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + ld.get(i).getName() + ".png"));
+                l.setText(ld.get(i).getName());
+                l.setFont(new Font("Segoe UI", Font.PLAIN, 8));
+                i++;
+            }
+
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -276,43 +301,48 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == jLabel1) {
-            t.setTeamName(jTextField1.getText());
-            if (t.getBudget() >= 0 && t.teamDrivers.size() == 6 && dl.insertOnlyTeam(invitation_code, current_user, t.getTeamName())) {
-                DataTeam dt=new DataTeam();
-                dt.insertNewTeam(t,current_user);
+        if (t2 == null || t2.getTeamDrivers().size() == 0) {
+            if (e.getSource() == jLabel1) {
 
-                jLabel2.setText("Team Saved correctly");
+                t.setTeamName(jTextField1.getText());
+                if (t.getBudget() >= 0 && t.teamDrivers.size() == 6 && dl.insertOnlyTeam(invitation_code, current_user, t.getTeamName())) {
+                    DataTeam dt = new DataTeam();
+                    dt.insertNewTeam(t, current_user);
 
-            } else if (t.getBudget() < 0) {
-                jLabel2.setText("Budget insufficient!");
+                    jLabel2.setText("Team Saved correctly");
 
-            } else if (t.teamDrivers.size() != 6) {
-                jLabel2.setText("Insert 5 drivers and 1 costructor");
-            } else {
-                jLabel2.setText("You have already a team for this league");
+                } else if (t.getBudget() < 0) {
+                    jLabel2.setText("Budget insufficient!");
+
+                } else if (t.teamDrivers.size() != 6) {
+                    jLabel2.setText("Insert 5 drivers and 1 costructor");
+                } else {
+                    jLabel2.setText("You have already a team for this league");
+
+                }
 
             }
 
-        }
-        //aggiungi al team
-        if (e.getSource() == jLabel11 || e.getSource() == jLabel12 || e.getSource() == jLabel13 || e.getSource() == jLabel15 || e.getSource() == jLabel8) {
-            dd.clear();
-            for (Driver h : Driver.getAllDrivers("fantavalue desc")) {
-                dd.addElement(h);
+            //aggiungi al team
+            if (e.getSource() == jLabel11 || e.getSource() == jLabel12 || e.getSource() == jLabel13 || e.getSource() == jLabel15 || e.getSource() == jLabel8) {
+                dd.clear();
+                for (Driver h : Driver.getAllDrivers("fantavalue desc")) {
+                    dd.addElement(h);
+                }
+                jList1.setEnabled(true);
+                a = (JLabel) e.getSource();
             }
-            jList1.setEnabled(true);
-            a = (JLabel) e.getSource();
-        }
-        //costruttore
-        if (e.getSource() == jLabel14) {
-            dd.clear();
-            for (Squad s : Squad.getAllConstructors("name")) {
-                dd.addElement(s);
+            //costruttore
+            if (e.getSource() == jLabel14) {
+                dd.clear();
+                for (Squad s : Squad.getAllConstructors("name")) {
+                    dd.addElement(s);
+                }
+                jList1.setEnabled(true);
+                a = (JLabel) e.getSource();
             }
-            jList1.setEnabled(true);
-            a = (JLabel) e.getSource();
-        }
+        } else
+            jLabel2.setText("You have already a team for this league");
     }
 
     @Override
