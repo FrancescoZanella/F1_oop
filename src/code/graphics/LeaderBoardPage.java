@@ -169,7 +169,7 @@ public class LeaderBoardPage extends JPanel {
         labels.add(jLabel20);
         labels.add(jLabel18);
         int i = 0;
-        if (al.size() == 6) {
+        if (al.size() == Team.getNumDriver()) {
             for (JLabel l : labels) {
                 l.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\" + al.get(i).getName() + ".png"));
                 l.setText(al.get(i).getName());
@@ -183,7 +183,7 @@ public class LeaderBoardPage extends JPanel {
         ArrayList<Team> tleagues = d.getallTeamsInTheLeague(invitation_code);
         for (Team a : tleagues) {
             if (a != null)
-                dd.addElement(Team.getTeam(a.getTeamName(), current_user).getTeamName());
+                dd.addElement(a.getTeamName());
         }
 
 
