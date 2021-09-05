@@ -140,7 +140,7 @@ public class Driver extends Abstract_f1_item {
 
     @Override
     public String toString() {
-        return name + " " + fantavalue;
+        return name + " " + Math.round(fantavalue * 10.0) / 10.0;
     }
 
     public String fantainformations() {

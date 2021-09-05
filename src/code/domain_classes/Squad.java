@@ -147,6 +147,6 @@ public class Squad extends Abstract_f1_item {
     @Override
     public String toString() {
         return name + " " +
-                fantavalue;
+                Math.round(fantavalue * 10.0) / 10.0;
     }
 }
