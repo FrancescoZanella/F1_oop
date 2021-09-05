@@ -9,8 +9,11 @@ import domain_classes.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
-public class LeaderBoardPage extends JPanel {
+public class LeaderBoardPage extends JPanel{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
@@ -53,7 +56,7 @@ public class LeaderBoardPage extends JPanel {
 
         jLabel2.setText("Leaderboard");
 
-        jLabel3.setText("Rank                 Team/User            Points");
+        jLabel3.setText("Rank       Points                   TeamName");
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -181,10 +184,17 @@ public class LeaderBoardPage extends JPanel {
         jList1.setModel(dd);
         DataLeague d = new DataLeague();
         ArrayList<Team> tleagues = d.getallTeamsInTheLeague(invitation_code);
+        //Collections.sort(tleagues, Comparator.comparingInt(Team::getFantaf1points));
+
+
+        int h=1;
+        String str = null;
         for (Team a : tleagues) {
-            if (a != null)
-                dd.addElement(a.getTeamName());
-        }
+            if (a != null) {
+                dd.addElement("#" + str.valueOf(h) + a);
+                h++;
+            }
+            }
 
 
     }

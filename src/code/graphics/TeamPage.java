@@ -7,9 +7,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.TextListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -310,6 +308,14 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     dt.insertNewTeam(t, current_user);
 
                     jLabel2.setText("Team Saved correctly");
+                    Timer timer = new Timer(2000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                            new Frame("Fantasy F1",current_user);
+                        }
+                    });
+                    timer.setRepeats(false); // Only execute once
+                    timer.start();
 
                 } else if (t.getBudget() < 0) {
                     jLabel2.setText("Budget insufficient!");

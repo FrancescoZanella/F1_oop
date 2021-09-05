@@ -3,9 +3,10 @@ package domain_classes;
 import database.DataTeam;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
-public class Team implements Comparable<Team>{
+public class Team  {
     private static final int numDriver = 6;
     String teamName;
     double budget;
@@ -148,18 +149,9 @@ public class Team implements Comparable<Team>{
 
     @Override
     public String toString() {
-        return "                          " + teamName + "             " + fantaf1points;
+        return "                " + fantaf1points + "                          " + teamName;
     }
 
 
-    @Override
-    public int compareTo(Team o) {
-       if(o.fantaf1points<fantaf1points){
-           return 1;
-       }
-       else{
-           return -1;
-       }
 
-    }
 }
