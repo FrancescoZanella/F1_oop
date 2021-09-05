@@ -75,7 +75,7 @@ public class Team  {
     }
 
     public double getBudget() {
-        return budget;
+        return Math.round(budget * 10.0) / 10.0;
     }
 
     public void deleteTeam() {

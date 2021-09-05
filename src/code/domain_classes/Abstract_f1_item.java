@@ -63,7 +63,7 @@ public abstract class Abstract_f1_item implements F1_Item {
     }
 
     public double getFantavalue() {
-        return fantavalue;
+        return Math.round(fantavalue * 10.0) / 10.0;
     }
 
     public void setFantavalue(double fantavalue) { this.fantavalue = fantavalue; }
