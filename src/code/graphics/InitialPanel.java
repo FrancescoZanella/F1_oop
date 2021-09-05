@@ -9,17 +9,14 @@ import domain_classes.Team;
 import javax.lang.model.type.NullType;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import static java.awt.Color.*;
 
-public class InitialPanel extends JPanel implements ActionListener, MouseListener {
+public class InitialPanel extends JPanel implements ActionListener, MouseListener, KeyListener {
         //private final MyButton homeButton;
         private final MyButton teamButton;
         private final MyButton leaderboardButton;
@@ -147,6 +144,10 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
                 this.add(centerPanel);
                 this.add(downPanel);
                 this.add(leftpanel);
+                leaderboardButton.addKeyListener(this);
+                profileButton.addKeyListener(this);
+                rulesButton.addKeyListener(this);
+                teamButton.addKeyListener(this);
 
 
 
@@ -220,6 +221,24 @@ public class InitialPanel extends JPanel implements ActionListener, MouseListene
 
         @Override
         public void mouseExited(MouseEvent e) {
+
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        SwingUtilities.getWindowAncestor(this).dispose();
+
+                }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
 
         }
 }

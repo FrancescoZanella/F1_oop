@@ -10,6 +10,6 @@ import java.util.HashMap;
 
 public class TestApp {
     public static void main(String[] args) throws SQLException {
-       new LoginPage();
+       new Frame("prova","zanzi");
     }
 }
