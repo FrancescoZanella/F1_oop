@@ -5,7 +5,7 @@ import database.DataTeam;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Team {
+public class Team implements Comparable<Team>{
     private static final int numDriver = 6;
     String teamName;
     double budget;
@@ -148,11 +148,18 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "TeamName='" + teamName + '\'' +
-                ", TeamDrivers=" + teamDrivers +
-                '}';
+        return "                          " + teamName + "             " + fantaf1points;
     }
 
 
+    @Override
+    public int compareTo(Team o) {
+       if(o.fantaf1points<fantaf1points){
+           return 1;
+       }
+       else{
+           return -1;
+       }
+
+    }
 }

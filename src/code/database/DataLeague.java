@@ -91,7 +91,9 @@ public class DataLeague extends Data {
                     return Team.getTeam(rs.getString("team_name" + i), user);
                 }
             }
-            return null;
+            Team g=new Team();
+            g.setTeamName("vuoto");
+            return g;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
