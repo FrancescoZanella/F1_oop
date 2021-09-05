@@ -77,7 +77,7 @@ public class DataConstructor extends Data {
             rs = statement.executeQuery("SELECT * FROM constructor ORDER BY " + order);
             ArrayList<Squad> d = new ArrayList<>();
             while(rs.next()){
-                d.add(new Squad(rs.getString("name"),rs.getInt("fantavalue")));}
+                d.add(new Squad(rs.getString("name"), rs.getInt("number"), rs.getDouble("fantavalue")));}
             return d;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,8 +163,6 @@ public class DataConstructor extends Data {
             startConnection();
             statement.executeUpdate("UPDATE constructor SET fantavalue = " + fantavalue +
                     " where name = '" + new_name + "' and number = " + new_number);
-            DataTeam dt = new DataTeam();
-            dt.setBudget(new_name, new_number);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

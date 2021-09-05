@@ -219,7 +219,7 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
         jTextField1.addKeyListener(this);
         jLabel6.addMouseListener(this);
         jLabel5.addMouseListener(this);
-        List<Image> listImage=new ArrayList<>();
+        List<Image> listImage = new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
@@ -277,10 +277,13 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
             if ((l = getLeague(jTextField1.getText())) == null) {
                 jLabel10.setText("Invitation code incorrect");
             } else {
-                jLabel10.setText("League" + l.getLeagueName() + " joined!!");
-                l.insertOnlyUser(current_user);
-                new Frame("Fantasy F1", current_user);
-                dispose();
+                if (l.insertOnlyUser(current_user)) {
+                    jLabel10.setText("League" + l.getLeagueName() + " joined!!");
+
+                    new Frame("Fantasy F1", current_user);
+                    dispose();
+                } else
+                    jLabel10.setText("You can't join at this league!");
             }
         }
     }

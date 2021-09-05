@@ -75,7 +75,7 @@ public class Team  {
     }
 
     public double getBudget() {
-        return budget;
+        return Math.round(budget * 10.0) / 10.0;
     }
 
     public void deleteTeam() {
@@ -94,6 +94,22 @@ public class Team  {
         this.budget = budget;
     }
 
+    public void setBudget(String d_name, int d_number){
+        dt.setBudget(this.teamName, this.user, d_name, d_number);
+    }
+
+    public boolean check(Abstract_f1_item item){
+        boolean b = false;
+        if(teamDrivers.size() < numDriver){
+            b = true;
+            for (Abstract_f1_item i : teamDrivers) {
+                if (item.getNumber() == i.getNumber())
+                    b = false;
+            }
+        }
+        return b;
+    }
+
     //add an Item to the team
     public boolean addItem(Abstract_f1_item item) {
         //se non c'è gia nel team lo posso aggiungere
@@ -106,7 +122,6 @@ public class Team  {
                     }
                     if (b) {
                         teamDrivers.add(item);
-                        budget -= item.fantavalue;
                         dt.insertNewItem(this.user, this.teamName, item.getName(), item.getNumber());
                         return true;
                     }

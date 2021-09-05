@@ -4,6 +4,7 @@ import database.Utils;
 import domain_classes.User;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ProfilePage extends JPanel {
     private javax.swing.JLabel jLabel1;
@@ -11,9 +12,9 @@ public class ProfilePage extends JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel jTextField1;
+    private javax.swing.JLabel jTextField2;
+    private javax.swing.JLabel jTextField3;
     String current_user;
 
     // End of variables declaration
@@ -23,9 +24,9 @@ public class ProfilePage extends JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         this.current_user = current_user;
 
@@ -55,6 +56,7 @@ public class ProfilePage extends JPanel {
 
         jTextField1.setEnabled(false);
 
+
         jTextField2.setText(User.getUser(current_user).getName() + " " + User.getUser(current_user).getSurname());
         jTextField2.setEnabled(false);
 
@@ -63,6 +65,10 @@ public class ProfilePage extends JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(Utils.p.toString() + "\\src\\resources\\background\\top2.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
+
+        jTextField1.setForeground(Color.BLACK);
+        jTextField2.setForeground(Color.BLACK);
+        jTextField3.setForeground(Color.BLACK);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

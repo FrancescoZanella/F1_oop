@@ -150,8 +150,6 @@ public class DataDriver extends Data{
             startConnection();
             statement.executeUpdate("UPDATE driver SET fantavalue = " + fantavalue +
                     " where name = '" + new_name + "' and number = " + new_number);
-            DataTeam dt = new DataTeam();
-            dt.setBudget(new_name, new_number);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
