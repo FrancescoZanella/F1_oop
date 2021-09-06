@@ -5,7 +5,6 @@ import domain_classes.Squad;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import static java.lang.Integer.parseInt;
 
@@ -20,7 +19,10 @@ public class ImplementResult {
         for (Driver i : qf) {
             if (!i.getQualifying_position().equals("R"))
                 pos = parseInt(i.getQualifying_position());
-            tot += 1;
+            if (pos != 0)
+                tot += 1;
+            else
+                pos = 21;
             if (pos <= 15)
                 tot += 2;
             if (pos <= 10) {
@@ -40,7 +42,7 @@ public class ImplementResult {
             i.setFantaF1points(tot, true);
             tot = 0;
         }
-        System.out.println("");
+
     }
 
     public void afterRace(List<Driver> race) {
@@ -49,7 +51,12 @@ public class ImplementResult {
         for (Driver i : race) {
             if (!i.getRace_position().equals("R")) {
                 pos = parseInt(i.getRace_position());
-                tot += 1;
+                if (pos != 0)
+                    tot += 1;
+                else {
+                    i.setFantaF1points(-15, false);
+                    pos = 21;
+                }
             } else
                 i.setFantaF1points(-15, false);
 
@@ -84,7 +91,6 @@ public class ImplementResult {
             i.setFantaF1points(tot, true);
             tot = 0;
         }
-        System.out.println("");
     }
 
     public void comparison(List<Driver> race, List<Driver> qf) {
@@ -101,13 +107,13 @@ public class ImplementResult {
                     posq = parseInt(dq.getQualifying_position());
             }
 
-            if (posq < posrace && posq <= 10 && posrace != 21)
+            if (posq < posrace && posq <= 10 && posrace != 21 && posrace != 0)
                 tot -= Math.min((posrace - posq) * 2, 10);
 
-            if (posq < posrace && posq > 10 && posrace != 21)
+            if (posq < posrace && posq > 10 && posrace != 21 && posrace != 0)
                 tot -= Math.min((posrace - posq), 5);
 
-            if (posq > posrace && posrace != 21) {
+            if (posq > posrace && posrace != 21 && posrace != 0) {
                 tot += Math.min((posq - posrace) * 2, 10);
             }
 
@@ -116,7 +122,7 @@ public class ImplementResult {
         }
     }
 
-    public void implement() {
+    public ImplementResult() {
         race = rr.getRaceResult();
         qf = rr.getQualifyingResult();
         if (race != null) {
@@ -126,8 +132,4 @@ public class ImplementResult {
         }
     }
 
-    public static void main(String[] args) {
-        ImplementResult ir = new ImplementResult();
-        ir.implement();
-    }
 }

@@ -66,14 +66,14 @@ public class RestDriver extends Rest{
     }
 
 
-    public static void main(String[] args){
+   /*public static void main(String[] args){
         Driver.deleteAllDrivers();
         Race.deleteAllRaces();
         Squad.deleteAllConstructors();
         RestDriver rd = new RestDriver();
         rd.getAllDrivers();
         rd.getAllRaces();
-    }
+    }*/
 
 
 }

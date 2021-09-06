@@ -39,10 +39,12 @@ public class RestResult extends Rest {
                             d.setNumber(parseInt(e.getElementsByTagName("PermanentNumber").item(0).getTextContent()));
                             d.setAge(calculateAge(LocalDate.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now()));
                             d.setRace_position(e.getAttribute("positionText"));
-                            d.setF1points(points);
-                            if (e.getAttribute("rank").equals("1"))
-                                d.setFantaF1points(5, false);
-                            ad.add(d);
+                            if (Driver.getDriver(d.getName(), d.getNumber()) != null) {
+                                d.setF1points(points);
+                                if (e.getAttribute("rank").equals("1"))
+                                    d.setFantaF1points(5, false);
+                                ad.add(d);
+                            }
                         }
 
                     }
@@ -76,8 +78,10 @@ public class RestResult extends Rest {
                             d.setName(e.getElementsByTagName("GivenName").item(0).getTextContent() + " " + e.getElementsByTagName("FamilyName").item(0).getTextContent());
                             d.setNumber(parseInt(e.getElementsByTagName("PermanentNumber").item(0).getTextContent()));
                             d.setAge(calculateAge(LocalDate.parse(e.getElementsByTagName("DateOfBirth").item(0).getTextContent()), LocalDate.now()));
-                            d.setQualifying_position(e.getAttribute("position"));
-                            ad.add(d);
+                            if (Driver.getDriver(d.getName(), d.getNumber()) != null) {
+                                d.setQualifying_position(e.getAttribute("position"));
+                                ad.add(d);
+                            }
                         }
 
                     }
