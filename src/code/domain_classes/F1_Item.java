@@ -13,7 +13,7 @@ public interface F1_Item {
 
     void setFantavalue(double Fantavalue);
 
-    void setName(String name);
-
     String getName();
+
+    void setName(String name);
 }

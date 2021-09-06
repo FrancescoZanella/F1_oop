@@ -1,9 +1,13 @@
 package database;
 
-import domain_classes.*;
+import domain_classes.League;
+import domain_classes.Team;
+import domain_classes.User;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DataLeague extends Data {
 
@@ -71,9 +75,7 @@ public class DataLeague extends Data {
             startConnection();
             try {
                 rs = statement.executeQuery("Select * from league WHERE invitationcode = '" + invitation_code + "'");
-                if (rs.next())
-                    return true;
-                return false;
+                return rs.next();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

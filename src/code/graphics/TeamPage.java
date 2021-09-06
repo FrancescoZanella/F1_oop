@@ -1,37 +1,24 @@
 package graphics;
 
-import database.*;
+import database.DataLeague;
+import database.DataTeam;
+import database.Utils;
 import domain_classes.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 
 public class TeamPage extends JPanel implements MouseListener, ListSelectionListener {
-    private javax.swing.JLabel jLabel1;
-    private JLabel jLabel5;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<Abstract_f1_item> jList1;
-    private javax.swing.JPanel jPanel2;
-    private MyPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private ArrayList<JLabel> labels;
-    private javax.swing.JTextField jTextField1;
-
     JLabel a;
     HashMap<JLabel, Abstract_f1_item> dr;
     DataLeague dl = new DataLeague();
@@ -40,6 +27,23 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
     Team t;
     Team t2;
     DefaultListModel<Abstract_f1_item> dd = new DefaultListModel<>();
+    private final javax.swing.JLabel jLabel1;
+    private final JLabel jLabel5;
+    private final javax.swing.JLabel jLabel11;
+    private final javax.swing.JLabel jLabel12;
+    private final javax.swing.JLabel jLabel13;
+    private final javax.swing.JLabel jLabel14;
+    private final javax.swing.JLabel jLabel15;
+    private final javax.swing.JLabel jLabel2;
+    private final javax.swing.JLabel jLabel3;
+    private final javax.swing.JLabel jLabel4;
+    private final javax.swing.JLabel jLabel8;
+    private final javax.swing.JList<Abstract_f1_item> jList1;
+    private final javax.swing.JPanel jPanel2;
+    private final MyPanel jPanel3;
+    private final javax.swing.JScrollPane jScrollPane1;
+    private final ArrayList<JLabel> labels;
+    private final javax.swing.JTextField jTextField1;
 
     public TeamPage(String current_user, String invitation_code) {
 
@@ -307,7 +311,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
         if (t2 == null || t2.getTeamDrivers().size() == 0) {
             if (e.getSource() == jLabel1) {
                 t.setTeamName(jTextField1.getText());
-                for(Abstract_f1_item i : dr.values())
+                for (Abstract_f1_item i : dr.values())
                     t.addItem(i);
 
                 if (t.getBudget() >= 0 && t.teamDrivers.size() == 6 && dl.insertOnlyTeam(invitation_code, current_user, t.getTeamName())) {
@@ -318,7 +322,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     Timer timer = new Timer(2000, new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
-                            new Frame("Fantasy F1",current_user);
+                            new Frame("Fantasy F1", current_user);
                         }
                     });
                     timer.setRepeats(false); // Only execute once
@@ -390,7 +394,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     a.setHorizontalAlignment(SwingConstants.CENTER);
                     a.setVerticalAlignment(SwingConstants.CENTER);
                     a.setVerticalTextPosition(SwingConstants.BOTTOM);
-                    if(dr.containsKey(a)){
+                    if (dr.containsKey(a)) {
                         t.setBudget(t.getBudget() + dr.get(a).getFantavalue());
                         dr.remove(a);
                     }
@@ -405,7 +409,7 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     a.setHorizontalAlignment(SwingConstants.CENTER);
                     a.setVerticalAlignment(SwingConstants.CENTER);
                     a.setVerticalTextPosition(SwingConstants.BOTTOM);
-                    if(dr.containsKey(a)){
+                    if (dr.containsKey(a)) {
                         t.setBudget(t.getBudget() + dr.get(a).getFantavalue());
                         dr.remove(a);
                     }

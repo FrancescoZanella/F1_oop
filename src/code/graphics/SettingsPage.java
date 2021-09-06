@@ -1,24 +1,27 @@
 package graphics;
+
 import database.Utils;
 import domain_classes.User;
+
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 public class SettingsPage extends JPanel implements MouseListener, KeyListener {
 
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField3;
     String current_user;
+    private final javax.swing.JLabel jLabel1;
+    private final javax.swing.JLabel jLabel2;
+    private final javax.swing.JLabel jLabel3;
+    private final javax.swing.JLabel jLabel4;
+    private final javax.swing.JLabel jLabel5;
+    private final javax.swing.JLabel jLabel6;
+    private final javax.swing.JLabel jLabel7;
+    private final javax.swing.JPanel jPanel1;
+    private final javax.swing.JPasswordField jPasswordField1;
+    private final javax.swing.JPasswordField jPasswordField3;
 
     public SettingsPage(String current_user) {
         jLabel1 = new javax.swing.JLabel();
@@ -133,50 +136,50 @@ public class SettingsPage extends JPanel implements MouseListener, KeyListener {
                 }
             }
         }
-        }
+    }
 
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
 
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
 
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
 
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 
-        @Override
-        public void keyTyped(KeyEvent e) {
-        }
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                String b = new String(jPasswordField3.getPassword());
-                    if (!User.getUser(current_user).getDbPassword().equals(b)) {
-                        jLabel2.setText("Current password incorrect!");
-                        jLabel2.setVisible(true);
-                    } else {
-                        b = new String(jPasswordField1.getPassword());
-                        if (b.length() < 8) {
-                            jLabel2.setText("New password must be at least 8 carachters");
-                            jLabel2.setVisible(true);
-                        } else {
-                            User.getUser(current_user).setPassword(b);
-                            jLabel2.setText("Password changed correctly!");
-                            jLabel2.setVisible(true);
-                        }
-                    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            String b = new String(jPasswordField3.getPassword());
+            if (!User.getUser(current_user).getDbPassword().equals(b)) {
+                jLabel2.setText("Current password incorrect!");
+                jLabel2.setVisible(true);
+            } else {
+                b = new String(jPasswordField1.getPassword());
+                if (b.length() < 8) {
+                    jLabel2.setText("New password must be at least 8 carachters");
+                    jLabel2.setVisible(true);
+                } else {
+                    User.getUser(current_user).setPassword(b);
+                    jLabel2.setText("Password changed correctly!");
+                    jLabel2.setVisible(true);
                 }
             }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+}

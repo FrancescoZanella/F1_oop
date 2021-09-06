@@ -1,6 +1,5 @@
 package graphics;
 
-import database.DataLeague;
 import domain_classes.League;
 
 import javax.imageio.ImageIO;
@@ -18,6 +17,8 @@ import java.util.List;
 import static domain_classes.League.getLeague;
 
 public class JoinLeague extends JFrame implements MouseListener, KeyListener {
+    League l = new League();
+    String current_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -30,8 +31,6 @@ public class JoinLeague extends JFrame implements MouseListener, KeyListener {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
-    League l = new League();
-    String current_user;
 
     public JoinLeague(String current_user) {
         this.current_user = current_user;

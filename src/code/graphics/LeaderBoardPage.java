@@ -9,25 +9,23 @@ import domain_classes.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class LeaderBoardPage extends JPanel{
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+public class LeaderBoardPage extends JPanel {
     DefaultListModel<String> dd = new DefaultListModel<>();
-    private MyPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     String current_user;
     String invitation_code;
+    private final javax.swing.JLabel jLabel1;
+    private final javax.swing.JLabel jLabel12;
+    private final javax.swing.JLabel jLabel16;
+    private final javax.swing.JLabel jLabel17;
+    private final javax.swing.JLabel jLabel18;
+    private final javax.swing.JLabel jLabel19;
+    private final javax.swing.JLabel jLabel2;
+    private final javax.swing.JLabel jLabel20;
+    private final javax.swing.JLabel jLabel3;
+    private final javax.swing.JList<String> jList1;
+    private final MyPanel jPanel2;
+    private final javax.swing.JScrollPane jScrollPane1;
 
     public LeaderBoardPage(String current_user, String invitation_code) {
         this.invitation_code = invitation_code;
@@ -178,12 +176,11 @@ public class LeaderBoardPage extends JPanel{
                 l.setFont(new Font("Segoe UI", Font.PLAIN, 8));
                 i++;
             }
-        }
-        else{
+        } else {
             jLabel1.setText("<html>You haven't created a team for this league yet,<br/> do it in team section</html>");
             jLabel1.setForeground(Color.RED);
-            jLabel1.setFont(new Font("Segoe UI",Font.BOLD,10));
-            jLabel1.setIcon(new ImageIcon(Utils.p.toString()+ "\\src\\resources\\icons\\icons8_error_35px.png"));
+            jLabel1.setFont(new Font("Segoe UI", Font.BOLD, 10));
+            jLabel1.setIcon(new ImageIcon(Utils.p.toString() + "\\src\\resources\\icons\\icons8_error_35px.png"));
             jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
         }
 
@@ -192,14 +189,14 @@ public class LeaderBoardPage extends JPanel{
         Team[] tleagues = d.getallTeamsInTheLeague(invitation_code);
 
 
-        int h=1;
+        int h = 1;
         String str = null;
         for (Team a : tleagues) {
-            if (a != null && a.getTeamName()!=null) {
-                dd.addElement("#" + str.valueOf(h) + a);
+            if (a != null && a.getTeamName() != null) {
+                dd.addElement("#" + h + a);
                 h++;
             }
-            }
+        }
 
 
     }

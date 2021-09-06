@@ -4,7 +4,6 @@ package graphics;
 import javax.swing.*;
 import java.awt.*;
 
-
 import static java.awt.Color.white;
 
 public class MyButton extends JButton {

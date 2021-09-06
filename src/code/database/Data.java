@@ -1,8 +1,5 @@
 package database;
 
-import domain_classes.User;
-import org.sqlite.core.DB;
-
 import java.sql.*;
 
 

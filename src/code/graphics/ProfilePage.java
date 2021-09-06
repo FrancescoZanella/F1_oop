@@ -7,15 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProfilePage extends JPanel {
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jTextField1;
-    private javax.swing.JLabel jTextField2;
-    private javax.swing.JLabel jTextField3;
     String current_user;
+    private final javax.swing.JLabel jLabel1;
+    private final javax.swing.JLabel jLabel2;
+    private final javax.swing.JLabel jLabel3;
+    private final javax.swing.JLabel jLabel5;
+    private final javax.swing.JLabel jLabel6;
+    private final javax.swing.JLabel jTextField1;
+    private final javax.swing.JLabel jTextField2;
+    private final javax.swing.JLabel jTextField3;
 
     // End of variables declaration
     public ProfilePage(String current_user) {

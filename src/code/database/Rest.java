@@ -12,47 +12,46 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-public abstract class Rest{
-        static String url;
-        DocumentBuilderFactory dbf;
-        DocumentBuilder db;
-        Document document;
-        NodeList nl;
+public abstract class Rest {
+    static String url;
+    DocumentBuilderFactory dbf;
+    DocumentBuilder db;
+    Document document;
+    NodeList nl;
 
+    public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+        if ((birthDate != null) && (currentDate != null)) {
+            return Period.between(birthDate, currentDate).getYears();
+        } else {
+            return 0;
+        }
+    }
 
-        public String getUrl() {
-                return url;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        Rest.url = url;
+    }
+
+    public void start(String type) {
+        dbf = DocumentBuilderFactory.newInstance();
+        db = null;
+        try {
+            db = dbf.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        document = null;
+        try {
+            document = db.parse(url);
+        } catch (SAXException | IOException e) {
+            e.printStackTrace();
         }
 
-        public void setUrl(String url) {
-                this.url = url;
-        }
-
-        public void start(String type) {
-                dbf = DocumentBuilderFactory.newInstance();
-                db = null;
-                try {
-                        db = dbf.newDocumentBuilder();
-                } catch (ParserConfigurationException e) {
-                        e.printStackTrace();
-                }
-                document = null;
-                try {
-                        document = db.parse(url);
-                } catch (SAXException | IOException e) {
-                        e.printStackTrace();
-                }
-
-                document.getDocumentElement().normalize();
-                nl = document.getElementsByTagName(type);
-        }
-
-        public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
-                if ((birthDate != null) && (currentDate != null)) {
-                        return Period.between(birthDate, currentDate).getYears();
-                } else {
-                        return 0;
-                }
-        }
+        document.getDocumentElement().normalize();
+        nl = document.getElementsByTagName(type);
+    }
 
 }

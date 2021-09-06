@@ -16,33 +16,33 @@ import java.util.List;
 
 public class CreateLeague extends JFrame implements MouseListener, KeyListener {
 
-    private JCheckBox jCheckBox1;
-    private JCheckBox jCheckBox2;
-    private JCheckBox jCheckBox3;
-    private JCheckBox jCheckBox4;
-    private JCheckBox jCheckBox5;
-    private JLabel jLabel1;
-    private JLabel jLabel10;
-    private JLabel jLabel12;
-    private JLabel jLabel13;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JLabel jLabel6;
-    private JLabel jLabel7;
-    private JLabel jLabel9;
-    private JPanel jPanel1;
-    private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
-    private JSlider jSlider1;
-    private JTextField jTextField1;
-    private JTextField jTextField2;
     String current_user;
+    private final JCheckBox jCheckBox1;
+    private final JCheckBox jCheckBox2;
+    private final JCheckBox jCheckBox3;
+    private final JCheckBox jCheckBox4;
+    private final JCheckBox jCheckBox5;
+    private final JLabel jLabel1;
+    private final JLabel jLabel10;
+    private final JLabel jLabel12;
+    private final JLabel jLabel13;
+    private final JLabel jLabel2;
+    private final JLabel jLabel3;
+    private final JLabel jLabel4;
+    private final JLabel jLabel5;
+    private final JLabel jLabel6;
+    private final JLabel jLabel7;
+    private final JLabel jLabel9;
+    private final JPanel jPanel1;
+    private final JPanel jPanel2;
+    private final JPanel jPanel3;
+    private final JPanel jPanel4;
+    private final JSlider jSlider1;
+    private final JTextField jTextField1;
+    private final JTextField jTextField2;
 
     public CreateLeague(String current_user) {
-        this.current_user=current_user;
+        this.current_user = current_user;
         jPanel1 = new JPanel();
         jPanel3 = new JPanel();
         jLabel1 = new JLabel();
@@ -335,7 +335,7 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
         jLabel9.addKeyListener(this);
 
         jLabel10.setVisible(false);
-        List<Image> listImage=new ArrayList<>();
+        List<Image> listImage = new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
@@ -379,8 +379,8 @@ public class CreateLeague extends JFrame implements MouseListener, KeyListener {
                         jLabel10.setText("League created correctly!!");
                         jLabel10.setVisible(true);
                         new League(jTextField1.getText(), jTextField2.getText(), false, jSlider1.getValue());
-                        League.insertOnlyUser(jTextField2.getText(),current_user);
-                        new Frame("Fantasy F1",current_user);
+                        League.insertOnlyUser(jTextField2.getText(), current_user);
+                        new Frame("Fantasy F1", current_user);
                         dispose();
                     }
                 }

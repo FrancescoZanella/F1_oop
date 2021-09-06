@@ -13,6 +13,16 @@ public class ImplementResult {
     ArrayList<Driver> qf;
     RestResult rr = new RestResult();
 
+    public ImplementResult() {
+        race = rr.getRaceResult();
+        qf = rr.getQualifyingResult();
+        if (race != null) {
+            afterQualifying(qf);
+            afterRace(race);
+            comparison(race, qf);
+        }
+    }
+
     public void afterQualifying(List<Driver> qf) {
         int tot = 0;
         int pos = 21;
@@ -119,16 +129,6 @@ public class ImplementResult {
 
             d.setFantaF1points(tot, true);
             tot = 0;
-        }
-    }
-
-    public ImplementResult() {
-        race = rr.getRaceResult();
-        qf = rr.getQualifyingResult();
-        if (race != null) {
-            afterQualifying(qf);
-            afterRace(race);
-            comparison(race, qf);
         }
     }
 

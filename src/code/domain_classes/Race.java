@@ -2,21 +2,22 @@ package domain_classes;
 
 import database.DataRace;
 
-import java.text.DateFormat;
 import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class Race {
 
+    static DataRace dr = new DataRace();
     final int NUMDRIVER = 20;
     final int NUMCONSTRUCTOR = 10;
     String name, nation;
     Date race_day, qualification_day;
     double km;
-    static DataRace dr = new DataRace();
     boolean date;
+    DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
 
-    public Race(){
+    public Race() {
 
     }
 
@@ -33,8 +34,36 @@ public class Race {
         this.race_day = race_day;
         this.km = km;
         this.qualification_day = qualification_day;
-        if(date)
+        if (date)
             dr.InsertNewRace(this);
+    }
+
+    public static void deleteAllRaces() {
+        dr.deleteAllRaces();
+    }
+
+    public static Race getRace(String race_name, String race_nation, Date race_day) {
+        return dr.getRace(race_name, race_nation, race_day);
+    }
+
+    public static void setAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        dr.setAlreadyRaced(race_name, race_nation, race_day);
+    }
+
+    public static boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) {
+        return dr.checkIfAlreadyRaced(race_name, race_nation, race_day);
+    }
+
+    public static void setAlreadyQualified(String race_name, String race_nation, Date race_day) {
+        dr.setAlreadyQualified(race_name, race_nation, race_day);
+    }
+
+    public static boolean checkIfAlreadyQualified(String race_name, String race_nation, Date race_day) {
+        return dr.checkIfAlreadyQualified(race_name, race_nation, race_day);
+    }
+
+    public static ArrayList<Race> getAllRaces() {
+        return dr.getAllRaces();
     }
 
     public String getName() {
@@ -61,45 +90,49 @@ public class Race {
         this.km = km;
     }
 
-    public Date getRace_day() { return race_day; }
+    public Date getRace_day() {
+        return race_day;
+    }
 
-    public void setRace_day(Date race_day) { this.race_day = race_day; }
+    public void setRace_day(Date race_day) {
+        this.race_day = race_day;
+    }
 
-    public Date getQualification_day() { return qualification_day; }
+    public Date getQualification_day() {
+        return qualification_day;
+    }
 
-    public void setQualification_day(Date qualification_day) { this.qualification_day = qualification_day; }
+    public void setQualification_day(Date qualification_day) {
+        this.qualification_day = qualification_day;
+    }
 
     public boolean sameRace() {
         return dr.sameRace(this);
     }
 
-    public static void deleteAllRaces() { dr.deleteAllRaces(); }
+    public Race getRace() {
+        return dr.getRace(this.name, this.nation, this.race_day);
+    }
 
-    public Race getRace() { return dr.getRace(this.name, this.nation, this.race_day); }
+    public void setAlreadyRaced() {
+        dr.setAlreadyRaced(this.name, this.nation, this.race_day);
+    }
 
-    public static Race getRace(String race_name, String race_nation, Date race_day) { return dr.getRace(race_name, race_nation, race_day); }
+    public boolean checkIfAlreadyRaced() {
+        return dr.checkIfAlreadyRaced(this.name, this.nation, this.race_day);
+    }
 
-    public void setAlreadyRaced() { dr.setAlreadyRaced(this.name, this.nation, this.race_day); }
+    public void setAlreadyQualified() {
+        dr.setAlreadyQualified(this.name, this.nation, this.race_day);
+    }
 
-    public static void setAlreadyRaced(String race_name, String race_nation, Date race_day) { dr.setAlreadyRaced(race_name, race_nation, race_day); }
+    public boolean checkIfAlreadyQualified() {
+        return dr.checkIfAlreadyQualified(this.name, this.nation, this.race_day);
+    }
 
-    public boolean checkIfAlreadyRaced() { return dr.checkIfAlreadyRaced(this.name, this.nation, this.race_day); }
-
-    public static boolean checkIfAlreadyRaced(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyRaced(race_name, race_nation, race_day); }
-
-    public void setAlreadyQualified() { dr.setAlreadyQualified(this.name, this.nation, this.race_day); }
-
-    public static void setAlreadyQualified(String race_name, String race_nation, Date race_day) { dr.setAlreadyQualified(race_name, race_nation, race_day); }
-
-    public boolean checkIfAlreadyQualified() { return dr.checkIfAlreadyQualified(this.name, this.nation, this.race_day); }
-
-    public static boolean checkIfAlreadyQualified(String race_name, String race_nation, Date race_day) { return dr.checkIfAlreadyQualified(race_name, race_nation, race_day); }
-
-    public void deleteRace() { dr.deleteRace(this); }
-
-    public static ArrayList<Race> getAllRaces() {return dr.getAllRaces(); }
-
-    DateFormat datetoforma = DateFormat.getDateInstance(DateFormat.SHORT);
+    public void deleteRace() {
+        dr.deleteRace(this);
+    }
 
     public String toString() {
         return "Race{" +

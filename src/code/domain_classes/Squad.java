@@ -7,21 +7,21 @@ import java.util.Random;
 
 public class Squad extends Abstract_f1_item {
 
+    static DataConstructor dc = new DataConstructor();
     Driver d1, d2;
     Random r;
-    static DataConstructor dc = new DataConstructor();
 
-    public Squad(){
+    public Squad() {
 
     }
 
-    public Squad(String name){
+    public Squad(String name) {
         this.name = name;
         setNumber();
         dc.InsertNewConstructor(this.name, this.number);
     }
 
-    public Squad(String name, int number, double fantavalue){
+    public Squad(String name, int number, double fantavalue) {
         super(name, number, fantavalue);
     }
 
@@ -44,6 +44,22 @@ public class Squad extends Abstract_f1_item {
         super(name, number, f1points, fantaF1points, fantavalue);
         this.d1 = d1;
         this.d2 = d2;
+    }
+
+    public static void deleteAllConstructors() {
+        dc.deleteAllConstructors();
+    }
+
+    public static ArrayList<Squad> getAllConstructors(String order) {
+        return dc.getAllConstructors(order);
+    }
+
+    public static Squad getConstructorByDriver(String driver_name, int driver_number) {
+        return dc.getConstructorbyDriver(driver_name, driver_number);
+    }
+
+    public static Squad getConstructor(String constructor_name) {
+        return dc.getConstructor(constructor_name);
     }
 
     public void setNumber() {
@@ -75,31 +91,23 @@ public class Squad extends Abstract_f1_item {
         return dc.sameConstructor(this);
     }
 
-    public void deleteConstructor() { dc.deleteConstructor(this); }
+    public void deleteConstructor() {
+        dc.deleteConstructor(this);
+    }
 
-    public static void deleteAllConstructors() { dc.deleteAllConstructors(); }
+    public Squad getConstructor() {
+        return dc.getConstructor(this.name);
+    }
 
-    public Squad getConstructor() { return dc.getConstructor(this.name); }
-
-    public static ArrayList<Squad> getAllConstructors(String order) { return dc.getAllConstructors(order); }
-
-    public static Squad getConstructorByDriver(String driver_name, int driver_number) { return dc.getConstructorbyDriver(driver_name, driver_number); }
-
-    public static Squad getConstructor(String constructor_name) { return dc.getConstructor(constructor_name); }
-
-    public boolean insertNewDriver(String driver_name, int number_driver) { return dc.insertNewDriver(this.name, driver_name, number_driver); }
+    public boolean insertNewDriver(String driver_name, int number_driver) {
+        return dc.insertNewDriver(this.name, driver_name, number_driver);
+    }
 
     public void setAllValues(int fantaf1points, int f1points, double fantavalue) {
         this.f1points += f1points;
         this.fantaF1points += fantaf1points;
         this.fantavalue = fantavalue;
         dc.setAllValues(this.name, this.number, fantaf1points, f1points, fantavalue);
-    }
-
-    @Override
-    public void setFantavalue(double fantavalue) {
-        super.setFantavalue(fantavalue);
-        dc.setFantaValue(name, number, fantavalue);
     }
 
     @Override
@@ -115,9 +123,15 @@ public class Squad extends Abstract_f1_item {
     }
 
     @Override
-    public double getFantavalue(){
+    public double getFantavalue() {
         this.fantavalue = dc.getConstructor(this.name).fantavalue;
         return super.getFantavalue();
+    }
+
+    @Override
+    public void setFantavalue(double fantavalue) {
+        super.setFantavalue(fantavalue);
+        dc.setFantaValue(name, number, fantavalue);
     }
 
     public String F1informations() {

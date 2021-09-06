@@ -3,16 +3,14 @@ package domain_classes;
 import database.DataTeam;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 
-public class Team  {
+public class Team {
     private static final int numDriver = 6;
+    static DataTeam dt = new DataTeam();
+    public ArrayList<Abstract_f1_item> teamDrivers;
     String teamName;
     double budget;
     int fantaf1points;
-    public ArrayList<Abstract_f1_item> teamDrivers;
-    static DataTeam dt = new DataTeam();
     String user;
 
     public Team() {
@@ -48,6 +46,14 @@ public class Team  {
         return numDriver;
     }
 
+    public static void deleteAllTeams() {
+        dt.deleteAllTeams();
+    }
+
+    public static Team getTeam(String teamname, String user) {
+        return dt.getTeam(user, teamname);
+    }
+
     public String getTeamName() {
         return teamName;
     }
@@ -69,13 +75,20 @@ public class Team  {
         return fantaf1points;
     }
 
-
     public String getUser() {
         return user;
     }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public double getBudget() {
         return Math.round(budget * 10.0) / 10.0;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     public void deleteTeam() {
@@ -86,21 +99,13 @@ public class Team  {
         return dt.UpdateItem(this.user, this.teamName, name_item, number_item, position);
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
-    public void setBudget(String d_name, int d_number){
+    public void setBudget(String d_name, int d_number) {
         dt.setBudget(this.teamName, this.user, d_name, d_number);
     }
 
-    public boolean check(Abstract_f1_item item){
+    public boolean check(Abstract_f1_item item) {
         boolean b = false;
-        if(teamDrivers.size() < numDriver){
+        if (teamDrivers.size() < numDriver) {
             b = true;
             for (Abstract_f1_item i : teamDrivers) {
                 if (item.getNumber() == i.getNumber())
@@ -113,23 +118,23 @@ public class Team  {
     //add an Item to the team
     public boolean addItem(Abstract_f1_item item) {
         //se non c'è gia nel team lo posso aggiungere
-           // if(teamDrivers != null ){
-                if(teamDrivers.size() < numDriver){
-                    boolean b = true;
-                    for (Abstract_f1_item i : teamDrivers) {
-                        if (item.getNumber() == i.getNumber())
-                            b = false;
-                    }
-                    if (b) {
-                        teamDrivers.add(item);
-                        dt.insertNewItem(this.user, this.teamName, item.getName(), item.getNumber());
-                        return true;
-                    }
-                    return false;
-              //  }
+        // if(teamDrivers != null ){
+        if (teamDrivers.size() < numDriver) {
+            boolean b = true;
+            for (Abstract_f1_item i : teamDrivers) {
+                if (item.getNumber() == i.getNumber())
+                    b = false;
             }
-
+            if (b) {
+                teamDrivers.add(item);
+                dt.insertNewItem(this.user, this.teamName, item.getName(), item.getNumber());
+                return true;
+            }
             return false;
+            //  }
+        }
+
+        return false;
 
 
     }
@@ -150,23 +155,14 @@ public class Team  {
         return dt.sameTeam(this);
     }
 
-    public static void deleteAllTeams() {
-        dt.deleteAllTeams();
-    }
-
     public Team getTeam() {
         return dt.getTeam(this.user, this.teamName);
-    }
-
-    public static Team getTeam(String teamname, String user) {
-        return dt.getTeam(user, teamname);
     }
 
     @Override
     public String toString() {
         return "                " + fantaf1points + "                       " + teamName;
     }
-
 
 
 }

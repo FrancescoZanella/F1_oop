@@ -1,6 +1,5 @@
 package database;
 
-import domain_classes.Driver;
 import domain_classes.Race;
 
 import java.sql.Date;
@@ -43,7 +42,7 @@ public class DataRace extends Data {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM race ORDER BY name");
             ArrayList<Race> d = new ArrayList<>();
-            while(rs.next())
+            while (rs.next())
                 d.add(getRace(rs.getString("name"), rs.getString("nation"), rs.getDate("race_day")));
             return d;
         } catch (SQLException e) {
@@ -54,7 +53,7 @@ public class DataRace extends Data {
         return null;
     }
 
-    public void deleteRace(Race r){
+    public void deleteRace(Race r) {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM race WHERE(name = '" + r.getName() + "' and nation = '" + r.getNation() + "' and race_day = '" + r.getRace_day() + "')");
@@ -80,7 +79,7 @@ public class DataRace extends Data {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT already_raced FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
-            if(rs.next())
+            if (rs.next())
                 return rs.getBoolean("already_raced");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,7 +104,7 @@ public class DataRace extends Data {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT already_qualified FROM race WHERE name = '" + race_name + "' and nation = '" + race_nation + "' and race_day = '" + race_day + "'");
-            if(rs.next())
+            if (rs.next())
                 return rs.getBoolean("already_qualified");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +114,7 @@ public class DataRace extends Data {
         return false;
     }
 
-    public void deleteAllRaces(){
+    public void deleteAllRaces() {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM race");
@@ -126,11 +125,11 @@ public class DataRace extends Data {
         }
     }
 
-    public Race getRace(String new_name, String new_nation, Date new_date){
+    public Race getRace(String new_name, String new_nation, Date new_date) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM race WHERE name = '" + new_name + "' and nation = '" + new_nation + "' and race_day = '" + new_date + "'");
-            if(!rs.wasNull() && rs.isLast())
+            if (!rs.wasNull() && rs.isLast())
                 return new Race(rs.getString("name"), rs.getString("nation"), rs.getDouble("km"), rs.getDate("race_day"), rs.getDate("qualification_day"), false);
             else
                 return null;

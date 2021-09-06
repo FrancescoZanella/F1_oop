@@ -7,15 +7,15 @@ import java.awt.*;
 
 public class RulesPage extends JPanel {
 
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private final javax.swing.JLabel jLabel1;
+    private final javax.swing.JLabel jLabel2;
+    private final javax.swing.JLabel jLabel3;
+    private final javax.swing.JLabel jLabel4;
+    private final javax.swing.JLabel jLabel5;
+    private final javax.swing.JLabel jLabel6;
+    private final javax.swing.JLabel jLabel7;
+    private final javax.swing.JLabel jLabel8;
+    private final javax.swing.JLabel jLabel9;
 
     // End of variables declaration
     public RulesPage() {

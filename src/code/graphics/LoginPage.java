@@ -1,12 +1,14 @@
 package graphics;
 
-import database.Data;
 import database.DataUser;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,11 +34,11 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
     JPasswordField jPasswordField1;
     JTextField jTextField1;
     DataUser d;
-    private javax.swing.JLabel jLabel10;
+    private final javax.swing.JLabel jLabel10;
 
 
     public LoginPage() {
-        List<Image> listImage=new ArrayList<>();
+        List<Image> listImage = new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));

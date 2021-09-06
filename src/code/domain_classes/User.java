@@ -1,13 +1,16 @@
 package domain_classes;
+
 import database.DataUser;
-import java.sql.SQLException;
+
 import java.util.LinkedHashSet;
+
 public class User {
+    static DataUser du = new DataUser();
     String name, surname, mail;
     String username;
     String password;
     LinkedHashSet<Team> all_teams;
-    static DataUser du = new DataUser();
+
     public User(String username) {
         this.username = username;
     }
@@ -28,10 +31,23 @@ public class User {
         this.mail = mail;
         this.username = username;
     }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         du.InsertNewUser(this);
+    }
+
+    public static boolean sameUser(String username) {
+        return du.sameUser(username);
+    }
+
+    public static User getUser(String username) {
+        return du.getUser(username);
+    }
+
+    public static void deleteAllUsers() {
+        du.deleteAllUsers();
     }
 
     public String getName() {
@@ -66,13 +82,13 @@ public class User {
         this.username = username;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
         du.setPassword(this.username, password);
-    }
-
-    public String getPassword() {
-        return this.password;
     }
 
     public String getDbPassword() {
@@ -99,17 +115,13 @@ public class User {
         return du.sameUser(this.username);
     }
 
-    public static boolean sameUser(String username) {
-        return du.sameUser(username);
+    public boolean correctLogin() {
+        return du.sameUser(this.username);
     }
 
-    public boolean correctLogin(){ return du.sameUser(this.username); }
-
-    public User getUser() { return du.getUser(this.username); }
-
-    public static User getUser(String username) { return du.getUser(username); }
-
-    public static void deleteAllUsers() { du.deleteAllUsers(); }
+    public User getUser() {
+        return du.getUser(this.username);
+    }
 
     public String toString() {
         return "User{" +

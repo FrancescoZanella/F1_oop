@@ -2,12 +2,11 @@ package database;
 
 import domain_classes.Driver;
 import domain_classes.Squad;
-import domain_classes.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DataDriver extends Data{
+public class DataDriver extends Data {
 
     public void InsertNewDriver(Driver d) {
         try {
@@ -39,7 +38,7 @@ public class DataDriver extends Data{
         return false;
     }
 
-    public void deleteDriver(Driver d){
+    public void deleteDriver(Driver d) {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM driver WHERE(name = '" + d.getName() + "' and number = " + d.getNumber() + ")");
@@ -50,7 +49,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void deleteAllDrivers(){
+    public void deleteAllDrivers() {
         try {
             startConnection();
             statement.executeUpdate("DELETE FROM driver");
@@ -61,11 +60,11 @@ public class DataDriver extends Data{
         }
     }
 
-    public Driver getDriver(String new_name, int new_number){
+    public Driver getDriver(String new_name, int new_number) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM driver WHERE number = " + new_number + " and name = '" + new_name + "'");
-            if(rs.next())
+            if (rs.next())
                 return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position"));
             else
                 return null;
@@ -77,11 +76,11 @@ public class DataDriver extends Data{
         return null;
     }
 
-    public Driver getDriver(String new_name){
+    public Driver getDriver(String new_name) {
         try {
             startConnection();
             rs = statement.executeQuery("SELECT * FROM driver WHERE name = '" + new_name + "'");
-            if(rs.next())
+            if (rs.next())
                 return new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position"));
             else
                 return null;
@@ -98,7 +97,7 @@ public class DataDriver extends Data{
             startConnection();
             rs = statement.executeQuery("SELECT * FROM driver ORDER BY " + order);
             ArrayList<Driver> d = new ArrayList<>();
-            while(rs.next())
+            while (rs.next())
                 d.add(new Driver(rs.getString("name"), rs.getInt("age"), rs.getInt("number"), rs.getInt("f1points"), rs.getInt("fantaf1points"), rs.getFloat("fantavalue"), rs.getString("race_position"), rs.getString("qualifying_position")));
             return d;
         } catch (SQLException e) {
@@ -109,7 +108,7 @@ public class DataDriver extends Data{
         return null;
     }
 
-    public void setRacePosition(String new_name, int new_number, String position){
+    public void setRacePosition(String new_name, int new_number, String position) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET race_position = '" + position +
@@ -121,7 +120,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void setQualifyingPosition(String new_name, int new_number, String position){
+    public void setQualifyingPosition(String new_name, int new_number, String position) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET qualifying_position = '" + position +
@@ -133,7 +132,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, double fantavalue){
+    public void setAllValues(String new_name, int new_number, int fantaf1points, int f1points, double fantavalue) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET fantaf1points = " + fantaf1points + ", f1points = " + f1points + ", fantavalue = " + fantavalue +
@@ -145,7 +144,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void setFantaValue(String new_name, int new_number, double fantavalue){
+    public void setFantaValue(String new_name, int new_number, double fantavalue) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET fantavalue = " + fantavalue +
@@ -157,7 +156,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void setF1Points(String new_name, int new_number, int f1points){
+    public void setF1Points(String new_name, int new_number, int f1points) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET f1points = f1points + " + f1points +
@@ -171,7 +170,7 @@ public class DataDriver extends Data{
         }
     }
 
-    public void setFantaF1Points(String new_name, int new_number, int fantaf1points){
+    public void setFantaF1Points(String new_name, int new_number, int fantaf1points) {
         try {
             startConnection();
             statement.executeUpdate("UPDATE driver SET fantaf1points = fantaf1points + " + fantaf1points +

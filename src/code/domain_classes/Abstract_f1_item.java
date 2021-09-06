@@ -7,7 +7,7 @@ public abstract class Abstract_f1_item implements F1_Item {
     int fantaF1points;
     double fantavalue;
 
-    public Abstract_f1_item(){
+    public Abstract_f1_item() {
 
     }
 
@@ -66,5 +66,7 @@ public abstract class Abstract_f1_item implements F1_Item {
         return Math.round(fantavalue * 10.0) / 10.0;
     }
 
-    public void setFantavalue(double fantavalue) { this.fantavalue = fantavalue; }
+    public void setFantavalue(double fantavalue) {
+        this.fantavalue = fantavalue;
+    }
 }

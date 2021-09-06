@@ -1,6 +1,5 @@
 package graphics;
-import database.Data;
-import database.DataUser;
+
 import domain_classes.User;
 
 import javax.imageio.ImageIO;
@@ -12,32 +11,31 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterPage extends JFrame implements MouseListener, KeyListener {
-    private JLabel jLabel1;
-    private JLabel incorrectfield;
-    private JLabel passworderror;
-    private JLabel jLabel12;
-    private JLabel jLabel13;
-    private JLabel jLabel15;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-    private JLabel finishbutton;
-    private JLabel jLabel5;
-    private JLabel jLabel7;
-    private JLabel jLabel9;
-    private JPanel jPanel1;
-    private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
-    private JPasswordField passwordfield;
-    private JTextField namefield;
-    private JTextField mailfield;
-    private JTextField surnamefield;
-    private JTextField usernamefield;
+    private final JLabel jLabel1;
+    private final JLabel incorrectfield;
+    private final JLabel passworderror;
+    private final JLabel jLabel12;
+    private final JLabel jLabel13;
+    private final JLabel jLabel15;
+    private final JLabel jLabel2;
+    private final JLabel jLabel3;
+    private final JLabel finishbutton;
+    private final JLabel jLabel5;
+    private final JLabel jLabel7;
+    private final JLabel jLabel9;
+    private final JPanel jPanel1;
+    private final JPanel jPanel2;
+    private final JPanel jPanel3;
+    private final JPanel jPanel4;
+    private final JPasswordField passwordfield;
+    private final JTextField namefield;
+    private final JTextField mailfield;
+    private final JTextField surnamefield;
+    private final JTextField usernamefield;
 
     public RegisterPage() {
 
@@ -260,7 +258,7 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
-        List<Image> listImage=new ArrayList<>();
+        List<Image> listImage = new ArrayList<>();
         try {
             listImage.add(ImageIO.read(new File("src/resources/images/16x16.png")));
             listImage.add(ImageIO.read(new File("src/resources/images/32x32.png")));
@@ -367,6 +365,8 @@ public class RegisterPage extends JFrame implements MouseListener, KeyListener {
             dispose();
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
-    }}
+    }
+}
