@@ -285,7 +285,7 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
 
         }
         if (e.getSource() == jLabel5) {
-            this.setVisible(false);
+            dispose();
 
         }
         if (e.getSource() == jLabel9) {
@@ -336,7 +336,6 @@ public class LoginPage extends JFrame implements MouseListener, KeyListener {
 
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            this.setVisible(false);
             dispose();
 
         }

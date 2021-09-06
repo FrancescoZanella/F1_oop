@@ -7,8 +7,7 @@ import domain_classes.League;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.Objects;
 
 
 
-public class Frame extends JFrame implements ActionListener{
+public class Frame extends JFrame implements ActionListener, MouseListener, KeyListener {
     JComboBox<String> cbox;
     CardLayout cl1=new CardLayout();
     MyPanel panel;
@@ -27,6 +26,7 @@ public class Frame extends JFrame implements ActionListener{
     List<League> l;
     JLabel jLabel5;
     JLabel label;
+    JLabel exit;
 
     public Frame(String title,String current_user) throws HeadlessException {
         super(title);
@@ -47,6 +47,18 @@ public class Frame extends JFrame implements ActionListener{
         p.setBounds(0, 0, Utils.width, 100);
         p.setLayout(null);
 
+        exit=new JLabel();
+       // exit.setBackground(new java.awt.Color(60, 63, 65));
+        exit.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        exit.setForeground(new java.awt.Color(153, 153, 153));
+        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit.setText("X");
+        exit.setBounds(Utils.width-15,0,12,24);
+        exit.addMouseListener(this);
+        p.add(exit);
+
+
+        
         cbox= new JComboBox<>();
         l=new ArrayList<>(League.leaguesPerUser(current_user));
 
@@ -54,7 +66,7 @@ public class Frame extends JFrame implements ActionListener{
             cbox.addItem(g.getLeagueName());
         }
 
-
+        
         cbox.setBackground(new Color(19, 19, 31, 255));
         cbox.setBounds(Utils.width-200,30,150,30);
         cbox.addActionListener(this);
@@ -67,6 +79,10 @@ public class Frame extends JFrame implements ActionListener{
 
         join.addActionListener(this);
         create.addActionListener(this);
+        create.addKeyListener(this);
+        cbox.addKeyListener(this);
+
+
 
         p.add(cbox);
         p.add(create);
@@ -129,5 +145,50 @@ public class Frame extends JFrame implements ActionListener{
     }
 
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource()==exit){
+            dispose();
+        }
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            dispose();
+
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
 
