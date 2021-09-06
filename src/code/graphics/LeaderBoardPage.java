@@ -190,13 +190,12 @@ public class LeaderBoardPage extends JPanel{
         jList1.setModel(dd);
         DataLeague d = new DataLeague();
         Team[] tleagues = d.getallTeamsInTheLeague(invitation_code);
-        //Collections.sort(tleagues, Comparator.comparingInt(Team::getFantaf1points));
 
 
         int h=1;
         String str = null;
         for (Team a : tleagues) {
-            if (a != null) {
+            if (a != null && a.getTeamName()!=null) {
                 dd.addElement("#" + str.valueOf(h) + a);
                 h++;
             }
