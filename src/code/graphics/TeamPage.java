@@ -319,14 +319,10 @@ public class TeamPage extends JPanel implements MouseListener, ListSelectionList
                     dt.insertNewTeam(t, current_user);
 
                     jLabel2.setText("Team Saved correctly");
-                    Timer timer = new Timer(2000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent arg0) {
-                            new Frame("Fantasy F1", current_user);
-                        }
-                    });
-                    timer.setRepeats(false); // Only execute once
-                    timer.start();
+                    new Frame("Fantasy F1", current_user);
+
+
+                    SwingUtilities.getWindowAncestor(this).dispose();
 
                 } else if (t.getBudget() < 0) {
                     jLabel2.setText("Budget insufficient!");

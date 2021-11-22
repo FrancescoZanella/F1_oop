@@ -94,10 +94,11 @@ public class ImplementResult {
             if (pos < parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getRace_position()) &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getNumber())
                 i.setFantaF1points(3, false);
-            if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getRace_position()) > pos &&
+            //TODO
+            /*if (parseInt(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD1().getRace_position()) > pos &&
                     i.getName().equals(Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getName()) && i.getNumber() == Squad.getConstructorByDriver(i.getName(), i.getNumber()).getD2().getNumber())
                 i.setFantaF1points(3, false);
-
+*/
             i.setFantaF1points(tot, true);
             tot = 0;
         }
