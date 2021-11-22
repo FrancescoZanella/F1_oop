@@ -100,7 +100,7 @@ public class ImplementResult {
                 i.setFantaF1points(3, false);
 */
             i.setFantaF1points(tot, true);
-            tot = 0;
+            tot =0;
         }
     }
 
