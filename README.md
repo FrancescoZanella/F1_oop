@@ -36,7 +36,7 @@ To get started, follow these simple steps:
 ## Table of Contents
 
 - [1. FantaF1’s Goal](#1.-FantaF1's-Goal)
-- [2. How to Play](#12-how-to-play)
+- [2. How to Play](#2.-How-to-Play)
   - [2.1 Teams](#121-teams)
   - [2.2 Budget](#122-budget)
   - [2.3 Subs Bank](#123-subs-bank)
@@ -44,7 +44,7 @@ To get started, follow these simple steps:
   - [2.5 Points Scoring](#125-points-scoring)
   - [2.6 Results](#126-results)
 
-## 1. Fanta's F1 goal
+## 1. FantaF1's Goal
 
 FantaF1's goal is to provide users with an exciting platform to compete against friends and Formula 1 enthusiasts by creating the best team and earning points based on real-world Formula 1 events.
 
