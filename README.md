@@ -6,7 +6,7 @@ the best team and collecting points every weekend.
 
 ## Table of Contents
 
-- [1. FantaF1’s Goal](#1-FantaF1's-Goal)
+- [1. FantaF1’s Goal](#prova)
 - [2. Prerequisites](#2.-Prerequisites)
 - [3. Installation](#3.-Installation)
 - [4. How to Play](#4.-How-to-Play)
@@ -24,7 +24,7 @@ the best team and collecting points every weekend.
 - [6. Contributors](#6.-contributors)
 
 
-## 1. FantaF1's Goal
+## prova
 
 FantaF1's goal is to provide users with an exciting platform to compete against friends and Formula 1 enthusiasts by creating the best team and earning points based on real-world Formula 1 events.
 
