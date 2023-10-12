@@ -17,12 +17,12 @@ the best team and collecting points every weekend.
   - [4.5 Points Scoring](#4.5-points-scoring)
   - [4.6 Results](#4.6-results)
 - [5. Screenshots](#5.-Screenshots)
-  - [5.1 Login](#5.1-login:)
-  - [5.2 Create League](#5.2-create-league:)
-  - [5.3 Home Page](#5.3-Home-Page:)
-  - [5.4 Leaderboard](#5.4-leaderboard:)
+  - [5.1 Login](#5.1-login)
+  - [5.2 Create League](#5.2-create-league)
+  - [5.3 Home Page](#5.3-Home-Page)
+  - [5.4 Leaderboard](#5.4-leaderboard)
 - [6. Contributors](#6.-contributors)
-- [7. License](#7.-license)
+
 
 ## 1. FantaF1's Goal
 
@@ -106,14 +106,14 @@ To get started, follow these simple steps:
 
 Here are some screenshots of the FantaF1 application to give you a glimpse of its user interface and features:
 
-### 5.1 Login:
+### 5.1 Login
 
 ![Login](screenshots/login.png)
 
 *Description:When the application is launched the following page is shown. The user has to fill in the blanks
 to log*
 
-### 5.2 Create League:
+### 5.2 Create League
 
 ![Create League](screenshots/create.png)
 
@@ -121,7 +121,7 @@ to log*
 the league lenght, how many races compose the league, the scope, a league can be either private
 or public and the invitation code to share with others users.*
 
-### 5.3 Home Page:
+### 5.3 Home Page
 In the homepage users can browse all app’s sections which are Team, LeaderBoard, Profile,
 Rules, Settings and Logout.
 
@@ -130,7 +130,7 @@ Rules, Settings and Logout.
 *Description: In the homepage users can also use the buttons "join with code" to join an existent league
 with an invitation code or "create league" to create a customized new one*
 
-### 5.4 Leaderboard:
+### 5.4 Leaderboard
 
 
 ![Leaderboard](screenshots/leaderboard.png)
