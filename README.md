@@ -35,7 +35,7 @@ To get started, follow these simple steps:
      ```
 ## Table of Contents
 
-- [1. FantaF1’s Goal](#1.-FantaF1's-goal)
+- [1. FantaF1’s Goal](#1.-FantaF1's-Goal)
 - [2. How to Play](#12-how-to-play)
   - [2.1 Teams](#121-teams)
   - [2.2 Budget](#122-budget)
