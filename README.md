@@ -6,7 +6,7 @@ the best team and collecting points every weekend.
 
 ## Table of Contents
 
-- [1. FantaF1’s Goal](#bog)
+- [1. FantaF1’s Goal](#1.-Fanta's)
 - [2. Prerequisites](#2.-Prerequisites)
 - [3. Installation](#3.-Installation)
 - [4. How to Play](#4.-How-to-Play)
