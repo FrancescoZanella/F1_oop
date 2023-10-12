@@ -6,7 +6,7 @@ the best team and collecting points every weekend.
 
 ## Table of Contents
 
-- [1. FantaF1’s Goal](#1.-FantaF1's-Goal)
+- [1. FantaF1’s Goal](#1-FantaF1's-Goal)
 - [2. Prerequisites](#2.-Prerequisites)
 - [3. Installation](#3.-Installation)
 - [4. How to Play](#4.-How-to-Play)
@@ -148,7 +148,7 @@ This is a side project made for fun and learning about Java and OOP programming.
 
 ## 7. Inspiration
 
-For FantaF1, we took inspiration from [link](https://fantasy.formula1.com/it/.")
+For FantaF1, we took inspiration from [link](https://fantasy.formula1.com/it/.)
 
 
     
